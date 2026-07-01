@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 export interface LogoItem {
   /** Custom React node (e.g. an icon or composed markup). Takes priority over src/name. */
   node?: React.ReactNode;
-  /** Image source — rendered as an <img> if no node is provided. */
+  /** Image source - rendered as an <img> if no node is provided. */
   src?: string;
   /** Accessible label / alt text, also used as the text fallback. */
   name?: string;

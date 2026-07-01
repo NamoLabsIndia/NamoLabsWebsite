@@ -34,7 +34,7 @@ export default function Hero() {
           }}
         />
 
-        {/* White veil — keeps the headline + subtext readable, waves mostly at the bottom */}
+        {/* White veil - keeps the headline + subtext readable, waves mostly at the bottom */}
         <div
           className="absolute inset-0"
           style={{

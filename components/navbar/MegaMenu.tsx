@@ -66,7 +66,7 @@ function PlatformMenu() {
       <div className="max-w-7xl mx-auto px-6 pt-8 pb-0">
         <div className="grid grid-cols-[220px_1fr_300px] gap-8 pb-8">
 
-          {/* Left — product list */}
+          {/* Left - product list */}
           <div>
             <p className="text-[11px] font-semibold text-accent uppercase tracking-widest mb-4">Platforms</p>
             {platformProducts.map(p => (
@@ -92,7 +92,7 @@ function PlatformMenu() {
             ))}
           </div>
 
-          {/* Center — QSCL logo */}
+          {/* Center - QSCL logo */}
           <div className="flex flex-col items-center justify-center gap-3 border-x border-gray-100 px-8">
             <div className="flex items-center gap-4">
               <img src="/qscl-logo-transparent.png" alt="QSCL" className="w-16 h-16 object-contain" />
@@ -102,7 +102,7 @@ function PlatformMenu() {
             </div>
           </div>
 
-          {/* Right — dynamic panel */}
+          {/* Right - dynamic panel */}
           <AnimatePresence mode="wait">
             <motion.div key={active.label} {...panelAnim} className="bg-accent-light rounded-2xl p-6 flex flex-col justify-between">
               <div>
@@ -176,7 +176,7 @@ const focusAreas = [
     panel: {
       tag: "Focus Area",
       title: "Artificial Intelligence",
-      body: "Our AI research spans machine learning, large language models, reasoning systems and ethical AI — building systems that are intelligent, explainable and secure.",
+      body: "Our AI research spans machine learning, large language models, reasoning systems and ethical AI - building systems that are intelligent, explainable and secure.",
       link: "/research/ai",
       cta: "Explore AI Research",
     },
@@ -218,7 +218,7 @@ function ResearchMenu() {
       <div className="max-w-7xl mx-auto px-6 pt-8 pb-0">
         <div className="grid grid-cols-[220px_1fr_1fr_260px] gap-8 pb-8">
 
-          {/* Col 1 — Focus Areas */}
+          {/* Col 1 - Focus Areas */}
           <div>
             <p className="text-[11px] font-semibold text-accent uppercase tracking-widest mb-4">Focus Areas</p>
             <div className="space-y-0.5">
@@ -244,7 +244,7 @@ function ResearchMenu() {
             </Link>
           </div>
 
-          {/* Col 2 — Publications */}
+          {/* Col 2 - Publications */}
           <div className="border-l border-gray-100 pl-8 flex flex-col">
             <p className="text-[11px] font-semibold text-accent uppercase tracking-widest mb-4">Publications</p>
             <div className="flex-1 flex flex-col items-start">
@@ -259,7 +259,7 @@ function ResearchMenu() {
             </Link>
           </div>
 
-          {/* Col 3 — Blog */}
+          {/* Col 3 - Blog */}
           <div className="border-l border-gray-100 pl-8 flex flex-col">
             <p className="text-[11px] font-semibold text-accent uppercase tracking-widest mb-4">Blog</p>
             <div className="flex-1 flex flex-col items-start">
@@ -274,7 +274,7 @@ function ResearchMenu() {
             </Link>
           </div>
 
-          {/* Col 4 — Dynamic panel based on hovered focus area */}
+          {/* Col 4 - Dynamic panel based on hovered focus area */}
           <AnimatePresence mode="wait">
             <motion.div
               key={active.label}
@@ -355,7 +355,7 @@ const consultingServices = [
     panel: {
       tag: "Consulting",
       title: "Network Solutions",
-      body: "We design, deploy and optimize enterprise-grade network infrastructure — secure, reliable and built to scale with your business.",
+      body: "We design, deploy and optimize enterprise-grade network infrastructure - secure, reliable and built to scale with your business.",
       cta: "Talk to an expert",
     },
   },
@@ -458,7 +458,7 @@ function ConsultingMenu() {
             ))}
           </div>
 
-          {/* Right — dynamic panel */}
+          {/* Right - dynamic panel */}
           <AnimatePresence mode="wait">
             <motion.div
               key={active.label}
@@ -503,7 +503,7 @@ const companyItems = [
     panel: {
       tag: "Our People",
       title: "Researchers, engineers and innovators.",
-      body: "Meet the brilliant minds at Namo Labs — a diverse team of researchers, engineers, designers and strategists united by a passion for building the future.",
+      body: "Meet the brilliant minds at Namo Labs - a diverse team of researchers, engineers, designers and strategists united by a passion for building the future.",
       cta: "Meet the team",
       href: "/about/team",
     },
@@ -602,7 +602,7 @@ function CompanyMenu() {
             </div>
           </div>
 
-          {/* Right — dynamic panel */}
+          {/* Right - dynamic panel */}
           <AnimatePresence mode="wait">
             <motion.div
               key={active.label}

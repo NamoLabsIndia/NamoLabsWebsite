@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import MegaMenu from "./MegaMenu";
 import MobileMenu from "./MobileMenu";
 
-// "Platform" has no dropdown — it's a direct link.
+// "Platform" has no dropdown - it's a direct link.
 // "Research", "Consulting", "Company" have mega menus.
 const topNavItems = [
   { label: "Platform",   key: "platform",   hasDropdown: false },

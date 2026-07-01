@@ -69,7 +69,7 @@ export default function ApproachSection() {
           className="rounded-[32px] border border-white/70 bg-gradient-to-b from-white to-[#eef2fc] shadow-[0_24px_70px_-28px_rgba(80,90,160,0.25)] p-8 sm:p-12"
         >
           <div className="grid lg:grid-cols-[minmax(0,340px)_1fr] gap-10 lg:gap-16 items-start">
-            {/* Left — heading + CTA */}
+            {/* Left - heading + CTA */}
             <div>
               <p className="text-sm font-semibold text-accent mb-4">Our Approach</p>
               <h3 className="text-3xl sm:text-[34px] font-black text-namo-black leading-[1.15] mb-6">
@@ -77,7 +77,7 @@ export default function ApproachSection() {
                 AI-Powered. Impact-Driven.
               </h3>
               <p className="text-gray-500 text-[15px] leading-relaxed mb-8">
-                Unlike traditional consulting firms that rely on templates and assumptions, we go deep — into research, data, and technology — to design solutions that are future-ready and built for scale.
+                Unlike traditional consulting firms that rely on templates and assumptions, we go deep - into research, data, and technology - to design solutions that are future-ready and built for scale.
               </p>
               <Link
                 href="/consulting"
@@ -87,7 +87,7 @@ export default function ApproachSection() {
               </Link>
             </div>
 
-            {/* Right — feature grid with dividers */}
+            {/* Right - feature grid with dividers */}
             <div className="lg:border-l lg:border-gray-200/70 lg:pl-16">
               <div className="grid sm:grid-cols-2 gap-x-10">
                 <div className="pb-7">

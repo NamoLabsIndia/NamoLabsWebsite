@@ -99,7 +99,7 @@ export default function ResearchDomains() {
               {/* Content */}
               <div className="p-6 pr-7">
                 <p className="text-xs font-semibold uppercase tracking-widest text-accent mb-2">
-                  {domain.number} — {domain.category}
+                  {domain.number} - {domain.category}
                 </p>
                 <h3 className="text-lg font-bold text-namo-black mb-2">{domain.title}</h3>
                 <p className="text-sm text-gray-500 leading-relaxed mb-3">{domain.description}</p>

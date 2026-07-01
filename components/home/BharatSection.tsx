@@ -37,7 +37,7 @@ export default function BharatSection() {
             </Link>
           </motion.div>
 
-          {/* Right — Earth image */}
+          {/* Right - Earth image */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}

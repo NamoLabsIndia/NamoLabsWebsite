@@ -107,7 +107,7 @@ export default function OneStopFirmSection() {
       className="bg-white"
       style={{ height: `calc(100vh + ${extraScrollPx}px)` }}
     >
-      {/* Sticky panel — takes full viewport height */}
+      {/* Sticky panel - takes full viewport height */}
       <div className="sticky top-0 h-screen overflow-hidden flex items-center">
         <div className="w-full max-w-[1600px] mx-auto px-6 lg:px-16">
           <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">

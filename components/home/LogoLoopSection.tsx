@@ -16,7 +16,7 @@ const partners: LogoItem[] = [
 export default function LogoLoopSection() {
   return (
     <section className="py-14 bg-white border-y border-gray-100">
-      {/* Label — same typography as the PDF */}
+      {/* Label - same typography as the PDF */}
       <p className="text-center text-[11px] font-semibold tracking-[0.28em] text-gray-400 uppercase mb-10">
         Trusted by Innovators, Enterprises &amp; Institutions
       </p>
