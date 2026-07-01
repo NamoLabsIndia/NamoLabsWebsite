@@ -54,7 +54,7 @@ function Unit({ value, label }: { value: number; label: string }) {
 function TriquetraSVG() {
   return (
     <img
-      src="/qscl-logo.png"
+      src="/qscl-logo-transparent.png"
       alt="QSCL triquetra logo"
       className="w-16 h-16 sm:w-20 sm:h-20 object-contain flex-shrink-0 drop-shadow-sm"
     />

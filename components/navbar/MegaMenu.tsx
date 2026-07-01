@@ -95,7 +95,7 @@ function PlatformMenu() {
           {/* Center — QSCL logo */}
           <div className="flex flex-col items-center justify-center gap-3 border-x border-gray-100 px-8">
             <div className="flex items-center gap-4">
-              <img src="/qscl-logo.png" alt="QSCL" className="w-16 h-16 object-contain" />
+              <img src="/qscl-logo-transparent.png" alt="QSCL" className="w-16 h-16 object-contain" />
               <span className="text-4xl font-black text-namo-black tracking-tight">
                 QSCL<sup className="text-gray-400 text-base font-normal ml-0.5">™</sup>
               </span>
