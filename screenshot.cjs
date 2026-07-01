@@ -1,7 +1,12 @@
 const { chromium } = require('playwright');
 
+const fs = require('fs');
+
 (async () => {
-  const sp = 'C:\\Users\\Welcome\\AppData\\Local\\Temp\\claude\\c--Users-Welcome-Desktop-Namolabs\\6ae7f928-9d01-4dea-b61e-b68d43717f8d\\scratchpad\\';
+  const sp = './screenshots/';
+  if (!fs.existsSync(sp)) {
+    fs.mkdirSync(sp, { recursive: true });
+  }
   const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage();
   await page.setViewportSize({ width: 1440, height: 900 });

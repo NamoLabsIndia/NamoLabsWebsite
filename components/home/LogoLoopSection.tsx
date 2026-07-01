@@ -27,7 +27,7 @@ export default function LogoLoopSection() {
         speed={40}
         direction="left"
         gap={80}
-        logoHeight={104}
+        logoHeight={72}
         fadeOut
         fadeOutColor="#ffffff"
         pauseOnHover
