@@ -21,6 +21,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* On-brand text selection */
+::selection {
+  background: #3B5BFF;
+  color: #ffffff;
+}
+
+/* Visible keyboard focus (mouse clicks stay clean via :focus-visible) */
+:focus-visible {
+  outline: 2px solid #3B5BFF;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -52,4 +65,19 @@ body {
 }
 .logo-loop-pausable:hover {
   animation-play-state: paused;
+}
+
+/* Respect reduced-motion: still the marquee and neutralise long transitions */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .logo-loop-track {
+    animation: none !important;
+  }
 }

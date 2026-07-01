@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 const stagger = {
@@ -16,6 +16,7 @@ const fadeUp = {
 };
 
 export default function Hero() {
+  const reduceMotion = useReducedMotion();
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden px-6 pt-28 pb-24">
 
@@ -113,7 +114,7 @@ export default function Hero() {
         <div className="w-6 h-9 border-2 border-gray-300 rounded-full flex items-start justify-center p-1">
           <motion.div
             className="w-1 h-2 bg-gray-400 rounded-full"
-            animate={{ y: [0, 10, 0] }}
+            animate={reduceMotion ? undefined : { y: [0, 10, 0] }}
             transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>

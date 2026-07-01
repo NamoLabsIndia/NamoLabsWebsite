@@ -31,6 +31,7 @@ const navGroups = [
       { label: "Cybersecurity", href: "/consulting/cybersecurity" },
       { label: "Blockchain", href: "/consulting/blockchain" },
       { label: "Cloud", href: "/consulting/cloud" },
+      { label: "Consulting", href: "/consulting" },
       { label: "Enterprise Solutions", href: "/consulting/enterprise" },
       { label: "Network Solutions", href: "/consulting/network" },
       { label: "Sustainability Services", href: "/consulting/sustainability" },
@@ -40,12 +41,13 @@ const navGroups = [
     label: "Company",
     children: [
       { label: "About", href: "/about" },
-      { label: "Partnership", href: "/partnership" },
+      { label: "Team", href: "/about/team" },
       { label: "Careers", href: "/careers" },
-      { label: "Blog", href: "/blog" },
+      { label: "Newsroom", href: "/newsroom" },
+      { label: "Partnerships", href: "/partnership" },
+      { label: "Investment", href: "/investment" },
     ],
   },
-  { label: "Careers", href: "/careers" },
   { label: "Contact", href: "/contact" },
 ];
 
