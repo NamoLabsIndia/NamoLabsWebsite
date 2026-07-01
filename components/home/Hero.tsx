@@ -17,7 +17,7 @@ const fadeUp = {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden px-6 pt-28 pb-24">
+    <section className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden px-6 pt-16 pb-24">
 
       {/* ── Flowing blue-wave background (image from design) ── */}
       <div className="absolute inset-0 -z-10">
@@ -103,22 +103,7 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* ── Scroll indicator ── */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.8 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
-        <div className="w-6 h-9 border-2 border-gray-300 rounded-full flex items-start justify-center p-1">
-          <motion.div
-            className="w-1 h-2 bg-gray-400 rounded-full"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </div>
-        <span className="text-[10px] text-gray-400 tracking-[0.2em] uppercase">Scroll to explore</span>
-      </motion.div>
+
     </section>
   );
 }
