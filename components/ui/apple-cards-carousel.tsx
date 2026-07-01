@@ -1,5 +1,6 @@
 "use client";
 import React, {
+  useCallback,
   useEffect,
   useRef,
   useState,
@@ -158,7 +159,12 @@ export const Card = ({
 }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { onCardClose, currentIndex } = useContext(CarouselContext);
+  const { onCardClose } = useContext(CarouselContext);
+
+  const handleClose = useCallback(() => {
+    setOpen(false);
+    onCardClose(index);
+  }, [onCardClose, index]);
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -175,17 +181,12 @@ export const Card = ({
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [open]);
+  }, [open, handleClose]);
 
   useOutsideClick(containerRef, () => handleClose());
 
   const handleOpen = () => {
     setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-    onCardClose(index);
   };
 
   const imageSrc = card.src || card.image || "";
@@ -276,7 +277,7 @@ export const BlurImage = ({
   src: string;
   className?: string;
   alt?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }) => {
   const [isLoading, setLoading] = useState(true);
   return (
