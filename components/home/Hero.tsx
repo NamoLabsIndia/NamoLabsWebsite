@@ -57,13 +57,6 @@ export default function Hero() {
         animate="show"
         className="flex flex-col items-center"
       >
-        {/* Badge */}
-        <motion.div variants={fadeUp} className="mb-8">
-          <span className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-gray-200/80 text-gray-500 text-sm px-5 py-2 rounded-full shadow-sm">
-            <span className="text-accent font-bold text-base leading-none">+</span>
-            Engineering the Future of Digital Infrastructure
-          </span>
-        </motion.div>
 
         {/* Headline */}
         <motion.h1

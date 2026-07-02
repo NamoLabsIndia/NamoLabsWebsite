@@ -103,9 +103,8 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-12">
           {/* Brand */}
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
-            <Link href="/" className="inline-flex items-baseline gap-0.5 mb-3">
-              <span className="text-2xl font-black text-namo-black">Namo Labs</span>
-              <span className="text-xs text-gray-400">™</span>
+            <Link href="/" className="inline-flex items-center gap-0.5 mb-3">
+              <img src="/namo-logo.webp" alt="Namo Labs" className="h-10 w-auto object-contain mix-blend-multiply -ml-2" />
             </Link>
             <p className="text-sm font-semibold text-gray-700 mb-2">Deep Tech. For Humanity.</p>
             <p className="text-xs text-gray-500 leading-relaxed max-w-[220px]">
@@ -166,18 +165,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-gray-100 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
           <p>© 2026 Namo Labs Private Limited. All rights reserved.</p>
-          <div className="flex items-center gap-2">
-            <div className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center">
-              <div className="w-2.5 h-2.5 border border-accent/50 rounded-full" />
-            </div>
-            <span>
-              Built in <span className="text-accent font-semibold">Bharat</span>. For the World.
-            </span>
-          </div>
-          <p className="text-right">
-            732, Chinmaya Mission Hospital Road,<br className="sm:hidden" />{" "}
-            Indiranagar Stage 1, Bengaluru, Karnataka 560038
-          </p>
+
         </div>
       </div>
     </footer>

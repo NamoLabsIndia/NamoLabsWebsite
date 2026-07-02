@@ -18,8 +18,7 @@ const sectors: (CarouselCard & { href: string })[] = [
     category: "Public Sector",
     title: "Governments",
     icon: <Building2 size={16} />,
-    image:
-      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=2070&auto=format&fit=crop",
+    image: "/government-image.png",
     content:
       "Enabling digital transformation with secure, scalable and citizen-centric solutions that modernise public services and build trust at national scale.",
     href: "/solutions/governments",
@@ -28,8 +27,7 @@ const sectors: (CarouselCard & { href: string })[] = [
     category: "Enterprise",
     title: "Organisations",
     icon: <Users size={16} />,
-    image:
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop",
+    image: "/organisation-image.png",
     content:
       "Helping enterprises streamline operations, enhance productivity and drive innovation with intelligent, future-ready platforms.",
     href: "/solutions/organisations",
