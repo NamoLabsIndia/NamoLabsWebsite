@@ -17,9 +17,6 @@ const config: Config = {
         "namo-gray": "#F5F6F8",
         "namo-faint": "#FAFAFA",
       },
-      fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-      },
       animation: {
         "logo-scroll": "logoScroll 30s linear infinite",
         "float": "float 6s ease-in-out infinite",
