@@ -13,6 +13,7 @@ import {
   Leaf,
   BarChart3,
   Lock,
+  Users,
 } from "lucide-react";
 import React from "react";
 
@@ -158,6 +159,12 @@ export const companyItems: NavSection[] = [
         description: "Learn about our mission and philosophy.",
         href: "/about",
         icon: <Building2 size={18} className="text-accent" />,
+      },
+      {
+        label: "Team",
+        description: "Meet the people building tomorrow.",
+        href: "/team",
+        icon: <Users size={18} className="text-accent" />,
       },
       {
         label: "Partnership",
