@@ -5,8 +5,8 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowUpRight, Shield, Search, Brain, Atom, Cloud, Lock, Database,
-  Building2, Briefcase, Newspaper, Handshake,
-  BarChart3, Network, Leaf, FileText,
+  Building2, Briefcase, Newspaper, Handshake, Users,
+  BarChart3, Network, Leaf,
 } from "lucide-react";
 
 
@@ -255,6 +255,7 @@ function ConsultingMenu() {
 /* ────────────────────── COMPANY ────────────────────── */
 const companyLinks = [
   { icon: <Building2  size={15} />, label: "About Namo Labs",  sub: "Mission, vision & research philosophy.", href: "/about"       },
+  { icon: <Users      size={15} />, label: "Team",             sub: "Meet the people building tomorrow.",     href: "/team"        },
   { icon: <Briefcase  size={15} />, label: "Careers",          sub: "Build the future with us.",             href: "/careers"     },
   { icon: <Handshake  size={15} />, label: "Partnerships",     sub: "Collaborate to turn ambition into impact.", href: "/partnership" },
   { icon: <Newspaper  size={15} />, label: "Blog",             sub: "Ideas, insights and updates.",          href: "/blog"        },
