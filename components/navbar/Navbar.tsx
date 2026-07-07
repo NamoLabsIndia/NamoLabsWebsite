@@ -76,7 +76,7 @@ export default function Navbar() {
                 <img
                   src="/logos/Namo%20Labs%20Logo.png"
                   alt="Namo Labs"
-                  className="h-[56px] w-[48px] object-cover object-left mix-blend-multiply"
+                  className="h-[60px] w-auto object-contain mix-blend-multiply"
                 />
               </Link>
 
@@ -144,7 +144,7 @@ export default function Navbar() {
             <div className="lg:hidden flex flex-col">
               <div className="flex justify-between items-center px-4 pl-5 py-3">
                 <Link href="/" className="relative flex items-center gap-2">
-                  <img src="/logos/Namo%20Labs%20Logo.png" alt="Namo Labs" className="h-[56px] w-[48px] object-cover object-left mix-blend-multiply" />
+                  <img src="/logos/Namo%20Labs%20Logo.png" alt="Namo Labs" className="h-[60px] w-auto object-contain mix-blend-multiply scale-[1.3] origin-left" />
                 </Link>
                 <div className="flex items-center gap-3">
                   <button

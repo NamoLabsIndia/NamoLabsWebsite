@@ -102,7 +102,7 @@ export default function Footer() {
               <img 
                 src="/logos/Namo%20Labs%20Logo.png" 
                 alt="Namo Labs" 
-                className={`h-[72px] w-[62px] object-cover object-left ${isConsultingPage ? 'brightness-0 invert opacity-90 mix-blend-screen' : 'mix-blend-multiply'}`} 
+                className={`h-[72px] w-auto object-contain ${isConsultingPage ? 'brightness-0 invert opacity-90 mix-blend-screen' : 'mix-blend-multiply'}`} 
               />
             </Link>
             <p className={`text-sm font-semibold mb-2 mt-2 ${isConsultingPage ? 'text-white/70' : 'text-gray-700'}`}>Deep Tech. For Humanity.</p>
