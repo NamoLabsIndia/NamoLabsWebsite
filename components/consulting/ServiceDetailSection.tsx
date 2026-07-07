@@ -7,6 +7,7 @@ import { CheckCircle2, ChevronDown } from "lucide-react";
 interface Capability {
   title: string;
   description: string;
+  image?: string;
 }
 
 interface ServiceDetailSectionProps {
@@ -62,6 +63,11 @@ function CapabilityCard({ cap, index }: { cap: Capability, index: number }) {
               className="overflow-hidden"
             >
               <div className="mt-5 pt-4 border-t border-white/10">
+                {cap.image && (
+                  <div className="w-full h-32 sm:h-40 rounded-xl mb-4 overflow-hidden relative border border-white/10 bg-black/20">
+                    <img src={cap.image} alt={cap.title} className="object-cover w-full h-full transform transition-transform duration-700 hover:scale-105" />
+                  </div>
+                )}
                 <p className="text-sm text-white/80 leading-relaxed font-medium">
                   {cap.description}
                 </p>
