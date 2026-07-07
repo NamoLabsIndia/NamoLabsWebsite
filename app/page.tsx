@@ -4,6 +4,7 @@ import ApproachSection from "@/components/home/ApproachSection";
 import ResearchDomains from "@/components/home/ResearchDomains";
 import OneStopFirmSection from "@/components/home/OneStopFirmSection";
 import BharatSection from "@/components/home/BharatSection";
+import TestimonialsSection from "@/components/home/TestimonialsSection";
 import ResearchUpdates from "@/components/home/ResearchUpdates";
 import CountdownSection from "@/components/home/CountdownSection";
 
@@ -16,6 +17,7 @@ export default function HomePage() {
       <ResearchDomains />
       <OneStopFirmSection />
       <BharatSection />
+      <TestimonialsSection />
       <ResearchUpdates />
       <CountdownSection />
     </>

@@ -86,7 +86,7 @@ export default function ResearchHero() {
                 <User size={24} strokeWidth={2} />
               </div>
               <div>
-                <p className="text-xl font-bold text-namo-black">50+</p>
+                <p className="text-xl font-bold text-namo-black">20+</p>
                 <p className="text-sm text-gray-500 font-medium">Active Researchers</p>
               </div>
             </div>
@@ -96,7 +96,7 @@ export default function ResearchHero() {
                 <FileText size={24} strokeWidth={2} />
               </div>
               <div>
-                <p className="text-xl font-bold text-namo-black">100+</p>
+                <p className="text-xl font-bold text-namo-black">10+</p>
                 <p className="text-sm text-gray-500 font-medium">Research Papers</p>
               </div>
             </div>

@@ -126,7 +126,7 @@ export default function CountdownSection() {
           whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center justify-center gap-5 mb-16"
+          className="flex items-center justify-center gap-5 mb-6"
         >
           <img
             src="/qscl-logo-transparent.png"
@@ -143,13 +143,13 @@ export default function CountdownSection() {
           transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mb-16"
         >
-          <LightUnit value={days}    label="Days" />
-          <LightColon />
-          <LightUnit value={hours}   label="Hours" />
-          <LightColon />
-          <LightUnit value={minutes} label="Minutes" />
-          <LightColon />
-          <LightUnit value={seconds} label="Seconds" />
+          <FlipUnit value={days}    label="Days" />
+          <FlipColon />
+          <FlipUnit value={hours}   label="Hours" />
+          <FlipColon />
+          <FlipUnit value={minutes} label="Minutes" />
+          <FlipColon />
+          <FlipUnit value={seconds} label="Seconds" />
         </motion.div>
 
         {/* CTA */}
@@ -352,15 +352,50 @@ export default function CountdownSection() {
   );
 }
 
-function LightUnit({ value, label }: { value: number; label: string }) {
+function FlipUnit({ value, label }: { value: number; label: string }) {
+  const formattedValue = String(value).padStart(2, "0");
+
   return (
-    <div className="relative overflow-hidden bg-white rounded-[28px] min-w-[120px] sm:min-w-[140px] py-8 px-4 text-center flex flex-col items-center justify-center border border-blue-50 shadow-[0_8px_40px_rgb(59,91,255,0.06)]">
-      <motion.span
-        key={value}
-        className="text-5xl sm:text-6xl font-[700] text-namo-black tabular-nums block tracking-tight mb-2"
+    <div className="flex flex-col items-center gap-3">
+      <div 
+        className="relative w-20 sm:w-28 h-24 sm:h-32 bg-[#121212] rounded-[12px] shadow-[0_20px_50px_rgba(0,0,0,0.3)] flex flex-col justify-center items-center overflow-hidden"
+        style={{
+          boxShadow: "inset 0 1px 0 rgba(255,255,255,0.1), 0 20px 50px rgba(0,0,0,0.3), 0 10px 20px rgba(0,0,0,0.2)"
+        }}
       >
-        {String(value).padStart(2, "0")}
-      </motion.span>
+        {/* Flip Clock Cards Background (Top and Bottom halves) */}
+        <div className="absolute inset-0 flex flex-col">
+          <div className="h-1/2 bg-gradient-to-b from-[#2a2a2a] to-[#1a1a1a]" />
+          <div className="h-1/2 bg-gradient-to-b from-[#111] to-[#0a0a0a]" />
+        </div>
+
+        {/* Middle mechanical split line */}
+        <div className="absolute top-1/2 left-0 w-full h-[2px] bg-black z-20 -translate-y-1/2 shadow-[0_1px_1px_rgba(255,255,255,0.05)]" />
+        
+        {/* Hinge shadows */}
+        <div className="absolute top-1/2 left-0 w-2 h-4 bg-gradient-to-r from-black to-transparent z-30 -translate-y-1/2 opacity-50" />
+        <div className="absolute top-1/2 right-0 w-2 h-4 bg-gradient-to-l from-black to-transparent z-30 -translate-y-1/2 opacity-50" />
+
+        <AnimatePresence mode="popLayout">
+          <motion.div
+            key={value}
+            initial={{ rotateX: -90, filter: "brightness(0.5)", opacity: 0 }}
+            animate={{ rotateX: 0, filter: "brightness(1)", opacity: 1 }}
+            exit={{ rotateX: 90, filter: "brightness(0.5)", opacity: 0 }}
+            transition={{ type: "spring", stiffness: 150, damping: 15 }}
+            className="absolute inset-0 flex items-center justify-center z-10 perspective-[400px]"
+          >
+            <span 
+              className="text-5xl sm:text-7xl font-bold tabular-nums text-white"
+              style={{
+                textShadow: "0 2px 4px rgba(0,0,0,0.5)"
+              }}
+            >
+              {formattedValue}
+            </span>
+          </motion.div>
+        </AnimatePresence>
+      </div>
       <span className="text-[11px] tracking-[0.2em] text-accent uppercase font-bold">
         {label}
       </span>
@@ -368,6 +403,9 @@ function LightUnit({ value, label }: { value: number; label: string }) {
   );
 }
 
-const LightColon = () => (
-  <div className="text-4xl text-accent font-black pb-4">:</div>
+const FlipColon = () => (
+  <div className="flex flex-col gap-3 pb-8">
+    <div className="w-2 sm:w-3 h-2 sm:h-3 rounded-full bg-accent/80 shadow-[0_0_10px_rgba(59,91,255,0.5)]" />
+    <div className="w-2 sm:w-3 h-2 sm:h-3 rounded-full bg-accent/80 shadow-[0_0_10px_rgba(59,91,255,0.5)]" />
+  </div>
 );

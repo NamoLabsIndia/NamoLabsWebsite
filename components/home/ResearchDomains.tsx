@@ -131,13 +131,23 @@ export default function ResearchDomains() {
             </p>
           </div>
 
-          <Link
-            href="/research"
-            className="group inline-flex items-center justify-center gap-3 bg-[#0A0A0A] text-white font-medium px-8 py-3.5 rounded-full text-[14px] hover:bg-gray-800 transition-colors shadow-sm flex-shrink-0"
-          >
-            Explore Research
-            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 flex-shrink-0">
+            <Link
+              href="/research"
+              className="group inline-flex items-center justify-center gap-3 bg-[#0A0A0A] text-white font-medium px-8 py-3.5 rounded-full text-[14px] hover:bg-gray-800 transition-colors shadow-sm"
+            >
+              Explore Research
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            </Link>
+
+            <Link
+              href="/collaboration"
+              className="group inline-flex items-center justify-center gap-3 bg-white border border-gray-200 text-namo-black font-medium px-8 py-3.5 rounded-full text-[14px] hover:border-gray-300 hover:bg-gray-50 transition-colors shadow-sm"
+            >
+              Collaborate
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
         </motion.div>
       </div>
     </section>

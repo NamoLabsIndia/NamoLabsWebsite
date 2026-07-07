@@ -42,7 +42,7 @@ export default function CollaborateBanner() {
                 </p>
                 
                 <Link
-                  href="/contact"
+                  href="/collaboration"
                   className="inline-flex items-center gap-2 bg-[#0A0A0A] text-white font-medium px-5 py-2.5 rounded-full hover:bg-gray-800 transition-colors shadow-sm text-xs"
                 >
                   Let's Collaborate

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Search, Sparkles, Target, TrendingUp, Shield } from "lucide-react";
@@ -13,21 +13,51 @@ const features = [
   { icon: <Shield size={20} />, title: "Future-Ready Solutions", description: "Our solutions are secure, scalable, and built for a world shaped by AI, automation, and exponential technologies." },
 ];
 
+function useTypewriter(text: string, speed = 100, pause = 2000) {
+  const [displayedText, setDisplayedText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+
+    if (!isDeleting && displayedText === text) {
+      timeout = setTimeout(() => setIsDeleting(true), pause);
+    } else if (isDeleting && displayedText === "") {
+      timeout = setTimeout(() => setIsDeleting(false), 500);
+    } else {
+      const nextText = isDeleting
+        ? text.substring(0, displayedText.length - 1)
+        : text.substring(0, displayedText.length + 1);
+
+      timeout = setTimeout(
+        () => setDisplayedText(nextText),
+        isDeleting ? speed / 2 : speed
+      );
+    }
+
+    return () => clearTimeout(timeout);
+  }, [displayedText, isDeleting, text, speed, pause]);
+
+  return displayedText;
+}
+
 function Feature({ icon, title, description }: (typeof features)[number]) {
   return (
-    <div className="flex gap-5">
-      <div className="w-12 h-12 rounded-[14px] bg-[#F4F6FF] flex items-center justify-center text-accent shrink-0 border border-blue-100/50">
+    <div className="flex gap-5 group cursor-pointer">
+      <div className="w-12 h-12 rounded-[14px] bg-[#F4F6FF] flex items-center justify-center text-accent shrink-0 border border-blue-100/50 group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300 ease-out shadow-sm group-hover:shadow-[0_8px_20px_rgba(59,91,255,0.3)]">
         {icon}
       </div>
-      <div>
-        <h4 className="font-semibold text-accent text-[16px] mb-2">{title}</h4>
-        <p className="text-[14px] text-gray-500 leading-[1.6]">{description}</p>
+      <div className="transition-transform duration-300 group-hover:translate-x-1">
+        <h4 className="font-semibold text-accent text-[16px] mb-2 group-hover:text-blue-800 transition-colors duration-300">{title}</h4>
+        <p className="text-[14px] text-gray-500 leading-[1.6] group-hover:text-gray-800 transition-colors duration-300">{description}</p>
       </div>
     </div>
   );
 }
 
 export default function ApproachSection() {
+  const typedWord = useTypewriter("AI-Powered.", 150, 2500);
+
   return (
     <section className="py-24 bg-namo-faint">
       <div className="max-w-7xl mx-auto px-6">
@@ -74,7 +104,15 @@ export default function ApproachSection() {
               <p className="text-[15px] font-semibold text-accent mb-4">Our Approach</p>
               <h3 className="text-3xl sm:text-[36px] font-[700] text-namo-black leading-[1.2] mb-6 tracking-tight">
                 Research-Backed.<br />
-                AI-Powered. Impact-Driven.
+                <span className="text-accent font-black">
+                  {typedWord}
+                  <motion.span
+                    animate={{ opacity: [1, 0] }}
+                    transition={{ repeat: Infinity, duration: 0.8 }}
+                    className="inline-block w-[2px] h-[30px] sm:h-[36px] bg-accent/60 ml-1 align-middle translate-y-[-2px]"
+                  />
+                </span>{" "}
+                Impact-Driven.
               </h3>
               <p className="text-gray-500 text-[15px] leading-[1.65] mb-10">
                 Unlike traditional consulting firms that rely on templates and assumptions, we go deep - into research, data, and technology - to design solutions that are future-ready and built for scale.

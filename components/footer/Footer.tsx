@@ -29,14 +29,11 @@ const YoutubeIcon = () => (
 
 const columns = [
   {
-    heading: "PRODUCTS",
+    heading: "PLATFORM",
     links: [
-      { label: "QSCL SDK", href: "/platform/qscl" },
+      { label: "QSCL SDK", href: "/#qscl-timer" },
       { label: "DAFS Platform", href: "/platform/dafs" },
-      { label: "Namo Chain Explorer", href: "/platform/chain-explorer" },
-      { label: "Namo ID", href: "/platform/namo-id" },
-      { label: "Namo Secure Cloud", href: "/platform/secure-cloud" },
-      { label: "Namo Quantum Link", href: "/platform/quantum-link" },
+      { label: "TierraTrace", href: "https://www.tierratrace.in" },
     ],
   },
   {
@@ -72,7 +69,6 @@ const columns = [
       { label: "Trust Center", href: "/trust" },
       { label: "Privacy Policy", href: "/privacy" },
       { label: "Terms of Service", href: "/terms" },
-      { label: "EULA", href: "/eula" },
     ],
   },
   {
@@ -104,24 +100,11 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-0.5 mb-3">
-              <img src="/namo-logo.webp" alt="Namo Labs" className="h-10 w-auto object-contain mix-blend-multiply -ml-2" />
+              <img src="/namo-logo.png" alt="Namo Labs" className="h-16 w-auto object-contain mix-blend-multiply -ml-2" />
             </Link>
-            <p className="text-sm font-semibold text-gray-700 mb-2">Deep Tech. For Humanity.</p>
-            <p className="text-xs text-gray-500 leading-relaxed max-w-[220px]">
-              We build secure, intelligent and future-ready technologies in Blockchain, Cryptography and Quantum.
-            </p>
+            <p className="text-sm font-semibold text-gray-700 mb-2 mt-2">Deep Tech. For Humanity.</p>
 
-            {/* Badges */}
-            <div className="flex gap-3 mt-4">
-              <div className="flex flex-col items-center border border-gray-200 rounded-lg px-3 py-2 text-center">
-                <span className="text-xs font-bold text-gray-600">ISO/IEC</span>
-                <span className="text-xs text-gray-400">27001</span>
-              </div>
-              <div className="flex flex-col items-center border border-gray-200 rounded-lg px-3 py-2 text-center">
-                <span className="text-xs font-bold text-gray-600">SOC 2</span>
-                <span className="text-xs text-gray-400">Type II</span>
-              </div>
-            </div>
+
 
             {/* Socials */}
             <div className="flex gap-2 mt-5">
@@ -164,7 +147,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-gray-100 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
-          <p>© 2026 Namo Labs Private Limited. All rights reserved.</p>
+          <p>© 2026 Namo Labs LLP. All rights reserved.</p>
 
         </div>
       </div>

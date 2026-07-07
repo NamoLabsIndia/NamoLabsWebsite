@@ -276,7 +276,7 @@ const companyCards = [
     gradient: "linear-gradient(135deg, #0f172a 0%, #1e2033 70%, #3B5BFF 100%)",
     label: "QSCL LAUNCH",
     title: "Early Access 2027",
-    href: "/platform/qscl",
+    href: "/#qscl-timer",
   },
   {
     gradient: "linear-gradient(135deg, #3B5BFF 0%, #6366f1 100%)",

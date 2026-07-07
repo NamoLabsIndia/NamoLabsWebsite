@@ -5,19 +5,19 @@ import { motion } from "framer-motion";
 
 const TESTIMONIALS = [
   {
-    quote: "Namo Labs' approach to quantum-secure architecture has fundamentally transformed how we view our long-term data resilience. Their research is second to none.",
-    author: "Dr. Elena Rostova",
-    role: "Chief Information Security Officer, GlobalTech Financial",
-  },
-  {
-    quote: "The deep tech insights provided by Namo Labs have been invaluable for our aerospace navigation systems. Their TierraTrace protocol is revolutionary.",
-    author: "Marcus Chen",
-    role: "Director of Systems Engineering, AeroSpace Systems",
-  },
-  {
-    quote: "Integrating their blockchain and cryptography research allowed us to future-proof our decentralized identity solutions years ahead of the curve.",
+    quote: "Integrating the QSCL SDK into our backend infrastructure was incredibly seamless. The developer experience is top-notch, and it fundamentally transformed how we handle secure data transmission.",
     author: "Sarah Jenkins",
-    role: "VP of Product, SecurID Networks",
+    role: "Lead Systems Developer, CloudNative Builders",
+  },
+  {
+    quote: "The TierraTrace platform has been a game-changer for our supply chain. It gives us the absolute traceability and unforgeable provenance we need to verify the ethical sourcing of our premium fabrics.",
+    author: "Marcus Chen",
+    role: "Head of Global Supply Chain, Luxe Threads Textile Co.",
+  },
+  {
+    quote: "Partnering with Namo Labs on the PQC research worklet allowed us to successfully future-proof our enterprise IT solutions. Their cryptography expertise puts our infrastructure years ahead of the curve.",
+    author: "Dr. Elena Rostova",
+    role: "Chief Technology Officer, Vertex IT Solutions",
   },
 ];
 
@@ -53,7 +53,7 @@ export default function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 + 0.2 }}
-              className="bg-gray-50/50 p-8 rounded-[24px] border border-gray-100 hover:border-accent/20 transition-colors shadow-sm hover:shadow-xl hover:shadow-accent/5 flex flex-col justify-between group"
+              className="bg-gray-50/50 p-8 rounded-[24px] border border-gray-100 hover:border-accent/20 transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-accent/5 hover:scale-105 flex flex-col justify-between group"
             >
               <div>
                 {/* Quote Icon */}
