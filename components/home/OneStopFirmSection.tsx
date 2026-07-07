@@ -78,22 +78,29 @@ export default function OneStopFirmSection() {
     if (!outer) return;
 
     const onScroll = () => {
+      // Disable horizontal scroll transform on mobile
+      if (window.innerWidth < 1024) {
+        setTranslateX(0);
+        return;
+      }
+      
       const rect = outer.getBoundingClientRect();
-      // rect.top goes from 0 → -(totalScrollable)
       const totalScrollable = outer.offsetHeight - window.innerHeight;
       if (totalScrollable <= 0) return;
 
       const scrolled = Math.max(0, -rect.top);
       const progress = Math.min(1, scrolled / totalScrollable);
-
-      // Max shift = how much extra track we need to reveal
       const maxShift = EXTRA_CARDS * CARD_W;
       setTranslateX(-(progress * maxShift));
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
     onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   // Total height = 100vh (normal view) + extra scroll distance for cards
@@ -105,8 +112,7 @@ export default function OneStopFirmSection() {
       className="bg-white"
       style={{ height: `calc(100vh + ${extraScrollPx}px)` }}
     >
-      {/* Sticky panel - takes full viewport height */}
-      <div className="sticky top-0 h-screen overflow-hidden flex items-center">
+      <div className="lg:sticky lg:top-0 lg:h-screen lg:overflow-hidden py-24 lg:py-0 flex items-center">
         <div className="w-full max-w-[1600px] mx-auto px-6 lg:px-16">
           <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
 
@@ -147,7 +153,7 @@ export default function OneStopFirmSection() {
                 transition={{ delay: 0.2 }}
               >
                 <Link
-                  href="/solutions"
+                  href="/consulting"
                   className="inline-flex items-center gap-2 bg-namo-black text-white font-semibold px-6 py-3.5 rounded-full text-sm hover:bg-gray-800 transition-colors"
                 >
                   Explore Solutions <ArrowRight size={14} />
@@ -174,11 +180,11 @@ export default function OneStopFirmSection() {
               {/* Translate the entire row of cards horizontally */}
               <div
                 style={{
-                  transform: `translateX(${translateX}px)`,
+                  transform: typeof window !== "undefined" && window.innerWidth >= 1024 ? `translateX(${translateX}px)` : "translateX(0)",
                   transition: "transform 0.05s linear",
                   willChange: "transform",
                 }}
-                className="flex flex-row gap-5 py-6"
+                className="flex flex-row gap-5 py-6 overflow-x-auto lg:overflow-visible snap-x snap-mandatory"
               >
                 {sectors.map((sector, i) => (
                   <div key={sector.title} className="flex-shrink-0">

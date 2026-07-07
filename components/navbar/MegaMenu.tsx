@@ -209,13 +209,13 @@ function ResearchMenu() {
 
 /* ────────────────────── CONSULTING ────────────────────── */
 const consultingServices = [
-  { icon: <BarChart3 size={15} />, label: "AI & Data Analytics",   desc: "Unlock data value with AI insights.",             href: "/consulting/ai-data"        },
-  { icon: <Shield    size={15} />, label: "Cybersecurity",          desc: "End-to-end security & risk management.",          href: "/consulting/cybersecurity"   },
-  { icon: <Database  size={15} />, label: "Blockchain",             desc: "Decentralized solutions for trust.",              href: "/consulting/blockchain"      },
-  { icon: <Cloud     size={15} />, label: "Cloud",                  desc: "Migrate, modernize & manage cloud.",              href: "/consulting/cloud"           },
-  { icon: <Building2 size={15} />, label: "Enterprise Solutions",   desc: "Drive efficiency and innovation at scale.",       href: "/consulting/enterprise"      },
-  { icon: <Network   size={15} />, label: "Network Solutions",      desc: "Design & optimize reliable networks.",            href: "/consulting/network"         },
-  { icon: <Leaf      size={15} />, label: "Sustainability Services", desc: "Responsible, energy-efficient stacks.",          href: "/consulting/sustainability"  },
+  { icon: <BarChart3 size={15} />, label: "AI & Data Analytics",   desc: "Unlock data value with AI insights.",             href: "/consulting#ai-analytics"     },
+  { icon: <Shield    size={15} />, label: "Cybersecurity",          desc: "End-to-end security & risk management.",          href: "/consulting#cybersecurity"    },
+  { icon: <Database  size={15} />, label: "Blockchain",             desc: "Decentralized solutions for trust.",              href: "/consulting#blockchain"       },
+  { icon: <Cloud     size={15} />, label: "Cloud",                  desc: "Migrate, modernize & manage cloud.",              href: "/consulting#cloud"            },
+  { icon: <Building2 size={15} />, label: "Enterprise Solutions",   desc: "Drive efficiency and innovation at scale.",       href: "/consulting#enterprise"       },
+  { icon: <Network   size={15} />, label: "Network Solutions",      desc: "Design & optimize reliable networks.",            href: "/consulting#network"          },
+  { icon: <Leaf      size={15} />, label: "Sustainability Services", desc: "Responsible, energy-efficient stacks.",          href: "/consulting#sustainability"   },
 ];
 
 const consultingCard = {

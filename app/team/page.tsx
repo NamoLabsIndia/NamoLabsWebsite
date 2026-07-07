@@ -349,7 +349,7 @@ export default function TeamPage() {
 
             <Reveal direction="right" className="min-h-[420px] lg:min-h-[600px]">
               <PhotoSlot
-                src="/team/founder.jpg"
+                src="/Founder%20Image.jpg"
                 alt="Portrait of Namoj PeriaKumar, Founder & CEO of Namo Labs"
                 className="h-full w-full"
                 imgClassName="object-cover object-top"

@@ -13,7 +13,7 @@ import MobileMenu from "./MobileMenu";
 const topNavItems = [
   { label: "Platform",   key: "platform",   hasDropdown: true  },
   { label: "Research",   key: "research",   hasDropdown: true, href: "/research" },
-  { label: "Consulting", key: "consulting", hasDropdown: true  },
+  { label: "Consulting", key: "consulting", hasDropdown: true, href: "/consulting" },
   { label: "Company",    key: "company",    hasDropdown: true, href: "/about" },
 ];
 
@@ -142,22 +142,11 @@ export default function Navbar() {
 
             {/* ── Mobile bar ── */}
             <div className="lg:hidden flex flex-col">
-              <div className="flex justify-between items-center px-4 pl-5 py-2">
+              <div className="flex justify-between items-center px-4 pl-5 py-3">
                 <Link href="/" className="relative flex items-center gap-2">
-                  <img src="/namo-logo.webp" alt="Namo Labs" className="h-10 w-auto object-contain mix-blend-multiply scale-[1.3] origin-left" />
+                  <img src="/namo-logo.webp" alt="Namo Labs" className="h-11 w-auto object-contain mix-blend-multiply scale-[1.5] origin-left" />
                 </Link>
                 <div className="flex items-center gap-3">
-                  <Link href="/contact" className="transition-opacity duration-150 opacity-100">
-                    <button
-                      className="group relative inline-flex items-center justify-center cursor-pointer font-medium rounded-full touch-manipulation disabled:opacity-40 disabled:pointer-events-none overflow-hidden min-h-[48px] text-[#1e2033] active:scale-[0.97] active:duration-150 transition-all duration-350 ease-[cubic-bezier(0.2,0,0,1)] px-4 sm:px-5 py-3 text-[14px] sm:text-[15px]"
-                      style={{
-                        background: "linear-gradient(to bottom, #ffffff 0%, #f0f1f5 100%)",
-                        boxShadow: "inset 0 0 0 1px rgba(30,32,51,0.14)",
-                      }}
-                    >
-                      <span className="relative z-10 flex items-center gap-2">Contact Us</span>
-                    </button>
-                  </Link>
                   <button
                     onClick={() => setMobileOpen(true)}
                     className="flex flex-col justify-center items-center space-y-[5px] focus:outline-none w-10 h-10 hover:opacity-70 transition-opacity"
@@ -177,7 +166,7 @@ export default function Navbar() {
 
       {/* Mobile overlay */}
       <AnimatePresence>
-        {mobileOpen && <MobileMenu onClose={() => setMobileOpen(false)} />}
+        {mobileOpen && <MobileMenu onCloseAction={() => setMobileOpen(false)} />}
       </AnimatePresence>
     </>
   );
