@@ -16,7 +16,7 @@ const Req = () => <span className="text-rose-500"> *</span>;
 
 const contactRows = [
   { icon: <Mail size={18} />,   label: "Email",    value: "info@namolabs.in" },
-  { icon: <Phone size={18} />,  label: "Phone",    value: "+91 98765 43210" },
+  { icon: <Phone size={18} />,  label: "Phone",    value: "+91 6381141795" },
   { icon: <MapPin size={18} />, label: "Location", value: "Chennai, Tamil Nadu, India" },
 ];
 
@@ -229,7 +229,7 @@ export default function ContactPage() {
                         <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm">🇮🇳</span>
                         <ChevronDown size={13} className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400" />
                       </div>
-                      <input id="phone" name="phone" type="tel" required placeholder="98765 43210" className={getInputCls("phone")} value={formData.phone} onChange={handleChange} onBlur={handleBlur} />
+                      <input id="phone" name="phone" type="tel" required placeholder="6381141795" className={getInputCls("phone")} value={formData.phone} onChange={handleChange} onBlur={handleBlur} />
                     </div>
                     <FieldError name="phone" />
                   </div>

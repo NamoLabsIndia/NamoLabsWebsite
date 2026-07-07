@@ -14,7 +14,7 @@ export default function BharatSection() {
   return (
     <section ref={ref} className="py-24 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-[minmax(0,400px)_1fr] gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-[minmax(0,500px)_1fr] gap-12 lg:gap-20 items-center">
           {/* Left */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
@@ -22,19 +22,14 @@ export default function BharatSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-5xl sm:text-6xl font-black text-namo-black leading-tight mb-4">
-              From Bharat,<br />for the World.
+            <h2 className="text-5xl sm:text-6xl font-black text-namo-black leading-[1.1] mb-5">
+              <span className="block">From Bharat,</span>
+              <span className="block">For the World.</span>
             </h2>
             <div className="w-12 h-1 bg-accent rounded-full mb-6" />
             <p className="text-gray-500 leading-relaxed max-w-md mb-8">
               Building secure, inclusive and intelligent technology that empowers people, organisations and nations to progress together.
             </p>
-            <Link
-              href="/platform"
-              className="inline-flex items-center gap-2 bg-namo-black text-white font-medium px-6 py-3 rounded-full text-sm hover:bg-gray-800 transition-colors"
-            >
-              Explore Platform <ArrowRight size={14} />
-            </Link>
           </motion.div>
 
           {/* Right - Earth image */}

@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
-import { GeistSans } from 'geist/font/sans';
+import { Be_Vietnam_Pro } from 'next/font/google';
+
+const beVietnamPro = Be_Vietnam_Pro({ 
+  weight: ['300', '400', '500', '600', '700', '800'],
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Namo Labs - Deep Tech. For Humanity.",
@@ -20,7 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
       </head>
-      <body className={`${GeistSans.className} antialiased`}>
+      <body className={`${beVietnamPro.className} antialiased`}>
         <Navbar />
         <main>{children}</main>
         <Footer />

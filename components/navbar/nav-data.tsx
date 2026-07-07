@@ -14,6 +14,7 @@ import {
   BarChart3,
   Lock,
   Users,
+  Globe,
 } from "lucide-react";
 import React from "react";
 
@@ -40,13 +41,19 @@ export const platformItems: NavSection[] = [
     heading: "PLATFORMS",
     items: [
       {
-        label: "QSCL",
+        label: "QSCL™",
         description: "Quantum-Safe Communication Layer",
-        href: "/platform/qscl",
+        href: "/#qscl-timer",
         icon: <Shield size={18} className="text-accent" />,
       },
       {
-        label: "DAFS",
+        label: "TierraTrace™",
+        description: "Supply Chain & Asset Tracking",
+        href: "https://www.tierratrace.in",
+        icon: <Globe size={18} className="text-accent" />,
+      },
+      {
+        label: "DAFS™",
         description: "Digital Asset Forensics Suite",
         href: "/platform/dafs",
         icon: <Search size={18} className="text-accent" />,
@@ -167,22 +174,10 @@ export const companyItems: NavSection[] = [
         icon: <Users size={18} className="text-accent" />,
       },
       {
-        label: "Partnership",
-        description: "Partner with Namo Labs to turn ambition into impact.",
-        href: "/partnership",
-        icon: <Handshake size={18} className="text-accent" />,
-      },
-      {
         label: "Careers",
         description: "Join us in building the future of technology.",
         href: "/careers",
         icon: <Briefcase size={18} className="text-accent" />,
-      },
-      {
-        label: "Blog",
-        description: "Ideas, insights and updates from our team.",
-        href: "/blog",
-        icon: <Newspaper size={18} className="text-accent" />,
       },
     ],
   },

@@ -2,6 +2,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 const domains = [
   {
@@ -49,15 +51,21 @@ const domains = [
 export default function ResearchDomains() {
   return (
     <section className="py-24 bg-white">
-      <div className="max-w-[1500px] mx-auto px-6">
-        <motion.p
+      <div className="max-w-[1200px] mx-auto px-6">
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center text-xs font-semibold tracking-[0.2em] text-accent uppercase mb-3"
+          className="flex items-center justify-center gap-4 mb-4"
         >
-          Our Research Domains
-        </motion.p>
+          <p className="text-xs font-semibold tracking-[0.2em] text-accent uppercase">
+            Our Research Domains
+          </p>
+          <div className="h-4 w-px bg-gray-200" />
+          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-accent/10 text-accent uppercase tracking-wider">
+            10+ Ongoing Papers
+          </span>
+        </motion.div>
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -97,36 +105,39 @@ export default function ResearchDomains() {
               </div>
 
               {/* Content */}
-              <div className="p-6 pr-7">
+              <div className="p-6 pr-7 flex flex-col justify-center">
                 <p className="text-xs font-semibold uppercase tracking-widest text-accent mb-2">
                   {domain.number} - {domain.category}
                 </p>
                 <h3 className="text-lg font-bold text-namo-black mb-2">{domain.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed mb-3">{domain.description}</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {domain.tags.map((tag) => (
-                    <span key={tag} className="text-xs bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                <p className="text-sm text-gray-500 leading-relaxed">{domain.description}</p>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Bottom tagline */}
+        {/* Bottom tagline and CTA */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="mt-12 flex items-center gap-4 border-l-4 border-accent pl-5"
+          className="mt-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8"
         >
-          <p className="text-sm text-gray-500">
-            Research drives innovation. Innovation drives impact. Impact drives{" "}
-            <span className="text-accent font-semibold">humanity forward.</span>
-          </p>
+          <div className="flex items-center gap-4 border-l-4 border-accent pl-5 max-w-xl">
+            <p className="text-sm text-gray-500">
+              Research drives innovation. Innovation drives impact. Impact drives{" "}
+              <span className="text-accent font-semibold">humanity forward.</span>
+            </p>
+          </div>
+
+          <Link
+            href="/research"
+            className="group inline-flex items-center justify-center gap-3 bg-[#0A0A0A] text-white font-medium px-8 py-3.5 rounded-full text-[14px] hover:bg-gray-800 transition-colors shadow-sm flex-shrink-0"
+          >
+            Explore Research
+            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+          </Link>
         </motion.div>
       </div>
     </section>

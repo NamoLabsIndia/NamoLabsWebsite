@@ -1,164 +1,158 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Users, ShieldCheck } from "lucide-react";
 
 const models = [
   {
-    number: "01",
-    image: "/Partnership/models-img/strategic-tech.png",
+    num: "01",
     title: "Strategic Technology Partnerships",
-    description:
-      "Co-develop next-generation products and platforms through deep technical collaboration and shared roadmap alignment.",
+    description: "Co-develop next-generation products and platforms through deep technical collaboration and shared roadmap alignment.",
+    iconImg: "/img/partnership/model-1.png",
   },
   {
-    number: "02",
-    image: "/Partnership/models-img/research-collab.png",
+    num: "02",
     title: "Research Collaborations",
-    description:
-      "Join our R&D initiatives exploring frontier technologies across Cryptography, Blockchain, AI, Quantum and Cloud.",
+    description: "Join our R&D initiatives exploring frontier technologies across Cryptography, Blockchain, AI, Quantum and Cloud.",
+    iconImg: "/img/partnership/model-2.png",
   },
   {
-    number: "03",
-    image: "/Partnership/models-img/enterprise.png",
+    num: "03",
     title: "Enterprise Transformation",
-    description:
-      "Modernize systems, enhance security, and build scalable platforms with our consulting and engineering expertise.",
+    description: "Modernize systems, enhance security, and build scalable platforms with our consulting and engineering expertise.",
+    iconImg: "/img/partnership/model-3.png",
   },
   {
-    number: "04",
-    image: "/Partnership/models-img/startup-innovation.png",
+    num: "04",
     title: "Startup Innovation",
-    description:
-      "Accelerate your startup's growth with access to our engineering, infrastructure, and go-to-market collaboration.",
+    description: "Accelerate your startup's growth with access to our engineering, infrastructure, and go-to-market collaboration.",
+    iconImg: "/img/partnership/model-4.png",
   },
 ];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
-};
-
 export default function PartnershipModels() {
   return (
-    <section id="partnership-models" className="relative overflow-hidden bg-white px-6 py-24 sm:px-8">
-      <div className="mx-auto max-w-7xl">
-        {/* ── Heading ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mx-auto flex max-w-2xl flex-col items-center text-center"
-        >
-          <span className="text-[13px] font-bold uppercase tracking-[0.18em] text-accent">
-            Partnership Models
-          </span>
-          <span className="mt-2 h-[3px] w-8 rounded-full bg-accent" />
-          <h2 className="mt-6 text-3xl sm:text-4xl lg:text-[44px] font-bold tracking-tight leading-[1.1] text-namo-black">
+    <section id="models" className="py-24 bg-white relative">
+      <div className="max-w-7xl mx-auto px-6">
+        
+        {/* Header */}
+        <div className="text-center mb-16">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-[12px] font-bold tracking-[0.15em] text-accent uppercase mb-4"
+          >
+            PARTNERSHIP MODELS
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.05 }}
+            className="text-3xl md:text-5xl font-bold text-namo-black tracking-tight mb-4"
+          >
             Choose How You Want to Build With Us
-          </h2>
-          <p className="mt-5 text-base sm:text-lg leading-relaxed text-gray-500">
-            Flexible partnership models designed to create real impact and drive
-            long-term innovation together.
-          </p>
-        </motion.div>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-gray-500 max-w-2xl mx-auto"
+          >
+            Flexible partnership models designed to create real impact and drive long-term innovation together.
+          </motion.p>
+        </div>
 
-        {/* ── Cards ── */}
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {models.map((m, i) => (
+        {/* 4 Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+          {models.map((model, i) => (
             <motion.div
-              key={m.number}
-              initial="hidden"
-              whileInView="show"
+              key={model.num}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              variants={fadeUp}
-              transition={{ delay: i * 0.08 }}
-              className="group flex flex-col rounded-3xl border border-gray-100 bg-white p-6 shadow-sm transition-shadow hover:shadow-lg"
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="flex flex-col p-8 rounded-[24px] bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] transition-all duration-300 group"
             >
-              <span className="inline-flex w-fit items-center justify-center rounded-full bg-accent-light px-3 py-1 text-xs font-bold text-accent">
-                {m.number}
-              </span>
-
-              <div className="mt-4 flex h-32 items-center justify-center">
-                <Image
-                  src={m.image}
-                  alt={m.title}
-                  width={247}
-                  height={187}
-                  className="h-full w-auto object-contain transition-transform duration-500 group-hover:scale-105"
-                />
+              {/* Badge & Image */}
+              <div className="relative mb-10">
+                <div className="absolute top-0 left-0 bg-[#f4f7ff] text-accent font-bold text-sm px-3 py-1 rounded-md">
+                  {model.num}
+                </div>
+                <div className="h-[120px] w-full flex items-center justify-center mt-6">
+                  <img 
+                    src={model.iconImg} 
+                    alt={model.title}
+                    className="h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=300&auto=format&fit=crop';
+                    }}
+                  />
+                </div>
               </div>
 
-              <h3 className="mt-2 text-base font-bold text-namo-black">{m.title}</h3>
-              <span className="mt-2 h-[3px] w-8 rounded-full bg-accent" />
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-gray-500">
-                {m.description}
+              {/* Content */}
+              <h3 className="text-[22px] font-bold text-namo-black mb-4 leading-tight">
+                {model.title}
+              </h3>
+              <div className="h-[1px] w-8 bg-gray-200 mb-4 group-hover:bg-accent transition-colors" />
+              <p className="text-[14px] text-gray-500 leading-relaxed mb-8 flex-grow">
+                {model.description}
               </p>
-              <a
-                href="/contact"
-                className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline"
+
+              {/* Link */}
+              <Link 
+                href="/partnership/apply" 
+                className="inline-flex items-center gap-2 text-[14px] font-bold text-accent group-hover:text-[#2f4be0] transition-colors"
               >
-                Learn More
-                <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
-              </a>
+                Learn More <ArrowRight size={14} />
+              </Link>
             </motion.div>
           ))}
         </div>
 
-        {/* ── Bottom trust bar ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="relative mt-14 overflow-hidden rounded-3xl border border-gray-100 bg-namo-gray px-8 py-8 sm:px-10"
-        >
-          {/* decorative dotted texture, bottom-right */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute bottom-0 right-0 h-48 w-64 opacity-[0.6]"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle, rgba(59,91,255,0.28) 1px, transparent 1.4px)",
-              backgroundSize: "14px 14px",
-              maskImage: "radial-gradient(ellipse at bottom right, black, transparent 70%)",
-              WebkitMaskImage: "radial-gradient(ellipse at bottom right, black, transparent 70%)",
-            }}
-          />
-
-          <div className="relative grid gap-8 sm:grid-cols-2">
-            <div className="flex items-start gap-4">
-              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-accent-light text-accent">
-                <Users size={20} />
-              </div>
-              <div>
-                <p className="text-[15px] font-bold text-namo-black">
-                  Long-Term Partnerships. Real-World Impact.
-                </p>
-                <p className="mt-1.5 text-sm text-gray-500">
-                  We don&apos;t just work together — we build the future, together.
-                </p>
-              </div>
+        {/* Bottom Wide Badges */}
+        <div className="grid md:grid-cols-2 gap-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex items-center gap-6 p-6 rounded-[20px] border border-gray-100 bg-white shadow-sm"
+          >
+            <div className="w-12 h-12 rounded-full bg-[#f4f7ff] text-accent flex items-center justify-center shrink-0">
+              <Users size={24} strokeWidth={1.5} />
             </div>
-
-            <div className="flex items-start gap-4">
-              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full bg-accent-light text-accent">
-                <ShieldCheck size={20} />
-              </div>
-              <div>
-                <p className="text-[15px] font-bold text-namo-black">
-                  Built on Trust. Driven by Purpose.
-                </p>
-                <p className="mt-1.5 text-sm text-gray-500">
-                  Shared values. Aligned goals. Lasting impact.
-                </p>
-              </div>
+            <div>
+              <p className="font-bold text-namo-black text-[15px]">Long-Term Partnerships. Real-World Impact.</p>
+              <p className="text-gray-500 text-[13px] mt-1">We don't just work together — we build the future, together.</p>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="flex items-center gap-6 p-6 rounded-[20px] border border-gray-100 bg-white shadow-sm relative overflow-hidden"
+          >
+            <div className="w-12 h-12 rounded-full bg-[#f4f7ff] text-accent flex items-center justify-center shrink-0">
+              <ShieldCheck size={24} strokeWidth={1.5} />
+            </div>
+            <div className="relative z-10">
+              <p className="font-bold text-namo-black text-[15px]">Built on Trust. Driven by Purpose.</p>
+              <p className="text-gray-500 text-[13px] mt-1">Shared values. Aligned goals. Lasting impact.</p>
+            </div>
+            
+            {/* Decorative dots right side */}
+            <div className="absolute right-0 top-0 bottom-0 w-32 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:8px_8px] [mask-image:linear-gradient(to_left,white,transparent)] opacity-50 pointer-events-none" />
+          </motion.div>
+        </div>
+
       </div>
     </section>
   );

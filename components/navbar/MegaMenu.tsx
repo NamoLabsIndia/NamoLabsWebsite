@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowUpRight, Shield, Search, Brain, Atom, Cloud, Lock, Database,
   Building2, Briefcase, Newspaper, Handshake, Users,
-  BarChart3, Network, Leaf,
+  BarChart3, Network, Leaf, Globe,
 } from "lucide-react";
 
 
@@ -53,9 +53,9 @@ function FeaturedCard({
 const platformProducts = [
   {
     icon: <img src="/qscl-logo-transparent.png" alt="QSCL" className="w-5 h-5 object-contain" />,
-    label: "QSCL",
+    label: "QSCL™",
     sub: "Quantum-Safe Communication Layer",
-    href: "/platform/qscl",
+    href: "/#qscl-timer",
     card: {
       gradient: "linear-gradient(135deg, #3B5BFF 0%, #1e2033 100%)",
       label: "FEATURED PLATFORM",
@@ -64,8 +64,20 @@ const platformProducts = [
     desc: "A post-quantum cryptographic SDK that secures digital communication for the future. Built for developers. Ready for tomorrow.",
   },
   {
+    icon: <Globe size={16} />,
+    label: "TierraTrace™",
+    sub: "Supply Chain & Asset Tracking",
+    href: "https://www.tierratrace.in",
+    card: {
+      gradient: "linear-gradient(135deg, #10b981 0%, #1e2033 100%)",
+      label: "PLATFORM",
+      title: "TierraTrace™",
+    },
+    desc: "A blockchain-powered supply chain tracking platform ensuring end-to-end transparency and provenance.",
+  },
+  {
     icon: <Search size={16} />,
-    label: "DAFS",
+    label: "DAFS™",
     sub: "Digital Asset Forensics Suite",
     href: "/platform/dafs",
     card: {
@@ -257,8 +269,6 @@ const companyLinks = [
   { icon: <Building2  size={15} />, label: "About Namo Labs",  sub: "Mission, vision & research philosophy.", href: "/about"       },
   { icon: <Users      size={15} />, label: "Team",             sub: "Meet the people building tomorrow.",     href: "/team"        },
   { icon: <Briefcase  size={15} />, label: "Careers",          sub: "Build the future with us.",             href: "/careers"     },
-  { icon: <Handshake  size={15} />, label: "Partnerships",     sub: "Collaborate to turn ambition into impact.", href: "/partnership" },
-  { icon: <Newspaper  size={15} />, label: "Blog",             sub: "Ideas, insights and updates.",          href: "/blog"        },
 ];
 
 const companyCards = [

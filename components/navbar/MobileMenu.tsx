@@ -10,8 +10,9 @@ const navGroups = [
   {
     label: "Platform",
     children: [
-      { label: "QSCL", href: "/platform/qscl" },
-      { label: "DAFS", href: "/platform/dafs" },
+      { label: "QSCL™", href: "/#qscl-timer" },
+      { label: "TierraTrace™", href: "https://www.tierratrace.in" },
+      { label: "DAFS™", href: "/platform/dafs" },
     ],
   },
   {
@@ -40,9 +41,7 @@ const navGroups = [
     label: "Company",
     children: [
       { label: "About", href: "/about" },
-      { label: "Partnership", href: "/partnership" },
       { label: "Careers", href: "/careers" },
-      { label: "Blog", href: "/blog" },
     ],
   },
   { label: "Careers", href: "/careers" },
@@ -66,8 +65,8 @@ export default function MobileMenu({ onClose }: MobileMenuProps) {
     >
       <div className="px-6 py-5 flex items-center justify-between border-b border-gray-100">
         <img src="/namo-logo.webp" alt="Namo Labs" className="h-8 w-auto object-contain mix-blend-multiply" />
-        <button onClick={onClose} className="p-2 text-gray-500 hover:text-namo-black">
-          <X size={22} />
+        <button onClick={onClose} className="p-2 w-12 h-12 flex items-center justify-center text-gray-500 hover:text-namo-black">
+          <X size={24} />
         </button>
       </div>
 
@@ -77,11 +76,11 @@ export default function MobileMenu({ onClose }: MobileMenuProps) {
             <div key={group.label}>
               <button
                 onClick={() => setExpanded(expanded === group.label ? null : group.label)}
-                className="w-full flex items-center justify-between px-4 py-3 text-base font-semibold text-namo-black hover:bg-gray-50 rounded-xl transition-colors"
+                className="w-full flex items-center justify-between px-4 py-3 min-h-[48px] text-base font-semibold text-namo-black hover:bg-gray-50 rounded-xl transition-colors"
               >
                 {group.label}
                 <ChevronDown
-                  size={16}
+                  size={18}
                   className={cn(
                     "text-gray-400 transition-transform duration-200",
                     expanded === group.label && "rotate-180"
@@ -100,7 +99,7 @@ export default function MobileMenu({ onClose }: MobileMenuProps) {
                       key={child.label}
                       href={child.href}
                       onClick={onClose}
-                      className="block py-2.5 text-sm text-gray-600 hover:text-accent transition-colors"
+                      className="block py-3 min-h-[44px] text-[15px] text-gray-600 hover:text-accent transition-colors"
                     >
                       {child.label}
                     </Link>
@@ -113,7 +112,7 @@ export default function MobileMenu({ onClose }: MobileMenuProps) {
               key={group.label}
               href={group.href!}
               onClick={onClose}
-              className="flex items-center px-4 py-3 text-base font-semibold text-namo-black hover:bg-gray-50 rounded-xl transition-colors"
+              className="flex items-center px-4 py-3 min-h-[48px] text-base font-semibold text-namo-black hover:bg-gray-50 rounded-xl transition-colors"
             >
               {group.label}
             </Link>
@@ -121,13 +120,13 @@ export default function MobileMenu({ onClose }: MobileMenuProps) {
         )}
       </nav>
 
-      <div className="px-6 pb-8">
+      <div className="px-6 pb-8 mt-auto">
         <Link
           href="/contact"
           onClick={onClose}
-          className="flex items-center justify-center gap-2 bg-namo-black text-white text-sm font-medium px-6 py-3.5 rounded-full w-full hover:bg-gray-800 transition-colors"
+          className="flex items-center justify-center gap-2 bg-namo-black text-white text-[15px] font-medium px-6 py-3.5 min-h-[52px] rounded-full w-full hover:bg-gray-800 transition-colors"
         >
-          Contact Us <ArrowRight size={14} />
+          Contact Us <ArrowRight size={16} />
         </Link>
       </div>
     </motion.div>

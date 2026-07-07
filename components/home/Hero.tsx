@@ -17,7 +17,7 @@ const fadeUp = {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden px-6 pt-16 pb-24">
+    <section className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden px-6 pt-32 pb-24">
 
       {/* ── Flowing blue-wave background (image from design) ── */}
       <div className="absolute inset-0 -z-10">
@@ -55,29 +55,38 @@ export default function Hero() {
         variants={stagger}
         initial="hidden"
         animate="show"
-        className="flex flex-col items-center"
+        className="relative flex flex-col items-center w-full z-10"
       >
+        
+
 
         {/* Headline */}
         <motion.h1
           variants={fadeUp}
-          className="text-5xl sm:text-6xl lg:text-[72px] font-black text-namo-black leading-[1.05] tracking-tight max-w-3xl"
+          className="relative z-10 text-4xl sm:text-5xl lg:text-[72px] font-[700] text-transparent bg-clip-text bg-gradient-to-b from-black via-black/80 to-black leading-[1.08] tracking-tight"
+          style={{
+            WebkitTextStroke: '1px rgba(0,0,0,0.1)',
+            filter: 'drop-shadow(0px 8px 16px rgba(0,0,0,0.15)) drop-shadow(0px 2px 2px rgba(255,255,255,0.6))'
+          }}
         >
           Driving Technology
           <br />
           for{" "}
           <span
-            className="text-accent"
+            className="text-accent drop-shadow-sm inline-block"
             style={{ WebkitTextFillColor: "unset" }}
           >
-            Mankind
+            Mankind.
           </span>
         </motion.h1>
 
         {/* Subtext */}
         <motion.p
           variants={fadeUp}
-          className="mt-6 text-base sm:text-lg text-gray-500 leading-relaxed max-w-2xl"
+          className="relative z-10 mt-5 text-sm sm:text-[16px] lg:text-[17px] text-transparent bg-clip-text bg-gradient-to-b from-black/90 to-black/70 leading-[1.7] max-w-[640px] font-normal"
+          style={{
+            filter: 'drop-shadow(0px 4px 8px rgba(0,0,0,0.1)) drop-shadow(0px 1px 1px rgba(255,255,255,0.8))'
+          }}
         >
           We build secure digital infrastructure, post-quantum communication systems,
           blockchain solutions, AI-powered platforms, and enterprise technologies
@@ -85,13 +94,13 @@ export default function Hero() {
         </motion.p>
 
         {/* CTA */}
-        <motion.div variants={fadeUp} className="mt-10">
+        <motion.div variants={fadeUp} className="relative z-10 mt-8">
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-namo-black text-white font-semibold px-8 py-4 rounded-full hover:bg-gray-800 transition-colors text-base shadow-lg"
+            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-[12px] border border-white/60 shadow-[inset_0_1px_3px_rgba(255,255,255,1),inset_0_-2px_6px_rgba(0,0,0,0.05),0_12px_24px_rgba(0,0,0,0.08)] text-namo-black font-[600] px-7 py-3.5 rounded-full hover:bg-white/30 transition-all duration-300 text-[15px]"
           >
             Contact Us
-            <ArrowRight size={16} />
+            <ArrowRight size={16} strokeWidth={2} />
           </Link>
         </motion.div>
       </motion.div>

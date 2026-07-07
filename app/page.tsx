@@ -1,5 +1,5 @@
 import Hero from "@/components/home/Hero";
-import LogoLoopSection from "@/components/home/LogoLoopSection";
+// import LogoLoopSection from "@/components/home/LogoLoopSection";
 import ApproachSection from "@/components/home/ApproachSection";
 import ResearchDomains from "@/components/home/ResearchDomains";
 import OneStopFirmSection from "@/components/home/OneStopFirmSection";
@@ -11,7 +11,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <LogoLoopSection />
+      {/* <LogoLoopSection /> */}
       <ApproachSection />
       <ResearchDomains />
       <OneStopFirmSection />
