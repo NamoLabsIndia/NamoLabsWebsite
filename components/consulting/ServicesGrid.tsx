@@ -61,42 +61,56 @@ const SERVICES = [
 
 export default function ServicesGrid() {
   return (
-    <section id="services" className="py-24 bg-[#FAFAFA]">
+    <section id="services" className="py-24 sm:py-32 bg-[#FAFAFA]">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-20">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl sm:text-4xl font-[700] text-namo-black tracking-tight"
+            className="text-4xl sm:text-5xl font-[800] text-namo-black tracking-tight"
           >
             Our Consulting Services
           </motion.h2>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
           {SERVICES.map((service, index) => {
             const Icon = service.icon;
             return (
-              <Link href={service.href} key={index}>
+              <Link href={service.href} key={index} className="block h-full outline-none">
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  className="bg-white p-8 rounded-[24px] border border-gray-100 hover:border-accent/20 transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-accent/5 hover:-translate-y-1 group h-full flex flex-col"
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative bg-white p-8 sm:p-10 rounded-[32px] border border-gray-200/80 hover:border-accent hover:bg-accent transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-accent/30 hover:-translate-y-2 group h-full flex flex-col overflow-hidden z-10"
                 >
-                  <div className="w-12 h-12 bg-blue-50/50 text-accent rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-accent group-hover:text-white transition-all duration-300">
-                    <Icon size={24} strokeWidth={1.5} />
-                  </div>
-                  <h3 className="text-lg font-bold text-namo-black mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-grow">
-                    {service.description}
-                  </p>
-                  <div className="flex items-center text-xs font-bold text-accent uppercase tracking-widest gap-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 mt-auto">
-                    Learn More <ArrowRight size={14} />
+                  {/* Glass Reflection Highlight */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                  
+                  <div className="relative z-20 flex flex-col h-full">
+                    {/* Icon Container */}
+                    <div className="w-16 h-16 bg-gray-50 text-namo-black group-hover:bg-white/10 group-hover:text-white rounded-2xl flex items-center justify-center mb-8 transition-all duration-500 ease-out border border-gray-100 group-hover:border-white/20 shadow-sm group-hover:shadow-inner">
+                      <Icon size={28} strokeWidth={1.5} className="group-hover:scale-110 transition-transform duration-500" />
+                    </div>
+                    
+                    <h3 className="text-xl sm:text-2xl font-bold text-namo-black group-hover:text-white transition-colors duration-500 mb-4 tracking-tight">
+                      {service.title}
+                    </h3>
+                    
+                    <p className="text-[15px] sm:text-base text-gray-600 group-hover:text-white/90 leading-relaxed mb-10 flex-grow transition-colors duration-500 font-medium">
+                      {service.description}
+                    </p>
+                    
+                    {/* CTA */}
+                    <div className="flex items-center text-sm font-bold text-namo-black group-hover:text-white transition-colors duration-500 mt-auto uppercase tracking-widest gap-3 overflow-hidden">
+                      <span className="relative">
+                        Learn More
+                        <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                      </span>
+                      <ArrowRight size={16} className="transform -translate-x-6 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out" />
+                    </div>
                   </div>
                 </motion.div>
               </Link>
