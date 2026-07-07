@@ -26,7 +26,7 @@ function CapabilityCard({ cap, index }: { cap: Capability, index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ delay: index * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative overflow-hidden rounded-[20px] shadow-2xl flex flex-col h-[280px] sm:h-[300px] border border-white/10"
+      className="group relative overflow-hidden rounded-[16px] shadow-2xl flex flex-col h-[220px] sm:h-[240px] border border-white/10"
     >
       {/* Background Image */}
       {cap.image && (
@@ -42,29 +42,29 @@ function CapabilityCard({ cap, index }: { cap: Capability, index: number }) {
       <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-500" />
       
       {/* Content Container */}
-      <div className="relative z-10 flex flex-col h-full p-4 sm:p-5">
+      <div className="relative z-10 flex flex-col h-full p-3 sm:p-4">
         
         {/* Top Section */}
         <div className="flex flex-col">
           {/* Subtle Icon */}
-          <div className="w-8 h-8 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mb-3 group-hover:bg-white/10 transition-colors duration-300">
-            <CheckCircle2 size={16} className="text-white" />
+          <div className="w-6 h-6 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mb-2 group-hover:bg-white/10 transition-colors duration-300">
+            <CheckCircle2 size={12} className="text-white" />
           </div>
           
           {/* Title */}
-          <h4 className="font-spartan font-bold text-white text-[20px] sm:text-[22px] leading-tight mb-2 tracking-tight drop-shadow-md">
+          <h4 className="font-spartan font-bold text-white text-[18px] sm:text-[20px] leading-tight mb-1.5 tracking-tight drop-shadow-md">
             {cap.title}
           </h4>
           
           {/* Description */}
-          <p className="text-xs sm:text-[13px] text-white/80 leading-relaxed font-medium line-clamp-3 drop-shadow-sm">
+          <p className="text-[11px] sm:text-[12px] text-white/80 leading-relaxed font-medium line-clamp-3 drop-shadow-sm">
             {cap.description}
           </p>
         </div>
         
         {/* Bottom Section: Learn More */}
-        <div className="mt-auto pt-3 flex items-center">
-          <span className="text-[10px] font-bold tracking-[0.2em] text-white uppercase group-hover:text-white/70 transition-colors">
+        <div className="mt-auto pt-2 flex items-center">
+          <span className="text-[9px] font-bold tracking-[0.2em] text-white uppercase group-hover:text-white/70 transition-colors">
             Learn More
           </span>
         </div>
@@ -132,7 +132,7 @@ export default function ServiceDetailSection({
         </div>
 
         {/* Capabilities Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-auto items-start">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 mt-auto items-start">
           {capabilities.map((cap, index) => (
             <CapabilityCard key={index} cap={cap} index={index} />
           ))}
