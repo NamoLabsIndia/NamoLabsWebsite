@@ -5,7 +5,6 @@ import ServiceDetailSection from "@/components/consulting/ServiceDetailSection";
 import ConsultingProcess from "@/components/consulting/ConsultingProcess";
 import IndustriesGrid from "@/components/consulting/IndustriesGrid";
 import ConsultingCTA from "@/components/consulting/ConsultingCTA";
-import Footer from "@/components/footer/Footer";
 
 export const metadata = {
   title: "Consulting | Namo Labs",
@@ -130,8 +129,6 @@ export default function ConsultingPage() {
       <ConsultingProcess />
       <IndustriesGrid />
       <ConsultingCTA />
-      
-      <Footer />
     </main>
   );
 }
