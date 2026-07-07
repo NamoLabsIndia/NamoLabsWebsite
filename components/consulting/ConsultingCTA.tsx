@@ -7,16 +7,28 @@ import { ArrowRight, Mail } from "lucide-react";
 
 export default function ConsultingCTA() {
   return (
-    <section className="py-32 bg-white relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-50/60 rounded-full blur-[100px] pointer-events-none" />
+    <section className="py-16 sm:py-20 relative overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <div 
+          className="absolute inset-0 w-full h-full"
+          style={{
+            backgroundImage: "url('/Together.jpg')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+      </div>
       
-      <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 z-10 bg-black/70 backdrop-blur-[2px]" />
+      
+      <div className="max-w-4xl mx-auto px-6 relative z-20 text-center">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl sm:text-5xl lg:text-6xl font-[700] text-namo-black tracking-tight mb-6"
+          className="text-4xl sm:text-5xl lg:text-6xl font-[800] text-white tracking-tight mb-6 drop-shadow-md"
         >
           Let’s Build the <span className="text-accent">Future Together.</span>
         </motion.h2>
@@ -26,7 +38,7 @@ export default function ConsultingCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto mb-10"
+          className="text-lg text-white/80 leading-relaxed max-w-2xl mx-auto mb-10 drop-shadow-sm font-medium"
         >
           Whether you’re modernizing infrastructure, adopting emerging technologies, or solving complex engineering challenges, our consulting team is ready to help.
         </motion.p>
@@ -40,16 +52,16 @@ export default function ConsultingCTA() {
         >
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center gap-2 bg-[#0A0A0A] text-white font-medium px-8 py-4 rounded-full text-[14px] hover:bg-gray-800 transition-colors shadow-lg shadow-black/10 w-full sm:w-auto"
+            className="inline-flex items-center justify-center gap-2 bg-accent text-white font-semibold px-8 py-4 rounded-full text-[14px] hover:bg-accent/90 transition-colors shadow-lg shadow-accent/20 w-full sm:w-auto"
           >
             Schedule Consultation
             <ArrowRight size={16} />
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center gap-2 bg-white text-namo-black font-medium px-8 py-4 rounded-full text-[14px] hover:bg-gray-50 transition-colors shadow-sm border border-gray-200 w-full sm:w-auto"
+            className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-md text-white font-semibold px-8 py-4 rounded-full text-[14px] hover:bg-white/20 transition-colors shadow-sm border border-white/30 w-full sm:w-auto"
           >
-            <Mail size={16} className="text-gray-400" />
+            <Mail size={16} className="text-white/80" />
             Contact Us
           </Link>
         </motion.div>
@@ -59,7 +71,7 @@ export default function ConsultingCTA() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="text-[11px] font-bold tracking-[0.3em] text-gray-400 uppercase"
+          className="text-[11px] font-bold tracking-[0.3em] text-white/40 uppercase"
         >
           For Humanity Always.
         </motion.p>

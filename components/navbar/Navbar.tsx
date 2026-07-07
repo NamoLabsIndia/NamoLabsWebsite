@@ -74,9 +74,9 @@ export default function Navbar() {
                 onMouseEnter={() => setActiveMenu(null)}
               >
                 <img
-                  src="/namo-logo.png"
+                  src="/logos/Namo%20Labs%20Logo.png"
                   alt="Namo Labs"
-                  className="h-[34px] w-auto object-contain mix-blend-multiply"
+                  className="h-[56px] w-[48px] object-cover object-left mix-blend-multiply"
                 />
               </Link>
 
@@ -144,7 +144,7 @@ export default function Navbar() {
             <div className="lg:hidden flex flex-col">
               <div className="flex justify-between items-center px-4 pl-5 py-3">
                 <Link href="/" className="relative flex items-center gap-2">
-                  <img src="/namo-logo.webp" alt="Namo Labs" className="h-11 w-auto object-contain mix-blend-multiply scale-[1.5] origin-left" />
+                  <img src="/logos/Namo%20Labs%20Logo.png" alt="Namo Labs" className="h-[56px] w-[48px] object-cover object-left mix-blend-multiply" />
                 </Link>
                 <div className="flex items-center gap-3">
                   <button

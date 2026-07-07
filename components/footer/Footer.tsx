@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 
 const LinkedinIcon = () => (
@@ -87,17 +88,24 @@ const socials = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+  const isConsultingPage = pathname === "/consulting";
+
   return (
-    <footer className="bg-white border-t border-gray-100">
+    <footer className={isConsultingPage ? "bg-black border-t border-white/10" : "bg-white border-t border-gray-100"}>
       <div className="max-w-7xl mx-auto px-6 pt-16 pb-8">
         {/* Top section */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-8 mb-12">
           {/* Brand */}
           <div className="col-span-2 md:col-span-3 lg:col-span-2">
             <Link href="/" className="inline-flex items-center gap-0.5 mb-3">
-              <img src="/namo-logo.png" alt="Namo Labs" className="h-14 w-auto object-contain mix-blend-multiply" />
+              <img 
+                src="/logos/Namo%20Labs%20Logo.png" 
+                alt="Namo Labs" 
+                className={`h-[72px] w-[62px] object-cover object-left ${isConsultingPage ? 'brightness-0 invert opacity-90 mix-blend-screen' : 'mix-blend-multiply'}`} 
+              />
             </Link>
-            <p className="text-sm font-semibold text-gray-700 mb-2 mt-2">Deep Tech. For Humanity.</p>
+            <p className={`text-sm font-semibold mb-2 mt-2 ${isConsultingPage ? 'text-white/70' : 'text-gray-700'}`}>Deep Tech. For Humanity.</p>
 
 
 
@@ -110,7 +118,11 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:text-accent hover:border-accent transition-colors"
+                  className={`w-8 h-8 rounded-full border flex items-center justify-center transition-colors ${
+                    isConsultingPage 
+                      ? 'border-white/20 text-white/60 hover:text-white hover:border-accent hover:bg-white/10' 
+                      : 'border-gray-200 text-gray-500 hover:text-accent hover:border-accent'
+                  }`}
                 >
                   {s.icon}
                 </a>
@@ -121,7 +133,7 @@ export default function Footer() {
           {/* Link columns */}
           {columns.map((col) => (
             <div key={col.heading}>
-              <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">
+              <p className={`text-xs font-semibold uppercase tracking-widest mb-4 ${isConsultingPage ? 'text-white/40' : 'text-gray-400'}`}>
                 {col.heading}
               </p>
               <ul className="space-y-2.5">
@@ -129,7 +141,7 @@ export default function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-gray-600 hover:text-accent transition-colors"
+                      className={`text-sm transition-colors ${isConsultingPage ? 'text-white/60 hover:text-white' : 'text-gray-600 hover:text-accent'}`}
                     >
                       {link.label}
                     </Link>
@@ -141,7 +153,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-gray-100 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+        <div className={`border-t pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs ${isConsultingPage ? 'border-white/10 text-white/40' : 'border-gray-100 text-gray-400'}`}>
           <p>© 2026 Namo Labs LLP. All rights reserved.</p>
 
         </div>

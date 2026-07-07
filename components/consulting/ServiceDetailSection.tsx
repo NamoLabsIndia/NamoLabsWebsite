@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { CheckCircle2 } from "lucide-react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { CheckCircle2, ChevronDown } from "lucide-react";
 
 interface Capability {
   title: string;
@@ -18,6 +18,62 @@ interface ServiceDetailSectionProps {
   reverseLayout?: boolean;
 }
 
+function CapabilityCard({ cap, index }: { cap: Capability, index: number }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ delay: index * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className="bg-black/30 backdrop-blur-md p-6 sm:p-8 rounded-[24px] border border-white/10 hover:bg-white/10 hover:border-white/30 transition-colors duration-500 shadow-xl group relative overflow-hidden cursor-pointer flex flex-col h-fit"
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+      onClick={() => setIsOpen(!isOpen)}
+    >
+      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      
+      <div className="relative z-10 flex flex-col">
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-accent/40 transition-all duration-500">
+              <CheckCircle2 size={20} className="text-white" />
+            </div>
+            <h4 className="font-bold text-white text-base leading-snug">{cap.title}</h4>
+          </div>
+          
+          <motion.div
+            animate={{ rotate: isOpen ? 180 : 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="text-white/50 group-hover:text-white transition-colors flex-shrink-0"
+          >
+            <ChevronDown size={20} />
+          </motion.div>
+        </div>
+        
+        <AnimatePresence initial={false}>
+          {isOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="overflow-hidden"
+            >
+              <div className="mt-5 pt-4 border-t border-white/10">
+                <p className="text-sm text-white/80 leading-relaxed font-medium">
+                  {cap.description}
+                </p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function ServiceDetailSection({
   id,
   title,
@@ -27,7 +83,7 @@ export default function ServiceDetailSection({
   reverseLayout = false
 }: ServiceDetailSectionProps) {
   return (
-    <section id={id} className="relative py-24 sm:py-32 overflow-hidden flex flex-col justify-center min-h-[90vh]">
+    <section id={id} className="relative py-12 sm:py-16 overflow-hidden flex flex-col justify-center">
       {/* Background Image */}
       <div 
         className="absolute inset-0 z-0"
@@ -77,30 +133,9 @@ export default function ServiceDetailSection({
         </div>
 
         {/* Capabilities Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-auto items-start">
           {capabilities.map((cap, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: index * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="bg-black/30 backdrop-blur-md p-6 sm:p-8 rounded-[24px] border border-white/10 hover:bg-white/10 hover:border-white/30 hover:-translate-y-2 transition-all duration-500 shadow-xl group relative overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
-              <div className="relative z-10">
-                <div className="flex items-center gap-4 mb-5">
-                  <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-accent/40 transition-all duration-500">
-                    <CheckCircle2 size={20} className="text-white" />
-                  </div>
-                  <h4 className="font-bold text-white text-base leading-snug">{cap.title}</h4>
-                </div>
-                <p className="text-sm text-white/80 leading-relaxed font-medium">
-                  {cap.description}
-                </p>
-              </div>
-            </motion.div>
+            <CapabilityCard key={index} cap={cap} index={index} />
           ))}
         </div>
 
