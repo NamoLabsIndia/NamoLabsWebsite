@@ -99,11 +99,9 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-3 lg:col-span-2">
             <Link href="/" className="inline-flex items-center gap-0.5 mb-3">
-              <img 
-                src="/logos/Namo%20Labs%20Logo.png" 
-                alt="Namo Labs" 
-                className={`h-[72px] w-auto object-contain ${isConsultingPage ? 'brightness-0 invert opacity-90 mix-blend-screen' : 'mix-blend-multiply'}`} 
-              />
+              <span className={`font-spartan font-bold text-3xl tracking-tight leading-none ${isConsultingPage ? 'text-white' : 'text-namo-black'}`}>
+                Namo Labs
+              </span>
             </Link>
             <p className={`text-sm font-semibold mb-2 mt-2 ${isConsultingPage ? 'text-white/70' : 'text-gray-700'}`}>Deep Tech. For Humanity.</p>
 

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { ArrowRight } from "lucide-react";
@@ -22,6 +23,11 @@ export default function Navbar() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+
+  const isConsulting = pathname === "/consulting";
+  // Transparent always on consulting unless the dropdown is actively open
+  const isTransparent = isConsulting && activeMenu === null;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -61,7 +67,11 @@ export default function Navbar() {
           <div
             ref={navRef}
             data-menu-open={activeMenu !== null}
-            className="rounded-[34px] bg-white/95 backdrop-blur-md shadow-[0_8px_40px_rgb(0,0,0,0.04)] border border-gray-100/50 transition-all duration-300"
+            className={`rounded-[34px] transition-all duration-300 ${
+              isTransparent
+                ? "bg-transparent border-transparent"
+                : "bg-white/95 backdrop-blur-md shadow-[0_8px_40px_rgb(0,0,0,0.04)] border border-gray-100/50"
+            }`}
           >
 
             {/* ── Desktop nav bar ── */}
@@ -73,11 +83,9 @@ export default function Navbar() {
                 className="flex items-center shrink-0 transition-opacity hover:opacity-80 pl-3"
                 onMouseEnter={() => setActiveMenu(null)}
               >
-                <img
-                  src="/logos/Namo%20Labs%20Logo.png"
-                  alt="Namo Labs"
-                  className="h-[60px] w-auto object-contain mix-blend-multiply"
-                />
+                <span className={`font-spartan font-bold text-[26px] tracking-tight leading-none ${isTransparent ? 'text-white' : 'text-namo-black'}`}>
+                  Namo Labs
+                </span>
               </Link>
 
               {/* Center nav links */}
@@ -87,7 +95,9 @@ export default function Navbar() {
                     <span
                       className={cn(
                         "font-medium text-[15px] transition-colors",
-                        activeMenu === item.key ? "text-namo-black" : "text-gray-600 hover:text-namo-black"
+                        isTransparent
+                          ? (activeMenu === item.key ? "text-white/80" : "text-white/90 hover:text-white")
+                          : (activeMenu === item.key ? "text-namo-black" : "text-gray-600 hover:text-namo-black")
                       )}
                     >
                       {item.label}
@@ -121,7 +131,12 @@ export default function Navbar() {
               <div className="flex items-center" onMouseEnter={() => setActiveMenu(null)}>
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center justify-center gap-2 rounded-full min-h-[44px] px-7 text-[15px] font-medium text-white bg-[#0A0A0A] hover:bg-gray-800 transition-colors shadow-sm"
+                  className={cn(
+                    "group inline-flex items-center justify-center gap-2 rounded-full min-h-[44px] px-7 text-[15px] font-medium transition-colors shadow-sm",
+                    isTransparent
+                      ? "text-namo-black bg-white hover:bg-gray-100"
+                      : "text-white bg-[#0A0A0A] hover:bg-gray-800"
+                  )}
                 >
                   Contact Us
                   <ArrowRight size={16} strokeWidth={2} />
@@ -144,7 +159,7 @@ export default function Navbar() {
             <div className="lg:hidden flex flex-col">
               <div className="flex justify-between items-center px-4 pl-5 py-3">
                 <Link href="/" className="relative flex items-center gap-2">
-                  <img src="/logos/Namo%20Labs%20Logo.png" alt="Namo Labs" className="h-[60px] w-auto object-contain mix-blend-multiply scale-[1.3] origin-left" />
+                  <span className={`font-spartan font-bold text-[24px] tracking-tight leading-none ${isTransparent ? 'text-white' : 'text-namo-black'}`}>Namo Labs</span>
                 </Link>
                 <div className="flex items-center gap-3">
                   <button
@@ -152,9 +167,9 @@ export default function Navbar() {
                     className="flex flex-col justify-center items-center space-y-[5px] focus:outline-none w-10 h-10 hover:opacity-70 transition-opacity"
                     aria-label="Toggle menu"
                   >
-                    <span className="w-[20px] h-[1.5px] bg-black transition-all duration-300 ease-out origin-center"></span>
-                    <span className="w-[20px] h-[1.5px] bg-black transition-all duration-300 ease-out"></span>
-                    <span className="w-[20px] h-[1.5px] bg-black transition-all duration-300 ease-out origin-center"></span>
+                    <span className={`w-[20px] h-[1.5px] transition-all duration-300 ease-out origin-center ${isTransparent ? 'bg-white' : 'bg-black'}`}></span>
+                    <span className={`w-[20px] h-[1.5px] transition-all duration-300 ease-out ${isTransparent ? 'bg-white' : 'bg-black'}`}></span>
+                    <span className={`w-[20px] h-[1.5px] transition-all duration-300 ease-out origin-center ${isTransparent ? 'bg-white' : 'bg-black'}`}></span>
                   </button>
                 </div>
               </div>

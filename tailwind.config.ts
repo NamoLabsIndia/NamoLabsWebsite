@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        spartan: ["var(--font-league-spartan)"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

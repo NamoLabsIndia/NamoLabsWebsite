@@ -2,11 +2,17 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
-import { Be_Vietnam_Pro } from 'next/font/google';
+import { Be_Vietnam_Pro, League_Spartan } from 'next/font/google';
 
 const beVietnamPro = Be_Vietnam_Pro({ 
   weight: ['300', '400', '500', '600', '700', '800'],
   subsets: ["latin"],
+});
+
+const leagueSpartan = League_Spartan({
+  weight: ['400', '500', '600', '700', '800', '900'],
+  subsets: ["latin"],
+  variable: '--font-league-spartan',
 });
 
 export const metadata: Metadata = {
@@ -22,10 +28,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <head>
       </head>
-      <body className={`${beVietnamPro.className} antialiased overflow-x-hidden`}>
+      <body className={`${beVietnamPro.className} ${leagueSpartan.variable} bg-white text-namo-black antialiased selection:bg-namo-black selection:text-white`}>
         <Navbar />
         <main>{children}</main>
         <Footer />

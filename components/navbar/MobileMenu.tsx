@@ -67,7 +67,7 @@ export default function MobileMenu({ onCloseAction }: MobileMenuProps) {
       className="fixed inset-0 z-50 bg-white overflow-y-auto"
     >
       <div className="px-6 py-5 flex items-center justify-between border-b border-gray-100">
-        <img src="/logos/Namo%20Labs%20Logo.png" alt="Namo Labs" className="h-16 w-auto object-contain mix-blend-multiply" />
+        <span className="font-spartan font-bold text-[24px] tracking-tight text-namo-black leading-none">Namo Labs</span>
         <button onClick={onCloseAction} className="p-2 w-12 h-12 flex items-center justify-center text-gray-500 hover:text-namo-black">
           <X size={24} />
         </button>
