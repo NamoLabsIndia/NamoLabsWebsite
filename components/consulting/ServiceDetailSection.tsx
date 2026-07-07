@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, ChevronDown } from "lucide-react";
+import React from "react";
+import { motion } from "framer-motion";
+import { CheckCircle2 } from "lucide-react";
 
 interface Capability {
   title: string;
@@ -20,61 +20,54 @@ interface ServiceDetailSectionProps {
 }
 
 function CapabilityCard({ cap, index }: { cap: Capability, index: number }) {
-  const [isOpen, setIsOpen] = useState(false);
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ delay: index * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="bg-black/30 backdrop-blur-md p-6 sm:p-8 rounded-[24px] border border-white/10 hover:bg-white/10 hover:border-white/30 transition-colors duration-500 shadow-xl group relative overflow-hidden cursor-pointer flex flex-col h-fit"
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
-      onClick={() => setIsOpen(!isOpen)}
+      className="group relative overflow-hidden rounded-[20px] shadow-2xl flex flex-col h-[280px] sm:h-[300px] border border-white/10"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      {/* Background Image */}
+      {cap.image && (
+        <img 
+          src={cap.image} 
+          alt={cap.title} 
+          className="absolute inset-0 w-full h-full object-cover transform transition-transform duration-1000 group-hover:scale-110" 
+        />
+      )}
       
-      <div className="relative z-10 flex flex-col">
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-accent/40 transition-all duration-500">
-              <CheckCircle2 size={20} className="text-white" />
-            </div>
-            <h4 className="font-bold text-white text-base leading-snug">{cap.title}</h4>
+      {/* Gradient Overlays for Readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/20 to-black/90" />
+      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-500" />
+      
+      {/* Content Container */}
+      <div className="relative z-10 flex flex-col h-full p-4 sm:p-5">
+        
+        {/* Top Section */}
+        <div className="flex flex-col">
+          {/* Subtle Icon */}
+          <div className="w-8 h-8 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm flex items-center justify-center flex-shrink-0 mb-3 group-hover:bg-white/10 transition-colors duration-300">
+            <CheckCircle2 size={16} className="text-white" />
           </div>
           
-          <motion.div
-            animate={{ rotate: isOpen ? 180 : 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="text-white/50 group-hover:text-white transition-colors flex-shrink-0"
-          >
-            <ChevronDown size={20} />
-          </motion.div>
+          {/* Title */}
+          <h4 className="font-spartan font-bold text-white text-[20px] sm:text-[22px] leading-tight mb-2 tracking-tight drop-shadow-md">
+            {cap.title}
+          </h4>
+          
+          {/* Description */}
+          <p className="text-xs sm:text-[13px] text-white/80 leading-relaxed font-medium line-clamp-3 drop-shadow-sm">
+            {cap.description}
+          </p>
         </div>
         
-        <AnimatePresence initial={false}>
-          {isOpen && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="overflow-hidden"
-            >
-              <div className="mt-5 pt-4 border-t border-white/10">
-                {cap.image && (
-                  <div className="w-full h-32 sm:h-40 rounded-xl mb-4 overflow-hidden relative border border-white/10 bg-black/20">
-                    <img src={cap.image} alt={cap.title} className="object-cover w-full h-full transform transition-transform duration-700 hover:scale-105" />
-                  </div>
-                )}
-                <p className="text-sm text-white/80 leading-relaxed font-medium">
-                  {cap.description}
-                </p>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Bottom Section: Learn More */}
+        <div className="mt-auto pt-3 flex items-center">
+          <span className="text-[10px] font-bold tracking-[0.2em] text-white uppercase group-hover:text-white/70 transition-colors">
+            Learn More
+          </span>
+        </div>
       </div>
     </motion.div>
   );
