@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
       </head>
-      <body className={`${beVietnamPro.className} antialiased`}>
+      <body className={`${beVietnamPro.className} antialiased overflow-x-hidden`}>
         <Navbar />
         <main>{children}</main>
         <Footer />
