@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 
 interface Capability {
@@ -26,91 +26,80 @@ export default function ServiceDetailSection({
   capabilities,
   reverseLayout = false
 }: ServiceDetailSectionProps) {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  // Slow, elegant parallax
-  const yImage = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-
   return (
-    <section ref={containerRef} id={id} className={`py-32 relative overflow-hidden ${reverseLayout ? 'bg-[#FAFAFA]' : 'bg-white'}`}>
-      {/* Subtle Floating Ambient Gradients */}
-      <div className={`absolute top-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[120px] pointer-events-none opacity-40 ${reverseLayout ? 'left-[-10%] bg-blue-100' : 'right-[-10%] bg-indigo-100'}`} />
+    <section id={id} className="relative py-24 sm:py-32 overflow-hidden flex flex-col justify-center min-h-[90vh]">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `url('${illustrationSrc}')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
+      
+      {/* Dark Overlay to ensure text readability everywhere */}
+      <div className="absolute inset-0 z-10 bg-black/40" />
+      
+      {/* Subtle Gradient Overlay for Text Side */}
+      <div 
+        className={`absolute inset-0 z-10 bg-gradient-to-r ${reverseLayout ? 'from-transparent via-black/40 to-black/80' : 'from-black/80 via-black/40 to-transparent'}`} 
+      />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="relative z-20 max-w-7xl mx-auto px-6 w-full flex flex-col justify-between h-full">
         
         {/* Main Content Area */}
-        <div className={`flex flex-col lg:flex-row gap-16 xl:gap-24 items-center mb-24 ${reverseLayout ? 'lg:flex-row-reverse' : ''}`}>
+        <div className={`grid lg:grid-cols-2 gap-16 items-center mb-16 sm:mb-24 ${reverseLayout ? 'lg:flex-row-reverse' : ''}`}>
           
-          <div className="w-full lg:w-[40%] flex-shrink-0 z-20">
-            <motion.h2 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-4xl sm:text-5xl lg:text-5xl font-[800] text-namo-black tracking-[-0.02em] mb-6 leading-[1.1]"
-            >
-              {title}
-            </motion.h2>
-            <motion.p 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-lg text-gray-600 leading-relaxed font-medium"
-            >
-              {description}
-            </motion.p>
-          </div>
-
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, x: reverseLayout ? 30 : -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full lg:w-[60%] relative h-[400px] sm:h-[500px] lg:h-[600px] rounded-[40px] overflow-hidden shadow-2xl shadow-accent/10 border border-gray-100 group z-10"
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="bg-black/20 backdrop-blur-xl border border-white/20 p-8 sm:p-12 rounded-[32px] shadow-2xl relative overflow-hidden"
           >
-            {/* Parallax Image Container */}
-            <motion.div style={{ y: yImage }} className="absolute inset-[-15%] w-[130%] h-[130%]">
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-50/50 to-indigo-50/50 p-8 flex items-center justify-center">
-                <img 
-                  src={illustrationSrc} 
-                  alt={`${title} illustration`}
-                  className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 400 400"><rect width="400" height="400" fill="%23f8fafc"/><text x="50%" y="50%" font-family="sans-serif" font-size="14" fill="%2394a3b8" text-anchor="middle">Premium Illustration Pending</text></svg>';
-                  }}
-                />
-              </div>
-            </motion.div>
+            {/* Subtle highlight inside the glass card */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-50 pointer-events-none" />
             
-            {/* Soft inner glow overlay */}
-            <div className="absolute inset-0 border border-white/40 rounded-[40px] pointer-events-none mix-blend-overlay" />
+            <div className="relative z-10">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-[800] text-white tracking-tight mb-6 leading-tight drop-shadow-sm">
+                {title}
+              </h2>
+              <p className="text-lg text-white/90 leading-relaxed max-w-xl drop-shadow-sm font-medium">
+                {description}
+              </p>
+            </div>
           </motion.div>
+          
+          {/* Empty div to take up the other half of the grid so the background image is visible */}
+          <div className="hidden lg:block"></div>
 
         </div>
 
         {/* Capabilities Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-auto">
           {capabilities.map((cap, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="bg-white/60 backdrop-blur-xl p-8 rounded-[32px] border border-gray-200/60 hover:border-accent/30 transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-accent/10 hover:-translate-y-2 group"
+              transition={{ delay: index * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="bg-black/30 backdrop-blur-md p-6 sm:p-8 rounded-[24px] border border-white/10 hover:bg-white/10 hover:border-white/30 hover:-translate-y-2 transition-all duration-500 shadow-xl group relative overflow-hidden"
             >
-              <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center mb-6 group-hover:bg-accent group-hover:scale-110 transition-all duration-500 ease-out shadow-sm border border-gray-100 group-hover:border-accent">
-                <CheckCircle2 size={26} className="text-gray-400 group-hover:text-white transition-colors duration-500" strokeWidth={2} />
+              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <div className="relative z-10">
+                <div className="flex items-center gap-4 mb-5">
+                  <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-accent/40 transition-all duration-500">
+                    <CheckCircle2 size={20} className="text-white" />
+                  </div>
+                  <h4 className="font-bold text-white text-base leading-snug">{cap.title}</h4>
+                </div>
+                <p className="text-sm text-white/80 leading-relaxed font-medium">
+                  {cap.description}
+                </p>
               </div>
-              <h4 className="text-xl font-bold text-namo-black mb-3">{cap.title}</h4>
-              <p className="text-[15px] text-gray-500 leading-relaxed font-medium">
-                {cap.description}
-              </p>
             </motion.div>
           ))}
         </div>
