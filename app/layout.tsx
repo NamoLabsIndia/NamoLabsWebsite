@@ -150,6 +150,25 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/namo-labs-logo.png" />
       </head>
       <body className={`${beVietnamPro.className} ${leagueSpartan.variable} bg-white text-namo-black antialiased selection:bg-namo-black selection:text-white`}>
+        {/* Force-unregister any old service workers from the old website deployment */}
+        <Script
+          id="kill-service-workers"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                    for(let registration of registrations) {
+                      registration.unregister();
+                      console.log('Old ServiceWorker unregistered.');
+                    }
+                  });
+                });
+              }
+            `,
+          }}
+        />
         {/* JSON-LD Structured Data */}
         <Script
           id="schema-organization"
