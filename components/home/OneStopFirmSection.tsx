@@ -64,16 +64,25 @@ const sectors: (CarouselCard & { href: string })[] = [
   },
 ];
 
-// How many extra card-widths to scroll (beyond the 2 initially visible)
-// Each card is ~384px + 20px gap = 404px. We have 3 extra cards to reveal.
 const EXTRA_CARDS = 3;
-const CARD_W = 372; // px (md:w-[22rem] = 352 + gap 20)
+const CARD_W = 372;
 
 export default function OneStopFirmSection() {
   const outerRef = useRef<HTMLDivElement>(null);
   const [translateX, setTranslateX] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
+  // Detect mobile on mount and on resize
   useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Scroll-driven animation — desktop only
+  useEffect(() => {
+    if (isMobile) return;
     const outer = outerRef.current;
     if (!outer) return;
 
@@ -81,11 +90,9 @@ export default function OneStopFirmSection() {
       const rect = outer.getBoundingClientRect();
       const totalScrollable = outer.offsetHeight - window.innerHeight;
       if (totalScrollable <= 0) return;
-
       const scrolled = Math.max(0, -rect.top);
       const progress = Math.min(1, scrolled / totalScrollable);
-      const maxShift = EXTRA_CARDS * CARD_W;
-      setTranslateX(-(progress * maxShift));
+      setTranslateX(-(progress * EXTRA_CARDS * CARD_W));
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -95,28 +102,69 @@ export default function OneStopFirmSection() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, []);
+  }, [isMobile]);
 
-  // Total height = 100vh (normal view) + extra scroll distance for cards
-  const extraScrollPx = EXTRA_CARDS * CARD_W;
+  /* ── MOBILE: simple swipeable layout ── */
+  if (isMobile) {
+    return (
+      <section className="bg-white py-14 px-6">
+        <div className="mb-8">
+          <p className="text-[10px] font-semibold tracking-[0.22em] text-accent uppercase mb-3">
+            Namo Labs
+          </p>
+          <h2 className="text-[26px] font-black text-namo-black leading-[1.15] mb-4">
+            One Stop Firm for Governments, Organisations, Institutions, Startups
+            and other MSMEs.
+          </h2>
+          <p className="text-sm text-gray-500 leading-relaxed mb-6">
+            We build secure, intelligent and future-ready digital solutions that
+            empower every sector to innovate, grow and serve better.
+          </p>
+          <Link
+            href="/consulting"
+            className="inline-flex items-center gap-2 bg-namo-black text-white font-semibold px-6 py-3.5 rounded-full text-sm hover:bg-gray-800 transition-colors"
+          >
+            Explore Solutions <ArrowRight size={14} />
+          </Link>
+          <div className="mt-6 flex items-center gap-4 border-l-4 border-accent pl-4">
+            <p className="text-[9px] font-semibold tracking-[0.18em] text-gray-400 uppercase">
+              One Mission.&nbsp; Many Sectors.&nbsp; Limitless Impact.
+            </p>
+          </div>
+        </div>
 
+        {/* Swipeable cards row */}
+        <div className="overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden -mx-6 px-6">
+          <div className="flex flex-row gap-4 pb-4" style={{ width: "max-content" }}>
+            {sectors.map((sector, i) => (
+              <div key={sector.title} className="flex-shrink-0">
+                <Card card={sector} index={i} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  /* ── DESKTOP: scroll-driven horizontal animation ── */
   return (
     <section
       ref={outerRef}
       className="bg-white"
-      style={{ height: `calc(100vh + ${extraScrollPx}px)` }}
+      style={{ height: `calc(100vh + ${EXTRA_CARDS * CARD_W}px)` }}
     >
-      <div className="sticky top-0 h-[100dvh] overflow-hidden flex items-start lg:items-center justify-center pt-24 lg:pt-0">
-        <div className="w-full max-w-[1600px] mx-auto px-6 lg:px-16">
-          <div className="flex flex-col lg:flex-row gap-6 lg:gap-16 items-start lg:items-center">
+      <div className="sticky top-0 h-[100dvh] overflow-hidden flex items-center justify-center">
+        <div className="w-full max-w-[1600px] mx-auto px-16">
+          <div className="flex flex-row gap-16 items-center">
 
-            {/* ── Left: heading + CTA (fixed width, never moves) ── */}
-            <div className="flex-shrink-0 w-full lg:w-[400px]">
+            {/* Left: heading + CTA */}
+            <div className="flex-shrink-0 w-[400px]">
               <motion.p
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="text-[10px] sm:text-xs font-semibold tracking-[0.22em] text-accent uppercase mb-2 sm:mb-4"
+                className="text-xs font-semibold tracking-[0.22em] text-accent uppercase mb-4"
               >
                 Namo Labs
               </motion.p>
@@ -125,7 +173,7 @@ export default function OneStopFirmSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.55 }}
-                className="text-[22px] sm:text-[40px] font-black text-namo-black leading-[1.1] mb-2 sm:mb-5"
+                className="text-[40px] font-black text-namo-black leading-[1.1] mb-5"
               >
                 One Stop Firm for Governments, Organisations, Institutions,
                 Startups and other MSMEs.
@@ -135,7 +183,7 @@ export default function OneStopFirmSection() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.15 }}
-                className="text-xs sm:text-base text-gray-500 leading-relaxed mb-4 sm:mb-8"
+                className="text-base text-gray-500 leading-relaxed mb-8"
               >
                 We build secure, intelligent and future-ready digital solutions
                 that empower every sector to innovate, grow and serve better.
@@ -158,27 +206,24 @@ export default function OneStopFirmSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.5, duration: 0.5 }}
-                className="mt-4 sm:mt-8 flex items-center gap-4 border-l-4 border-accent pl-4"
+                className="mt-8 flex items-center gap-4 border-l-4 border-accent pl-4"
               >
-                <p className="text-[9px] sm:text-[11px] font-semibold tracking-[0.18em] text-gray-400 uppercase">
+                <p className="text-[11px] font-semibold tracking-[0.18em] text-gray-400 uppercase">
                   One Mission.&nbsp; Many Sectors.&nbsp; Limitless Impact.
                 </p>
               </motion.div>
             </div>
 
-            {/* ── Right: horizontal track driven by scroll translateX ── */}
+            {/* Right: scroll-driven card track */}
             <div className="relative flex-1 min-w-0 overflow-hidden">
-              {/* Right fade edge so cards disappear cleanly */}
               <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-32 bg-gradient-to-l from-white to-transparent" />
-
-              {/* Translate the entire row of cards horizontally */}
               <div
                 style={{
                   transform: `translateX(${translateX}px)`,
                   transition: "transform 0.05s linear",
                   willChange: "transform",
                 }}
-                className="flex flex-row gap-5 py-2 sm:py-6 overflow-visible"
+                className="flex flex-row gap-5 py-6 overflow-visible"
               >
                 {sectors.map((sector, i) => (
                   <div key={sector.title} className="flex-shrink-0">
