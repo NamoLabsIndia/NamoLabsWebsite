@@ -2,10 +2,17 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
 
 export default function AboutHero() {
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "Company", href: "/about" },
+    { label: "About Us" },
+  ];
+
   return (
-    <section className="relative flex min-h-[70vh] flex-col overflow-hidden bg-white">
+    <section className="relative flex min-h-[60vh] lg:min-h-[65vh] flex-col overflow-hidden">
       {/* Right Image with Mask */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -14,20 +21,20 @@ export default function AboutHero() {
         className="pointer-events-none absolute inset-y-0 right-0 hidden h-full w-[60%] lg:block z-0"
       >
         <img
-          src="/img/about/hero.jpg"
-          alt="Boy holding glowing globe"
-          className="h-full w-full object-cover object-right [mask-image:linear-gradient(to_left,black_50%,transparent)]"
+          src="/About%201.png"
+          alt="About Namo Labs"
+          className="h-full w-full object-cover object-[100%_30%] [mask-image:linear-gradient(to_left,black_50%,transparent)]"
           onError={(e) => {
             (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop';
           }}
         />
-        {/* Top and Bottom vertical transitions */}
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white to-transparent" />
       </motion.div>
 
       <div className="relative z-10 flex w-full flex-1 flex-col max-w-7xl mx-auto px-6">
-        <div className="flex max-w-[560px] flex-1 flex-col justify-center pt-8 lg:pt-12 pb-12 lg:pb-16">
+        <div className="flex max-w-[560px] flex-1 flex-col justify-center pt-4 lg:pt-8 pb-12 lg:pb-16">
+          <div className="-ml-4 mb-4">
+            <Breadcrumbs items={breadcrumbItems} />
+          </div>
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}

@@ -126,7 +126,7 @@ const careers = [
 ];
 
 const contactRows = [
-  { icon: <Mail size={18} />, label: "Email Us", value: "hello@namolabs.in", href: "mailto:hello@namolabs.in" },
+  { icon: <Mail size={18} />, label: "Email Us", value: "info@namolabs.in", href: "mailto:info@namolabs.in" },
   { icon: <Globe size={18} />, label: "Visit Our Website", value: "www.namolabs.in", href: "https://www.namolabs.in" },
   { icon: <MapPin size={18} />, label: "Our Headquarters", value: "Namo Labs, Chennai, India" },
 ];
@@ -137,6 +137,8 @@ const field =
 
 export default function TeamPage() {
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   return (
     <div className="bg-white">
@@ -536,9 +538,35 @@ export default function TeamPage() {
                 ) : (
                   <form
                     className="mt-5 space-y-3"
-                    onSubmit={(e) => {
+                    onSubmit={async (e) => {
                       e.preventDefault();
-                      setSent(true);
+                      setLoading(true);
+                      setError(false);
+                      const formData = new FormData(e.currentTarget);
+                      const data = {
+                        formType: 'team_contact',
+                        name: formData.get('name'),
+                        email: formData.get('email'),
+                        company: formData.get('company'),
+                        message: formData.get('message')
+                      };
+                      
+                      try {
+                        const res = await fetch('/api/contact', {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify(data)
+                        });
+                        if (res.ok) {
+                          setSent(true);
+                        } else {
+                          setError(true);
+                        }
+                      } catch (err) {
+                        setError(true);
+                      } finally {
+                        setLoading(false);
+                      }
                     }}
                   >
                     <div className="grid gap-3 sm:grid-cols-2">
@@ -549,10 +577,14 @@ export default function TeamPage() {
                     <textarea name="message" required rows={3} placeholder="Your Message" className={`${field} resize-none py-2.5 text-[13px]`} />
                     <button
                       type="submit"
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-6 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#2f4be0]"
+                      disabled={loading}
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-6 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#2f4be0] disabled:opacity-70 disabled:cursor-not-allowed"
                     >
-                      Send Message <ArrowRight size={14} />
+                      {loading ? 'Sending...' : 'Send Message'} {!loading && <ArrowRight size={14} />}
                     </button>
+                    {error && (
+                      <p className="text-red-500 text-[12px] text-center mt-2">Failed to send message. Please try again.</p>
+                    )}
                     <p className="mt-1 flex items-center justify-center gap-1.5 text-[11px] text-gray-500">
                       <ShieldCheck size={13} className="text-accent" />
                       We respect your privacy. Your information is safe with us.

@@ -1,5 +1,4 @@
 import React from "react";
-import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import AboutHero from "@/components/about/AboutHero";
 import WhyWeExist from "@/components/about/WhyWeExist";
 import MissionVision from "@/components/about/MissionVision";
@@ -19,8 +18,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <main className="bg-white min-h-screen pt-[104px]">
-      <Breadcrumbs items={breadcrumbItems} />
+    <main className="bg-namo-faint min-h-screen pt-[104px]">
       <AboutHero />
       <WhyWeExist />
       <MissionVision />

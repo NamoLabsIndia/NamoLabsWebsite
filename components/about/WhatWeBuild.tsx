@@ -2,39 +2,38 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Shield, Blocks, Brain, Atom, Cloud } from "lucide-react";
 
 const domains = [
   {
     title: "Cryptography",
     description: "Building secure digital foundations for a trusted world.",
-    icon: Shield,
+    image: "/cryptography logo .webp",
   },
   {
     title: "Blockchain",
     description: "Trust infrastructure for the digital economy.",
-    icon: Blocks,
+    image: "/Blockchain logo.jpg",
   },
   {
     title: "Artificial Intelligence",
     description: "Intelligent systems designed to solve real-world challenges.",
-    icon: Brain,
+    image: "/AI logo.jpg",
   },
   {
     title: "Quantum",
     description: "Preparing for the post-quantum future with advanced research.",
-    icon: Atom,
+    image: "/Quantum logo.avif",
   },
   {
     title: "Cloud",
     description: "Scalable, resilient infrastructure powering modern innovation.",
-    icon: Cloud,
+    image: "/cloud tech logo .webp",
   },
 ];
 
 export default function WhatWeBuild() {
   return (
-    <section className="py-16 md:py-24 bg-white overflow-hidden">
+    <section className="py-16 md:py-24 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6">
         
         {/* Header */}
@@ -66,9 +65,8 @@ export default function WhatWeBuild() {
         </div>
 
         {/* 5 Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6">
           {domains.map((domain, i) => {
-            const Icon = domain.icon;
             return (
               <motion.div
                 key={domain.title}
@@ -76,18 +74,22 @@ export default function WhatWeBuild() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="flex flex-col items-center text-center p-8 lg:px-6 rounded-[32px] bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] transition-all duration-300 group"
+                className="flex flex-col items-center text-center p-4 sm:p-6 lg:px-6 rounded-[20px] sm:rounded-[32px] bg-white border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] transition-all duration-300 group"
               >
-                {/* Icon Container */}
-                <div className="w-16 h-16 rounded-full bg-[#f4f7ff] text-accent flex items-center justify-center mb-8">
-                  <Icon size={32} strokeWidth={1.5} />
+                {/* Image Container */}
+                <div className="w-full aspect-square mb-6 relative rounded-[16px] overflow-hidden bg-gray-50 shadow-inner">
+                  <img 
+                    src={domain.image} 
+                    alt={domain.title} 
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
                 </div>
                 
                 {/* Content */}
-                <h3 className="text-xl font-bold text-namo-black mb-5 group-hover:text-accent transition-colors">
+                <h3 className="text-[15px] sm:text-xl font-bold text-namo-black mb-2 sm:mb-5 group-hover:text-accent transition-colors leading-tight">
                   {domain.title}
                 </h3>
-                <p className="text-[14px] text-gray-500 leading-relaxed font-medium mb-12 flex-grow">
+                <p className="text-[11px] sm:text-[14px] text-gray-500 leading-relaxed font-medium mb-6 sm:mb-12 flex-grow">
                   {domain.description}
                 </p>
                 

@@ -63,18 +63,52 @@ export default function CountdownSection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedForm, setSelectedForm] = useState<"enterprise" | "developer" | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [apiError, setApiError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    // In a real app, send data to backend here
-    setTimeout(() => {
-      setIsModalOpen(false);
-      setTimeout(() => {
-        setSelectedForm(null);
-        setIsSubmitted(false);
-      }, 300); // reset after animation
-    }, 2500);
+    setLoading(true);
+    setApiError("");
+
+    const formData = new FormData(e.currentTarget);
+    const firstName = formData.get("firstName") || "";
+    const lastName = formData.get("lastName") || "";
+    const name = `${firstName} ${lastName}`.trim();
+    
+    const data = {
+      formType: 'early_access',
+      name: name,
+      email: formData.get("email"),
+      company: formData.get("company") || "N/A",
+      message: `Form Type: ${selectedForm}\nJob Title: ${formData.get("jobTitle") || "N/A"}\nGitHub: ${formData.get("github") || "N/A"}\nUse Case: ${formData.get("message")}`
+    };
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      
+      if (res.ok) {
+        setIsSubmitted(true);
+        setTimeout(() => {
+          setIsModalOpen(false);
+          setTimeout(() => {
+            setSelectedForm(null);
+            setIsSubmitted(false);
+          }, 300);
+        }, 2500);
+      } else {
+        const errData = await res.json();
+        setApiError(errData.error || "Something went wrong.");
+      }
+    } catch (err) {
+      setApiError("Network error. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleClose = () => {
@@ -126,13 +160,16 @@ export default function CountdownSection() {
           whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center justify-center gap-5 mb-6"
+          className="flex flex-row items-center justify-center gap-4 mb-10"
         >
           <img
             src="/qscl-logo-transparent.png"
             alt="QSCL Brand Logo"
-            className="h-28 sm:h-40 object-contain flex-shrink-0"
+            className="h-24 sm:h-32 object-contain flex-shrink-0"
           />
+          <h3 className="text-3xl sm:text-4xl font-black text-namo-black tracking-[0.2em] flex items-start uppercase pl-2">
+            QSCL<span className="text-sm sm:text-base font-bold ml-1 -mt-1 sm:-mt-2 opacity-60">TM</span>
+          </h3>
         </motion.div>
 
         {/* Countdown */}
@@ -296,28 +333,28 @@ export default function CountdownSection() {
                         <div className="grid grid-cols-2 gap-5">
                           <div className="space-y-2">
                             <label className="text-[11px] font-bold uppercase tracking-widest text-gray-500 ml-1">First Name *</label>
-                            <input required type="text" className="w-full px-5 py-3.5 rounded-[16px] border border-gray-200 focus:outline-none focus:border-accent focus:ring-4 focus:ring-accent/10 transition-all bg-gray-50/50 text-[15px]" />
+                            <input name="firstName" required type="text" className="w-full px-5 py-3.5 rounded-[16px] border border-gray-200 focus:outline-none focus:border-accent focus:ring-4 focus:ring-accent/10 transition-all bg-gray-50/50 text-[15px]" />
                           </div>
                           <div className="space-y-2">
                             <label className="text-[11px] font-bold uppercase tracking-widest text-gray-500 ml-1">Last Name *</label>
-                            <input required type="text" className="w-full px-5 py-3.5 rounded-[16px] border border-gray-200 focus:outline-none focus:border-accent focus:ring-4 focus:ring-accent/10 transition-all bg-gray-50/50 text-[15px]" />
+                            <input name="lastName" required type="text" className="w-full px-5 py-3.5 rounded-[16px] border border-gray-200 focus:outline-none focus:border-accent focus:ring-4 focus:ring-accent/10 transition-all bg-gray-50/50 text-[15px]" />
                           </div>
                         </div>
 
                         <div className="space-y-2">
                           <label className="text-[11px] font-bold uppercase tracking-widest text-gray-500 ml-1">Work Email *</label>
-                          <input required type="email" className="w-full px-5 py-3.5 rounded-[16px] border border-gray-200 focus:outline-none focus:border-accent focus:ring-4 focus:ring-accent/10 transition-all bg-gray-50/50 text-[15px]" />
+                          <input name="email" required type="email" className="w-full px-5 py-3.5 rounded-[16px] border border-gray-200 focus:outline-none focus:border-accent focus:ring-4 focus:ring-accent/10 transition-all bg-gray-50/50 text-[15px]" />
                         </div>
 
                         {selectedForm === "enterprise" && (
                           <>
                             <div className="space-y-2">
                               <label className="text-[11px] font-bold uppercase tracking-widest text-gray-500 ml-1">Company Name *</label>
-                              <input required type="text" className="w-full px-5 py-3.5 rounded-[16px] border border-gray-200 focus:outline-none focus:border-accent focus:ring-4 focus:ring-accent/10 transition-all bg-gray-50/50 text-[15px]" />
+                              <input name="company" required type="text" className="w-full px-5 py-3.5 rounded-[16px] border border-gray-200 focus:outline-none focus:border-accent focus:ring-4 focus:ring-accent/10 transition-all bg-gray-50/50 text-[15px]" />
                             </div>
                             <div className="space-y-2">
                               <label className="text-[11px] font-bold uppercase tracking-widest text-gray-500 ml-1">Job Title *</label>
-                              <input required type="text" className="w-full px-5 py-3.5 rounded-[16px] border border-gray-200 focus:outline-none focus:border-accent focus:ring-4 focus:ring-accent/10 transition-all bg-gray-50/50 text-[15px]" />
+                              <input name="jobTitle" required type="text" className="w-full px-5 py-3.5 rounded-[16px] border border-gray-200 focus:outline-none focus:border-accent focus:ring-4 focus:ring-accent/10 transition-all bg-gray-50/50 text-[15px]" />
                             </div>
                           </>
                         )}
@@ -325,7 +362,7 @@ export default function CountdownSection() {
                         {selectedForm === "developer" && (
                           <div className="space-y-2">
                             <label className="text-[11px] font-bold uppercase tracking-widest text-gray-500 ml-1">GitHub Profile (Optional)</label>
-                            <input type="url" placeholder="https://github.com/..." className="w-full px-5 py-3.5 rounded-[16px] border border-gray-200 focus:outline-none focus:border-accent focus:ring-4 focus:ring-accent/10 transition-all bg-gray-50/50 text-[15px]" />
+                            <input name="github" type="url" placeholder="https://github.com/..." className="w-full px-5 py-3.5 rounded-[16px] border border-gray-200 focus:outline-none focus:border-accent focus:ring-4 focus:ring-accent/10 transition-all bg-gray-50/50 text-[15px]" />
                           </div>
                         )}
 
@@ -333,12 +370,13 @@ export default function CountdownSection() {
                           <label className="text-[11px] font-bold uppercase tracking-widest text-gray-500 ml-1">
                             {selectedForm === "enterprise" ? "Expected Use Case *" : "What are you building? *"}
                           </label>
-                          <textarea required rows={3} className="w-full px-5 py-4 rounded-[16px] border border-gray-200 focus:outline-none focus:border-accent focus:ring-4 focus:ring-accent/10 transition-all bg-gray-50/50 resize-none text-[15px]"></textarea>
+                          <textarea name="message" required rows={3} className="w-full px-5 py-4 rounded-[16px] border border-gray-200 focus:outline-none focus:border-accent focus:ring-4 focus:ring-accent/10 transition-all bg-gray-50/50 resize-none text-[15px]"></textarea>
                         </div>
 
-                        <button type="submit" className="w-full bg-[#0A0A0A] text-white font-medium py-4 rounded-[16px] mt-6 hover:bg-gray-800 transition-colors shadow-lg shadow-black/5 text-[15px]">
-                          Submit Request
+                        <button disabled={loading} type="submit" className="w-full bg-[#0A0A0A] text-white font-medium py-4 rounded-[16px] mt-6 hover:bg-gray-800 transition-colors shadow-lg shadow-black/5 text-[15px] disabled:opacity-70 disabled:cursor-not-allowed">
+                          {loading ? 'Submitting...' : 'Submit Request'}
                         </button>
+                        {apiError && <p className="text-red-500 text-[13px] text-center">{apiError}</p>}
                       </form>
                     </motion.div>
                   )}

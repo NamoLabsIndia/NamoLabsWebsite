@@ -67,7 +67,7 @@ export default function MobileMenu({ onCloseAction }: MobileMenuProps) {
       className="fixed inset-0 z-50 bg-white overflow-y-auto"
     >
       <div className="px-6 py-5 flex items-center justify-between border-b border-gray-100">
-        <span className="font-spartan font-bold text-[24px] tracking-tight text-namo-black leading-none">Namo Labs</span>
+        <span className="font-spartan font-bold text-[20px] tracking-tight text-namo-black leading-none">Namo Labs</span>
         <button onClick={onCloseAction} className="p-2 w-12 h-12 flex items-center justify-center text-gray-500 hover:text-namo-black">
           <X size={24} />
         </button>
@@ -80,13 +80,22 @@ export default function MobileMenu({ onCloseAction }: MobileMenuProps) {
               <div
                 className="w-full flex items-center justify-between px-4 py-2 min-h-[48px] hover:bg-gray-50 rounded-xl transition-colors"
               >
-                <Link 
-                  href={group.href!} 
-                  onClick={onCloseAction} 
-                  className="text-base font-semibold text-namo-black flex-1 text-left"
-                >
-                  {group.label}
-                </Link>
+                {group.label === "Platform" ? (
+                  <button 
+                    onClick={() => setExpanded(expanded === group.label ? null : group.label)}
+                    className="text-base font-semibold text-namo-black flex-1 text-left"
+                  >
+                    {group.label}
+                  </button>
+                ) : (
+                  <Link 
+                    href={group.href!} 
+                    onClick={onCloseAction} 
+                    className="text-base font-semibold text-namo-black flex-1 text-left"
+                  >
+                    {group.label}
+                  </Link>
+                )}
                 <button
                   onClick={() => setExpanded(expanded === group.label ? null : group.label)}
                   className="p-2 -mr-2"

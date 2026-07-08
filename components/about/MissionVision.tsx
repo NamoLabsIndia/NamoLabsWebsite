@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function MissionVision() {
   return (
-    <section className="py-12 md:py-24 bg-white">
+    <section className="py-12 md:py-24">
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-8 lg:gap-12">
         
         {/* Mission Card */}
@@ -20,7 +20,7 @@ export default function MissionVision() {
           <div className="absolute inset-x-0 bottom-0 top-[30%] z-0">
             <div className="absolute inset-0 bg-gradient-to-b from-white via-white/40 to-transparent z-10" />
             <img 
-              src="/img/about/mission.jpg" 
+              src="/About%203.png" 
               alt="Mission" 
               className="w-full h-full object-cover object-bottom"
               onError={(e) => {
@@ -54,7 +54,7 @@ export default function MissionVision() {
           <div className="absolute inset-x-0 bottom-0 top-[30%] z-0">
             <div className="absolute inset-0 bg-gradient-to-b from-white via-white/40 to-transparent z-10" />
             <img 
-              src="/img/about/vision.jpg" 
+              src="/About%204.png" 
               alt="Vision" 
               className="w-full h-full object-cover object-bottom"
               onError={(e) => {

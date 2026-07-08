@@ -31,6 +31,8 @@ export default function ContactPage() {
   });
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [loading, setLoading] = useState(false);
+  const [apiError, setApiError] = useState("");
 
   const validateField = (name: string, value: string) => {
     let error = "";
@@ -64,15 +66,44 @@ export default function ContactPage() {
     setErrors((prev) => ({ ...prev, [name]: validateField(name, value) }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
+    if (isSubmitDisabled) return;
+    
+    setLoading(true);
+    setApiError("");
+    
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          formType: 'contact',
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          message: formData.message,
+        })
+      });
+      
+      if (res.ok) {
+        setSent(true);
+      } else {
+        const errData = await res.json();
+        setApiError(errData.error || "Failed to send message. Please try again.");
+      }
+    } catch (err) {
+      setApiError("A network error occurred. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const requiredFields = ["name", "email", "phone", "message"];
   const isComplete = requiredFields.every((f) => formData[f as keyof typeof formData].trim() !== "");
   const hasErrors = Object.values(errors).some((err) => err !== "");
-  const isSubmitDisabled = !isComplete || hasErrors;
+  const isSubmitDisabled = !isComplete || hasErrors || loading;
 
   const FieldError = ({ name }: { name: string }) => {
     if (touched[name] && errors[name]) {
@@ -253,17 +284,22 @@ export default function ContactPage() {
                       Your data is secure.
                     </p>
                   </div>
-                  <button
-                    type="submit"
-                    disabled={isSubmitDisabled}
-                    className={`inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-all duration-300 w-full sm:w-auto ${
-                      isSubmitDisabled 
-                        ? "bg-gray-100 text-gray-400 cursor-not-allowed" 
-                        : "bg-accent text-white hover:bg-[#324ce6] shadow-lg shadow-accent/25 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-accent/30"
-                    }`}
-                  >
-                    Send Message <ArrowRight size={16} />
-                  </button>
+                  <div className="flex flex-col sm:items-end gap-2">
+                    <button
+                      type="submit"
+                      disabled={isSubmitDisabled}
+                      className={`inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-all duration-300 w-full sm:w-auto ${
+                        isSubmitDisabled 
+                          ? "bg-gray-100 text-gray-400 cursor-not-allowed" 
+                          : "bg-accent text-white hover:bg-[#324ce6] shadow-lg shadow-accent/25 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-accent/30"
+                      }`}
+                    >
+                      {loading ? 'Sending...' : 'Send Message'} {!loading && <ArrowRight size={16} />}
+                    </button>
+                    {apiError && (
+                      <p className="text-red-500 text-[12px] mt-1">{apiError}</p>
+                    )}
+                  </div>
                 </div>
               </form>
             </>

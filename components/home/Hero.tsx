@@ -74,7 +74,10 @@ export default function Hero() {
           for{" "}
           <span
             className="text-accent drop-shadow-sm inline-block"
-            style={{ WebkitTextFillColor: "unset" }}
+            style={{ 
+              WebkitTextFillColor: "unset",
+              WebkitTextStroke: "0"
+            }}
           >
             Mankind.
           </span>

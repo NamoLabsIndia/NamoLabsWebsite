@@ -22,9 +22,6 @@ export default function ConsultingHero() {
       
       {/* Dark Overlay for readability */}
       <div className="absolute inset-0 z-10 bg-black/60" />
-      
-      {/* Subtle bottom gradient to blend into the next section */}
-      <div className="absolute inset-x-0 bottom-0 h-32 z-10 bg-gradient-to-t from-white to-transparent" />
 
       <div className="relative z-20 max-w-4xl mx-auto px-6 w-full mt-10 sm:mt-0 flex flex-col items-center text-center">
         

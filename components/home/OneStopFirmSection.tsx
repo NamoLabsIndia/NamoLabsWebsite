@@ -78,12 +78,6 @@ export default function OneStopFirmSection() {
     if (!outer) return;
 
     const onScroll = () => {
-      // Disable horizontal scroll transform on mobile
-      if (window.innerWidth < 1024) {
-        setTranslateX(0);
-        return;
-      }
-      
       const rect = outer.getBoundingClientRect();
       const totalScrollable = outer.offsetHeight - window.innerHeight;
       if (totalScrollable <= 0) return;
@@ -112,9 +106,9 @@ export default function OneStopFirmSection() {
       className="bg-white"
       style={{ height: `calc(100vh + ${extraScrollPx}px)` }}
     >
-      <div className="lg:sticky lg:top-0 lg:h-screen lg:overflow-hidden py-24 lg:py-0 flex items-center">
+      <div className="sticky top-0 h-[100dvh] overflow-hidden flex items-start lg:items-center justify-center pt-24 lg:pt-0">
         <div className="w-full max-w-[1600px] mx-auto px-6 lg:px-16">
-          <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-16 items-start lg:items-center">
 
             {/* ── Left: heading + CTA (fixed width, never moves) ── */}
             <div className="flex-shrink-0 w-full lg:w-[400px]">
@@ -122,7 +116,7 @@ export default function OneStopFirmSection() {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="text-xs font-semibold tracking-[0.22em] text-accent uppercase mb-4"
+                className="text-[10px] sm:text-xs font-semibold tracking-[0.22em] text-accent uppercase mb-2 sm:mb-4"
               >
                 Namo Labs
               </motion.p>
@@ -131,7 +125,7 @@ export default function OneStopFirmSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.55 }}
-                className="text-3xl sm:text-[40px] font-black text-namo-black leading-[1.1] mb-5"
+                className="text-[22px] sm:text-[40px] font-black text-namo-black leading-[1.1] mb-2 sm:mb-5"
               >
                 One Stop Firm for Governments, Organisations, Institutions,
                 Startups and other MSMEs.
@@ -141,7 +135,7 @@ export default function OneStopFirmSection() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.15 }}
-                className="text-gray-500 leading-relaxed mb-8"
+                className="text-xs sm:text-base text-gray-500 leading-relaxed mb-4 sm:mb-8"
               >
                 We build secure, intelligent and future-ready digital solutions
                 that empower every sector to innovate, grow and serve better.
@@ -164,9 +158,9 @@ export default function OneStopFirmSection() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.5, duration: 0.5 }}
-                className="mt-8 flex items-center gap-4 border-l-4 border-accent pl-4"
+                className="mt-4 sm:mt-8 flex items-center gap-4 border-l-4 border-accent pl-4"
               >
-                <p className="text-[11px] font-semibold tracking-[0.18em] text-gray-400 uppercase">
+                <p className="text-[9px] sm:text-[11px] font-semibold tracking-[0.18em] text-gray-400 uppercase">
                   One Mission.&nbsp; Many Sectors.&nbsp; Limitless Impact.
                 </p>
               </motion.div>
@@ -180,11 +174,11 @@ export default function OneStopFirmSection() {
               {/* Translate the entire row of cards horizontally */}
               <div
                 style={{
-                  transform: typeof window !== "undefined" && window.innerWidth >= 1024 ? `translateX(${translateX}px)` : "translateX(0)",
+                  transform: `translateX(${translateX}px)`,
                   transition: "transform 0.05s linear",
                   willChange: "transform",
                 }}
-                className="flex flex-row gap-5 py-6 overflow-x-auto lg:overflow-visible snap-x snap-mandatory"
+                className="flex flex-row gap-5 py-2 sm:py-6 overflow-visible"
               >
                 {sectors.map((sector, i) => (
                   <div key={sector.title} className="flex-shrink-0">

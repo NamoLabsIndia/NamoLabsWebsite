@@ -111,16 +111,16 @@ export default function ServiceDetailSection({
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="bg-black/20 backdrop-blur-xl border border-white/20 p-8 sm:p-12 rounded-[32px] shadow-2xl relative overflow-hidden"
+            className="bg-black/20 backdrop-blur-xl border border-white/20 p-6 sm:p-8 lg:p-10 rounded-[24px] sm:rounded-[28px] shadow-2xl relative overflow-hidden"
           >
             {/* Subtle highlight inside the glass card */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-50 pointer-events-none" />
             
             <div className="relative z-10">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-[800] text-white tracking-tight mb-6 leading-tight drop-shadow-sm">
+              <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-[800] text-white tracking-tight mb-4 sm:mb-5 leading-[1.1] drop-shadow-sm">
                 {title}
               </h2>
-              <p className="text-lg text-white/90 leading-relaxed max-w-xl drop-shadow-sm font-medium">
+              <p className="text-[15px] sm:text-base text-white/90 leading-relaxed max-w-lg drop-shadow-sm font-medium">
                 {description}
               </p>
             </div>

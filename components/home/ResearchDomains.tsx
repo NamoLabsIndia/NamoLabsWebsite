@@ -85,7 +85,7 @@ export default function ResearchDomains() {
           At Namo Labs, we conduct deep research across multiple frontier domains to build secure, intelligent, and future-ready technologies.
         </motion.p>
 
-        <div className="grid sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 gap-3 sm:gap-6">
           {domains.map((domain, i) => (
             <motion.div
               key={domain.number}
@@ -93,10 +93,10 @@ export default function ResearchDomains() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="flex gap-5 rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow group"
+              className="flex flex-col xl:flex-row gap-0 xl:gap-5 rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow group h-full"
             >
               {/* Image panel (from design) */}
-              <div className="w-44 sm:w-52 flex-shrink-0 relative overflow-hidden">
+              <div className="w-full xl:w-52 h-28 sm:h-40 xl:h-auto flex-shrink-0 relative overflow-hidden">
                 <img
                   src={domain.image}
                   alt={domain.title}
@@ -105,12 +105,12 @@ export default function ResearchDomains() {
               </div>
 
               {/* Content */}
-              <div className="p-6 pr-7 flex flex-col justify-center">
-                <p className="text-xs font-semibold uppercase tracking-widest text-accent mb-2">
+              <div className="p-3 sm:p-6 xl:pr-7 flex flex-col justify-center flex-grow">
+                <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-accent mb-1 sm:mb-2 line-clamp-1">
                   {domain.number} - {domain.category}
                 </p>
-                <h3 className="text-lg font-bold text-namo-black mb-2">{domain.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{domain.description}</p>
+                <h3 className="text-sm sm:text-lg font-bold text-namo-black mb-1 sm:mb-2 leading-tight line-clamp-2">{domain.title}</h3>
+                <p className="text-[11px] sm:text-sm text-gray-500 leading-relaxed line-clamp-3 sm:line-clamp-none">{domain.description}</p>
               </div>
             </motion.div>
           ))}

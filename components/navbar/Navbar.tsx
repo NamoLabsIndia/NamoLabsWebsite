@@ -159,7 +159,7 @@ export default function Navbar() {
             <div className="lg:hidden flex flex-col">
               <div className="flex justify-between items-center px-4 pl-5 py-3">
                 <Link href="/" className="relative flex items-center gap-2">
-                  <span className={`font-spartan font-bold text-[24px] tracking-tight leading-none ${isTransparent ? 'text-white' : 'text-namo-black'}`}>Namo Labs</span>
+                  <span className={`font-spartan font-bold text-[20px] tracking-tight leading-none ${isTransparent ? 'text-white' : 'text-namo-black'}`}>Namo Labs</span>
                 </Link>
                 <div className="flex items-center gap-3">
                   <button

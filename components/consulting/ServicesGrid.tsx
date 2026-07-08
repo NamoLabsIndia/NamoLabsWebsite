@@ -113,7 +113,7 @@ export default function ServicesGrid() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  className="relative rounded-3xl overflow-hidden group h-[380px] flex flex-col z-10 shadow-lg hover:shadow-2xl transition-shadow duration-500"
+                  className="relative rounded-3xl overflow-hidden group h-[280px] sm:h-[320px] flex flex-col z-10 shadow-lg hover:shadow-2xl transition-shadow duration-500"
                 >
                   {/* Background Image for Card */}
                   <div 

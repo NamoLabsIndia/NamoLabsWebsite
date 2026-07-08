@@ -106,128 +106,119 @@ export default function ResearchDomainsGrid() {
           </motion.p>
         </div>
 
-        <div onMouseLeave={() => setActiveDomain(null)}>
+        <div>
           {/* 5-Column Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-5 mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-5 mb-12">
             {domains.map((domain, i) => {
               const isActive = activeDomain?.id === domain.id;
+              const isRightSide = i < 3; // Crypto, Blockchain, AI show on right. Quantum, Cloud show on left.
               
               return (
-                <motion.div
-                  key={domain.id}
-                  onMouseEnter={() => setActiveDomain(domain)}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className={`group flex flex-col bg-white rounded-3xl p-5 border-2 transition-all duration-300 cursor-pointer ${
-                    isActive ? `${domain.activeBorderClass} shadow-2xl -translate-y-3` : 'border-transparent shadow-[0_0_0_1px_rgba(0,0,0,0.05)] hover:shadow-xl hover:-translate-y-2'
-                  }`}
+                <div 
+                  key={domain.id} 
+                  className="relative"
+                  onMouseEnter={() => setActiveDomain(domain)} 
+                  onMouseLeave={() => setActiveDomain(null)}
                 >
-                  {/* Image Container */}
-                  <div className="w-full aspect-square mb-5 relative rounded-[16px] overflow-hidden bg-gray-50 shadow-inner">
-                    <img 
-                      src={domain.image} 
-                      alt={domain.title} 
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                  </div>
-
-                  {/* Content */}
-                  <div className="flex flex-col flex-grow">
-                    <h3 className={`text-[17px] font-bold mb-2 ${domain.textColor}`}>
-                      {domain.title}
-                    </h3>
-                    <p className="text-[13px] text-gray-500 mb-6 flex-grow leading-relaxed">
-                      {domain.description}
-                    </p>
-                    
-                    <div className={`inline-flex items-center gap-2 text-xs font-semibold transition-opacity ${isActive ? domain.textColor : 'text-gray-400 group-hover:text-gray-600'}`}>
-                      Explore <ArrowRight size={14} />
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    className={`group flex flex-col bg-white rounded-[20px] sm:rounded-3xl p-3 sm:p-5 border-2 transition-all duration-300 cursor-pointer h-full ${
+                      isActive ? `${domain.activeBorderClass} shadow-2xl -translate-y-3 z-20 relative` : 'border-transparent shadow-[0_0_0_1px_rgba(0,0,0,0.05)] hover:shadow-xl hover:-translate-y-2'
+                    }`}
+                  >
+                    {/* Image Container */}
+                    <div className="w-full aspect-square mb-3 sm:mb-5 relative rounded-[12px] sm:rounded-[16px] overflow-hidden bg-gray-50 shadow-inner">
+                      <img 
+                        src={domain.image} 
+                        alt={domain.title} 
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
                     </div>
-                  </div>
-                </motion.div>
+
+                    {/* Content */}
+                    <div className="flex flex-col flex-grow">
+                      <h3 className={`text-[14px] sm:text-[17px] font-bold mb-1 sm:mb-2 leading-tight ${domain.textColor}`}>
+                        {domain.title}
+                      </h3>
+                      <p className="text-[11px] sm:text-[13px] text-gray-500 mb-4 sm:mb-6 flex-grow leading-relaxed line-clamp-3 sm:line-clamp-none">
+                        {domain.description}
+                      </p>
+                      
+                      <div className={`inline-flex items-center gap-2 text-xs font-semibold transition-opacity ${isActive ? domain.textColor : 'text-gray-400 group-hover:text-gray-600'}`}>
+                        Explore <ArrowRight size={14} />
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Hover Card Popover */}
+                  <AnimatePresence>
+                    {isActive && (
+                      <motion.div
+                        initial={{ opacity: 0, x: isRightSide ? -10 : 10, scale: 0.95 }}
+                        animate={{ opacity: 1, x: 0, scale: 1 }}
+                        exit={{ opacity: 0, x: isRightSide ? -10 : 10, scale: 0.95 }}
+                        transition={{ duration: 0.2 }}
+                        className={`hidden lg:block absolute top-0 z-50 w-[550px] bg-white rounded-[24px] shadow-2xl overflow-hidden ${
+                          isRightSide ? 'left-full ml-6' : 'right-full mr-6'
+                        }`}
+                      >
+                        <div className="flex p-6 gap-6">
+                          <div className="flex-1">
+                            <p className={`text-[10px] font-bold tracking-[0.15em] uppercase mb-2 ${domain.textColor}`}>
+                              SPOTLIGHT
+                            </p>
+                            <h3 className="text-xl font-bold text-namo-black tracking-tight mb-2 leading-snug">
+                              {domain.spotlightTitle}
+                            </h3>
+                            <p className="text-gray-600 text-[13px] leading-[1.5] mb-5 font-medium">
+                              {domain.spotlightDescription}
+                            </p>
+                            <Link
+                              href={domain.href}
+                              className="inline-flex items-center gap-2 bg-[#0A0A0A] text-white font-medium px-4 py-2 rounded-full hover:bg-gray-800 transition-colors shadow-lg text-xs"
+                            >
+                              View All <ArrowRight size={14} />
+                            </Link>
+                          </div>
+                          
+                          <div className="w-[140px] aspect-square relative flex-shrink-0 bg-gray-50 rounded-[16px] shadow-inner overflow-hidden border border-gray-100">
+                            <img 
+                                src={domain.image} 
+                                alt={domain.title} 
+                                className="absolute inset-0 w-full h-full object-cover"
+                              />
+                          </div>
+                        </div>
+
+                        {/* Quick Links */}
+                        <div className="bg-gray-50 border-t border-gray-100 px-6 py-4">
+                          <div className="grid grid-cols-2 gap-4">
+                            {spotlightLinks.slice(0, 4).map((link) => {
+                              const Icon = link.icon;
+                              return (
+                                <Link href={domain.href} key={link.label} className="group flex items-start gap-3">
+                                  <div className={`p-1.5 rounded-md bg-white shadow-sm border border-gray-100 text-gray-400 group-hover:${domain.textColor} transition-colors shrink-0`}>
+                                    <Icon size={14} strokeWidth={2.5} />
+                                  </div>
+                                  <div>
+                                    <h4 className="font-bold text-namo-black text-[11px] mb-0.5">{link.label}</h4>
+                                    <p className="text-[10px] text-gray-500 leading-tight line-clamp-1">{link.sub}</p>
+                                  </div>
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               );
             })}
           </div>
-
-          {/* Dynamic Spotlight Section */}
-          <AnimatePresence>
-            {activeDomain && (
-              <motion.div
-                key="spotlight-container"
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="overflow-hidden"
-              >
-                <motion.div
-                  key={activeDomain.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3 }}
-                  className={`w-full max-w-5xl mx-auto rounded-[28px] border ${activeDomain.activeBorderClass} ${activeDomain.activeBgClass} overflow-hidden mb-12 shadow-sm`}
-                >
-                  <div className="flex flex-col lg:flex-row items-center justify-between p-8 lg:p-10 gap-8">
-                    
-                    {/* Left Spotlight Content */}
-                    <div className="max-w-xl flex-1">
-                      <p className={`text-[11px] font-bold tracking-[0.15em] uppercase mb-3 ${activeDomain.textColor}`}>
-                        SPOTLIGHT
-                      </p>
-                      <h3 className="text-2xl lg:text-3xl font-bold text-namo-black tracking-tight mb-4 leading-snug">
-                        {activeDomain.spotlightTitle}
-                      </h3>
-                      <p className="text-gray-600 text-[15px] leading-[1.6] mb-8 font-medium">
-                        {activeDomain.spotlightDescription}
-                      </p>
-                      <Link
-                        href={activeDomain.href}
-                        className="inline-flex items-center gap-2 bg-[#0A0A0A] text-white font-medium px-6 py-2.5 rounded-full hover:bg-gray-800 transition-colors shadow-lg text-xs"
-                      >
-                        View All in {activeDomain.title} <ArrowRight size={14} />
-                      </Link>
-                    </div>
-
-                    {/* Right Spotlight Image */}
-                    <div className="w-full lg:w-[320px] aspect-square relative flex-shrink-0 bg-gray-50 rounded-[20px] shadow-inner overflow-hidden border border-white/60">
-                      <img 
-                          src={activeDomain.image} 
-                          alt={activeDomain.title} 
-                          className="absolute inset-0 w-full h-full object-cover"
-                        />
-                    </div>
-
-                  </div>
-
-                  {/* Bottom Quick Links Bar */}
-                  <div className="bg-white/60 backdrop-blur-md border-t border-white/50 px-8 py-5">
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
-                      {spotlightLinks.map((link) => {
-                        const Icon = link.icon;
-                        return (
-                          <Link href={activeDomain.href} key={link.label} className="group flex flex-col gap-1.5">
-                            <div className="flex items-center gap-2">
-                              <div className={`p-1 rounded-md bg-white shadow-sm text-gray-400 group-hover:${activeDomain.textColor} transition-colors`}>
-                                <Icon size={14} strokeWidth={2.5} />
-                              </div>
-                              <h4 className="font-bold text-namo-black text-[11px]">{link.label}</h4>
-                            </div>
-                            <p className="text-[9px] text-gray-500 leading-relaxed">
-                              {link.sub}
-                            </p>
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  </div>
-                  
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
         </div>
 
       </div>

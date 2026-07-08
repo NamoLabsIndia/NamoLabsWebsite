@@ -6,11 +6,10 @@ import { motion } from "framer-motion";
 import { ArrowRight, Search, Sparkles, Target, TrendingUp, Shield } from "lucide-react";
 
 const features = [
-  { icon: <Search size={20} />, title: "Research-First", description: "We start with deep research across domains, industries, and emerging technologies to identify what truly matters." },
-  { icon: <Sparkles size={20} />, title: "AI-Powered Insights", description: "We leverage advanced AI models to analyze, predict, and uncover opportunities others miss." },
-  { icon: <Target size={20} />, title: "Problem-Centric", description: "We focus on real business problems, not decks. Solutions are tailored, practical, and executable." },
-  { icon: <TrendingUp size={20} />, title: "Impact You Can Measure", description: "We define success with clear outcomes and KPIs that create long-term, measurable value." },
-  { icon: <Shield size={20} />, title: "Future-Ready Solutions", description: "Our solutions are secure, scalable, and built for a world shaped by AI, automation, and exponential technologies." },
+  { icon: <Search size={20} />, title: "Research-First", description: "We start with deep research across domains, industries, and emerging technologies to identify what truly matters.", image: "research.png" },
+  { icon: <Sparkles size={20} />, title: "AI-Powered Insights", description: "We leverage advanced AI models to analyze, predict, and uncover opportunities others miss.", image: "ai powered insights.png" },
+  { icon: <Target size={20} />, title: "Problem-Centric", description: "We focus on real business problems, not decks. Solutions are tailored, practical, and executable.", image: "Problem centric.webp" },
+  { icon: <TrendingUp size={20} />, title: "Impact You Can Measure", description: "We define success with clear outcomes and KPIs that create long-term, measurable value.", image: "imapct .jpg" },
 ];
 
 function useTypewriter(text: string, speed = 100, pause = 2000) {
@@ -41,15 +40,22 @@ function useTypewriter(text: string, speed = 100, pause = 2000) {
   return displayedText;
 }
 
-function Feature({ icon, title, description }: (typeof features)[number]) {
+function Feature({ icon, title, description, image }: (typeof features)[number]) {
   return (
-    <div className="flex gap-5 group cursor-pointer">
-      <div className="w-12 h-12 rounded-[14px] bg-[#F4F6FF] flex items-center justify-center text-accent shrink-0 border border-blue-100/50 group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300 ease-out shadow-sm group-hover:shadow-[0_8px_20px_rgba(59,91,255,0.3)]">
-        {icon}
+    <div className="flex flex-col gap-4 group cursor-pointer h-full">
+      <div className="relative w-full h-28 sm:h-32 rounded-[16px] sm:rounded-[20px] overflow-hidden mb-1 bg-gray-50 border border-gray-100 shadow-sm group-hover:shadow-md transition-shadow duration-300">
+        <img 
+          src={`/our approach/${image}`} 
+          alt={title} 
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
+        />
+        <div className="absolute top-3 left-3 w-10 h-10 rounded-[12px] bg-white/95 backdrop-blur-sm flex items-center justify-center text-accent shadow-[0_4px_12px_rgba(0,0,0,0.06)] group-hover:bg-accent group-hover:text-white transition-colors duration-300">
+          {icon}
+        </div>
       </div>
-      <div className="transition-transform duration-300 group-hover:translate-x-1">
-        <h4 className="font-semibold text-accent text-[16px] mb-2 group-hover:text-blue-800 transition-colors duration-300">{title}</h4>
-        <p className="text-[14px] text-gray-500 leading-[1.6] group-hover:text-gray-800 transition-colors duration-300">{description}</p>
+      <div className="transition-transform duration-300 group-hover:translate-x-1 flex-1">
+        <h4 className="font-semibold text-accent text-[16px] mb-1 group-hover:text-blue-800 transition-colors duration-300">{title}</h4>
+        <p className="text-[13px] sm:text-[14px] text-gray-500 leading-[1.6] group-hover:text-gray-800 transition-colors duration-300">{description}</p>
       </div>
     </div>
   );
@@ -60,7 +66,7 @@ export default function ApproachSection() {
 
   return (
     <section className="py-24 bg-namo-faint">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-[1150px] mx-auto px-6">
         {/* Header */}
         <motion.p
           initial={{ opacity: 0 }}
@@ -96,9 +102,9 @@ export default function ApproachSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="rounded-[36px] bg-white shadow-[0_8px_40px_rgb(0,0,0,0.06)] border border-gray-100/50 p-8 sm:p-14 lg:p-16"
+          className="rounded-[36px] bg-white shadow-[0_8px_40px_rgb(0,0,0,0.06)] border border-gray-100/50 p-8 lg:p-12"
         >
-          <div className="grid lg:grid-cols-[minmax(0,340px)_1fr] gap-10 lg:gap-16 items-start">
+          <div className="grid lg:grid-cols-[minmax(0,340px)_1fr] gap-10 lg:gap-12 items-start">
             {/* Left - heading + CTA */}
             <div>
               <p className="text-[15px] font-semibold text-accent mb-4">Our Approach</p>
@@ -119,36 +125,29 @@ export default function ApproachSection() {
               </p>
               <Link
                 href="/consulting"
-                className="inline-flex items-center gap-3 bg-[#0A0A0A] text-white font-medium px-8 py-4 rounded-full text-[15px] hover:bg-gray-800 transition-colors shadow-sm"
+                className="hidden lg:inline-flex items-center gap-3 bg-[#0A0A0A] text-white font-medium px-8 py-4 rounded-full text-[15px] hover:bg-gray-800 transition-colors shadow-sm"
               >
                 Explore Consulting <ArrowRight size={16} strokeWidth={2} />
               </Link>
             </div>
 
-            {/* Right - feature grid with dividers */}
-            <div className="lg:border-l lg:border-gray-100 lg:pl-16">
-              <div className="grid sm:grid-cols-2 gap-x-10">
-                <div className="pb-8">
-                  <Feature {...features[0]} />
-                </div>
-                <div className="pb-8 sm:pl-10 sm:border-l sm:border-gray-100">
-                  <Feature {...features[1]} />
-                </div>
-
-                <div className="col-span-full border-t border-gray-100" />
-
-                <div className="py-8">
-                  <Feature {...features[2]} />
-                </div>
-                <div className="py-8 sm:pl-10 sm:border-l sm:border-gray-100">
-                  <Feature {...features[3]} />
-                </div>
-
-                <div className="col-span-full border-t border-gray-100" />
-
-                <div className="col-span-full pt-8">
-                  <Feature {...features[4]} />
-                </div>
+            {/* Right - feature grid */}
+            <div className="lg:pl-4">
+              <div className="grid sm:grid-cols-2 gap-8">
+                <Feature {...features[0]} />
+                <Feature {...features[1]} />
+                <Feature {...features[2]} />
+                <Feature {...features[3]} />
+              </div>
+              
+              {/* Mobile Only CTA */}
+              <div className="mt-10 lg:hidden flex justify-start">
+                <Link
+                  href="/consulting"
+                  className="inline-flex items-center gap-3 bg-[#0A0A0A] text-white font-medium px-8 py-4 rounded-full text-[15px] hover:bg-gray-800 transition-colors shadow-sm"
+                >
+                  Explore Consulting <ArrowRight size={16} strokeWidth={2} />
+                </Link>
               </div>
             </div>
           </div>

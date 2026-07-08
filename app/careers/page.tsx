@@ -52,7 +52,7 @@ export default function CareersPage() {
               </p>
               
               <a
-                href="mailto:careers@namolabs.com"
+                href="mailto:info@namolabs.in"
                 className="inline-flex items-center gap-2 bg-accent text-white font-semibold px-8 py-4 rounded-full text-[14px] hover:bg-[#2f4be0] transition-colors shadow-lg shadow-accent/20"
               >
                 Email your resume <ArrowRight size={16} />
