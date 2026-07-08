@@ -45,7 +45,7 @@ function Feature({ icon, title, description, image }: (typeof features)[number])
     <div className="flex flex-col gap-4 group cursor-pointer h-full">
       <div className="relative w-full h-28 sm:h-32 rounded-[16px] sm:rounded-[20px] overflow-hidden mb-1 bg-gray-50 border border-gray-100 shadow-sm group-hover:shadow-md transition-shadow duration-300">
         <img 
-          src={`/our approach/${image}`} 
+          src={encodeURI(`/Our Approach/${image}`)}
           alt={title} 
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" 
         />
