@@ -39,3 +39,32 @@ next-env.d.ts
 /impeccable
 /.agents
 /.codex
+
+# sensitive env files
+.env
+
+# editor settings
+.vscode/
+
+# design reference / scratch files (not part of codebase)
+*.pdf
+/image.png
+/Government image .png
+/QSCL logog webp .webp
+/remove_bg.py
+/screenshot.cjs
+/skills-lock.json
+/transcriptiononee.md
+
+# unused font files (loaded via next/font/google instead)
+app/fonts/GeistVF.woff
+app/fonts/GeistMonoVF.woff
+
+# orphaned/scratch images
+public/pdf_page_*.png
+public/evolution.png
+public/evolution-sketch.png
+public/ .png
+public/segment sub logo/IMG_*.heic
+public/segment sub logo/Instapost desk.png
+public/segment sub logo/linkedin post namo labs.png
