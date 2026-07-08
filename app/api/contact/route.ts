@@ -61,7 +61,7 @@ export async function POST(request: Request) {
     console.log('Message sent: %s', info.messageId);
 
     return NextResponse.json({ success: true, message: 'Email sent successfully' }, { status: 200 });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error sending email:', error);
     return NextResponse.json(
       { error: 'Failed to send email. Please try again later.' },
