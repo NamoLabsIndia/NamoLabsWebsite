@@ -29,6 +29,7 @@ export default function ContactPage() {
     company: "",
     message: "",
   });
+  const [countryCode, setCountryCode] = useState("+91");
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
@@ -69,28 +70,45 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (isSubmitDisabled) return;
-    
+
+    // Re-validate on submit: fields never blurred have no entry in `errors`.
+    const nextErrors: Record<string, string> = {};
+    for (const f of ["email", "phone"]) {
+      const err = validateField(f, formData[f as keyof typeof formData]);
+      if (err) nextErrors[f] = err;
+    }
+    for (const f of requiredFields) {
+      if (!formData[f as keyof typeof formData].trim()) {
+        nextErrors[f] = "This field is required.";
+      }
+    }
+    if (Object.keys(nextErrors).length > 0) {
+      setErrors(nextErrors);
+      setTouched((prev) => ({ ...prev, ...Object.fromEntries(requiredFields.map((f) => [f, true])) }));
+      return;
+    }
+
     setLoading(true);
     setApiError("");
-    
+
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           formType: 'contact',
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          company: formData.company,
-          message: formData.message,
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          phone: `${countryCode} ${formData.phone.trim()}`,
+          company: formData.company.trim(),
+          message: formData.message.trim(),
         })
       });
-      
+
       if (res.ok) {
         setSent(true);
       } else {
-        const errData = await res.json();
+        const errData = await res.json().catch(() => ({}));
         setApiError(errData.error || "Failed to send message. Please try again.");
       }
     } catch (err) {
@@ -244,7 +262,8 @@ export default function ContactPage() {
                       <div className="relative shrink-0">
                         <select
                           aria-label="Country code"
-                          defaultValue="+91"
+                          value={countryCode}
+                          onChange={(e) => setCountryCode(e.target.value)}
                           className="h-full appearance-none rounded-xl border border-gray-200 bg-white py-3 pl-9 pr-7 text-sm font-medium text-namo-black outline-none transition-all focus:border-accent focus:ring-4 focus:ring-accent/10 shadow-sm hover:border-gray-300"
                         >
                           <option value="+91">+91</option>
