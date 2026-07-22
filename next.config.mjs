@@ -8,6 +8,22 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      // GA4 shows real historical traffic to these pre-restructuring URLs;
+      // both now 404 with no redirect in place.
+      {
+        source: "/products/dafs",
+        destination: "/platform/dafs",
+        permanent: true,
+      },
+      {
+        source: "/careers/open-application",
+        destination: "/careers/apply",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       // Security headers for all routes
