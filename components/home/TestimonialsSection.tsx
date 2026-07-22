@@ -68,7 +68,7 @@ export default function TestimonialsSection() {
               </div>
               
               <div>
-                <h4 className="font-bold text-namo-black">{testimonial.author}</h4>
+                <h3 className="font-bold text-namo-black">{testimonial.author}</h3>
                 <p className="text-xs text-gray-500 mt-1 uppercase tracking-wide font-medium">{testimonial.role}</p>
               </div>
             </motion.div>

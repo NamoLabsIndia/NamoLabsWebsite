@@ -53,6 +53,8 @@ function TriquetraSVG() {
     <img
       src="/qscl-logo-transparent.png"
       alt="QSCL triquetra logo"
+      width={80}
+      height={80}
       className="w-16 h-16 sm:w-20 sm:h-20 object-contain flex-shrink-0 drop-shadow-sm"
     />
   );
@@ -165,6 +167,8 @@ export default function CountdownSection() {
           <img
             src="/qscl-logo-transparent.png"
             alt="QSCL Brand Logo"
+            width={128}
+            height={128}
             className="h-24 sm:h-32 object-contain flex-shrink-0"
           />
           <h3 className="text-3xl sm:text-4xl font-black text-namo-black tracking-[0.2em] flex items-start uppercase pl-2">

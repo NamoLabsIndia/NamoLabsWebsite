@@ -4,8 +4,11 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 export const metadata = {
-  title: "Research Collaboration - Namo Labs",
-  description: "Partner with Namo Labs on deep research and protocol engineering.",
+  title: "Research Collaboration",
+  description: "Partner with Namo Labs on deep research and protocol engineering. We collaborate with academic institutions, research labs, enterprises, and governments to solve hard technical problems.",
+  alternates: {
+    canonical: "https://namolabs.in/collaboration",
+  },
 };
 
 export default function CollaborationPage() {

@@ -52,7 +52,7 @@ function FeaturedCard({
 /* ────────────────────── PLATFORM ────────────────────── */
 const platformProducts = [
   {
-    icon: <img src="/qscl-logo-transparent.png" alt="QSCL" className="w-5 h-5 object-contain" />,
+    icon: <img src="/qscl-logo-transparent.png" alt="QSCL" width={20} height={20} className="w-5 h-5 object-contain" />,
     label: "QSCL™",
     sub: "Quantum-Safe Communication Layer",
     href: "/#qscl-timer",

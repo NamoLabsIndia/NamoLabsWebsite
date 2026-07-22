@@ -7,6 +7,7 @@ import React, {
   createContext,
   useContext,
 } from "react";
+import Image from "next/image";
 import {
   IconArrowNarrowLeft,
   IconArrowNarrowRight,
@@ -272,27 +273,24 @@ export const BlurImage = ({
   src,
   className,
   alt,
-  ...rest
 }: {
   src: string;
   className?: string;
   alt?: string;
-  [key: string]: unknown;
 }) => {
   const [isLoading, setLoading] = useState(true);
   return (
-    <img
+    <Image
       className={cn(
-        "h-full w-full transition duration-300",
+        "object-cover transition duration-300",
         isLoading ? "blur-sm" : "blur-0",
         className,
       )}
       onLoad={() => setLoading(false)}
       src={src}
-      loading="lazy"
-      decoding="async"
+      fill
+      sizes="(min-width: 768px) 352px, 192px"
       alt={alt ? alt : "Background of a beautiful view"}
-      {...rest}
     />
   );
 };

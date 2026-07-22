@@ -4,8 +4,11 @@ import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import { ArrowRight, Mail } from "lucide-react";
 
 export const metadata = {
-  title: "Careers - Namo Labs",
-  description: "Join us in building the future of technology.",
+  title: "Careers",
+  description: "Join Namo Labs — we are looking for researchers, engineers, designers, and operators who want to build deep technology that serves humanity. Explore open roles.",
+  alternates: {
+    canonical: "https://namolabs.in/careers",
+  },
 };
 
 export default function CareersPage() {
@@ -57,6 +60,12 @@ export default function CareersPage() {
               >
                 Email your resume <ArrowRight size={16} />
               </a>
+              <Link
+                href="/team#culture"
+                className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-gray-500 hover:text-accent transition-colors"
+              >
+                See what it's like to work here <ArrowRight size={12} />
+              </Link>
             </div>
           </div>
 

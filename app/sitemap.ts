@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 
-const BASE_URL = 'https://www.namolabs.in';
+const BASE_URL = 'https://namolabs.in';
 
 // All research domain slugs
 const researchDomainSlugs = ['blockchain', 'cryptography', 'ai', 'quantum', 'cloud'];
@@ -51,18 +51,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/platform`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/platform/dafs`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.6,
     },
     {
       url: `${BASE_URL}/collaboration`,

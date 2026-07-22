@@ -3,8 +3,12 @@ import Link from "next/link";
 import { ArrowLeft, Rocket } from "lucide-react";
 
 export const metadata = {
-  title: "DAFS™ - Namo Labs",
-  description: "Digital Asset Forensics Suite. Launching soon.",
+  title: "DAFS™ — Digital Asset Forensics Suite",
+  description: "DAFS™ by Namo Labs is a forthcoming Digital Asset Forensics Suite for investigating blockchain transactions, tracing illicit funds, and delivering forensic intelligence.",
+  robots: { index: false, follow: false },
+  alternates: {
+    canonical: "https://namolabs.in/platform/dafs",
+  },
 };
 
 export default function DafsPage() {

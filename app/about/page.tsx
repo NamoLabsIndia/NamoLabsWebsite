@@ -6,8 +6,11 @@ import OurBelief from "@/components/about/OurBelief";
 import WhatWeBuild from "@/components/about/WhatWeBuild";
 
 export const metadata = {
-  title: "About Us - Namo Labs",
-  description: "Driving Technology for Mankind.",
+  title: "About Us",
+  description: "Namo Labs is an independent deep-tech research and engineering organisation building foundational infrastructure in post-quantum cryptography, blockchain, AI, and quantum technologies — for humanity.",
+  alternates: {
+    canonical: "https://namolabs.in/about",
+  },
 };
 
 export default function AboutPage() {

@@ -131,7 +131,7 @@ export default function Footer() {
           {/* Link columns */}
           {columns.map((col) => (
             <div key={col.heading}>
-              <p className={`text-xs font-semibold uppercase tracking-widest mb-4 ${isConsultingPage ? 'text-white/40' : 'text-gray-400'}`}>
+              <p className={`text-xs font-semibold uppercase tracking-widest mb-4 ${isConsultingPage ? 'text-white/40' : 'text-gray-500'}`}>
                 {col.heading}
               </p>
               <ul className="space-y-2.5">
@@ -151,7 +151,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className={`border-t pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs ${isConsultingPage ? 'border-white/10 text-white/40' : 'border-gray-100 text-gray-400'}`}>
+        <div className={`border-t pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs ${isConsultingPage ? 'border-white/10 text-white/40' : 'border-gray-100 text-gray-500'}`}>
           <p>© 2026 Namo Labs LLP. All rights reserved.</p>
 
         </div>

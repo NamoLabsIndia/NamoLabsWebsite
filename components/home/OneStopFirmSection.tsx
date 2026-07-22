@@ -127,7 +127,7 @@ export default function OneStopFirmSection() {
             Explore Solutions <ArrowRight size={14} />
           </Link>
           <div className="mt-6 flex items-center gap-4 border-l-4 border-accent pl-4">
-            <p className="text-[9px] font-semibold tracking-[0.18em] text-gray-400 uppercase">
+            <p className="text-[9px] font-semibold tracking-[0.18em] text-gray-500 uppercase">
               One Mission.&nbsp; Many Sectors.&nbsp; Limitless Impact.
             </p>
           </div>
@@ -208,7 +208,7 @@ export default function OneStopFirmSection() {
                 transition={{ delay: 0.5, duration: 0.5 }}
                 className="mt-8 flex items-center gap-4 border-l-4 border-accent pl-4"
               >
-                <p className="text-[11px] font-semibold tracking-[0.18em] text-gray-400 uppercase">
+                <p className="text-[11px] font-semibold tracking-[0.18em] text-gray-500 uppercase">
                   One Mission.&nbsp; Many Sectors.&nbsp; Limitless Impact.
                 </p>
               </motion.div>

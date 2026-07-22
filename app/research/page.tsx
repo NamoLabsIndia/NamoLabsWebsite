@@ -5,8 +5,11 @@ import ResearchDomainsGrid from "@/components/research/ResearchDomainsGrid";
 import ResearchUpdatesList from "@/components/research/ResearchUpdatesList";
 
 export const metadata = {
-  title: "Research | Namo Labs",
-  description: "Deep Research. Real World Impact. We conduct deep, interdisciplinary research to solve the hardest problems.",
+  title: "Research",
+  description: "Namo Labs conducts deep, interdisciplinary research in post-quantum cryptography, blockchain, artificial intelligence, quantum technologies, and cloud systems — to solve the hardest problems in technology.",
+  alternates: {
+    canonical: "https://namolabs.in/research",
+  },
 };
 
 export default function ResearchPage() {

@@ -11,13 +11,27 @@ export function generateStaticParams() {
   }));
 }
 
+const domainTitles: Record<string, string> = {
+  blockchain: 'Blockchain Research',
+  cryptography: 'Post-Quantum Cryptography Research',
+  ai: 'Artificial Intelligence Research',
+  quantum: 'Quantum Technologies Research',
+  cloud: 'Cloud Technologies Research',
+};
+
+const BASE_URL = 'https://namolabs.in';
+
 export function generateMetadata({ params }: { params: { domain: string } }) {
-  const data = researchDomains[params.domain.toLowerCase()];
+  const slug = params.domain.toLowerCase();
+  const data = researchDomains[slug];
   if (!data) return { title: 'Research Not Found' };
-  
+
   return {
-    title: `${data.tag} Research | Namo Labs`,
+    title: domainTitles[slug] ?? `${data.tag} Research`,
     description: data.heroDescription,
+    alternates: {
+      canonical: `${BASE_URL}/research/${slug}`,
+    },
   };
 }
 

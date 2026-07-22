@@ -16,7 +16,7 @@ const leagueSpartan = League_Spartan({
   variable: '--font-league-spartan',
 });
 
-const BASE_URL = "https://www.namolabs.in";
+const BASE_URL = "https://namolabs.in";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -90,7 +90,7 @@ export const metadata: Metadata = {
   },
 };
 
-// JSON-LD: Organization schema (logo in Google search) + WebSite schema (sitelinks)
+// JSON-LD schemas
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -105,18 +105,56 @@ const organizationSchema = {
   },
   description:
     "Namo Labs is a deep-tech research and engineering organisation building foundational infrastructure in cryptography, AI, blockchain, and quantum technologies.",
+  foundingDate: "2023",
   foundingLocation: {
     "@type": "Place",
     addressCountry: "IN",
   },
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "IN",
+    addressRegion: "Tamil Nadu",
+  },
+  telephone: "+916381141795",
+  email: "info@namolabs.in",
   sameAs: [
     "https://github.com/NamoLabsIndia",
+    "https://linkedin.com/company/namo-labs",
+    "https://twitter.com/namolabs",
+    "https://instagram.com/namolabs",
   ],
   contactPoint: {
     "@type": "ContactPoint",
+    telephone: "+916381141795",
+    email: "info@namolabs.in",
     contactType: "customer support",
+    areaServed: "Worldwide",
+    availableLanguage: "English",
     url: `${BASE_URL}/contact`,
   },
+};
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${BASE_URL}/#local-business`,
+  name: "Namo Labs",
+  description: "Deep-tech research and consulting firm specialising in post-quantum cryptography, blockchain, AI, and enterprise technologies.",
+  url: BASE_URL,
+  telephone: "+916381141795",
+  email: "info@namolabs.in",
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "IN",
+    addressRegion: "Tamil Nadu",
+  },
+  logo: `${BASE_URL}/namo-labs-logo.png`,
+  image: `${BASE_URL}/namo-labs-logo.png`,
+  priceRange: "$$$$",
+  openingHours: "Mo-Fr 09:00-18:00",
+  sameAs: [
+    "https://github.com/NamoLabsIndia",
+  ],
 };
 
 const websiteSchema = {
@@ -125,15 +163,6 @@ const websiteSchema = {
   name: "Namo Labs",
   url: BASE_URL,
   description: "Deep Tech. For Humanity.",
-  // Sitelinks Searchbox — enables a search bar in Google results
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: `${BASE_URL}/research?q={search_term_string}`,
-    },
-    "query-input": "required name=search_term_string",
-  },
 };
 
 export default function RootLayout({
@@ -169,14 +198,17 @@ export default function RootLayout({
             `,
           }}
         />
-        {/* JSON-LD Structured Data */}
-        <Script
-          id="schema-organization"
+        {/* JSON-LD Structured Data — plain <script>, not next/script, so it's
+            present in the server-rendered HTML rather than injected after hydration */}
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
-        <Script
-          id="schema-website"
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />

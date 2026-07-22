@@ -7,9 +7,14 @@ import IndustriesGrid from "@/components/consulting/IndustriesGrid";
 import ConsultingCTA from "@/components/consulting/ConsultingCTA";
 
 export const metadata = {
-  title: "Consulting | Namo Labs",
-  description: "Research-Backed Consulting for Tomorrow’s Technology.",
+  title: "Consulting",
+  description: "Research-backed technology consulting in AI, blockchain, cybersecurity, cloud, enterprise digital transformation, networking, and sustainability. Namo Labs helps organisations navigate the frontier of deep tech.",
+  alternates: {
+    canonical: "https://namolabs.in/consulting",
+  },
 };
+
+const BASE_URL = "https://namolabs.in";
 
 const SERVICES_DATA = [
   {
@@ -105,9 +110,30 @@ const SERVICES_DATA = [
   }
 ];
 
+const servicesSchema = {
+  "@context": "https://schema.org",
+  "@graph": SERVICES_DATA.map((service) => ({
+    "@type": "Service",
+    "@id": `${BASE_URL}/consulting#${service.id}`,
+    name: service.title,
+    description: service.description,
+    provider: {
+      "@type": "Organization",
+      name: "Namo Labs",
+      url: BASE_URL,
+    },
+    areaServed: "Worldwide",
+    url: `${BASE_URL}/consulting#${service.id}`,
+  })),
+};
+
 export default function ConsultingPage() {
   return (
     <main className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(servicesSchema) }}
+      />
       <ConsultingHero />
       <ServicesGrid />
       

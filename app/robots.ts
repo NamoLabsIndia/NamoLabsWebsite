@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/'],
       },
     ],
-    sitemap: 'https://www.namolabs.in/sitemap.xml',
-    host: 'https://www.namolabs.in',
+    sitemap: 'https://namolabs.in/sitemap.xml',
+    host: 'https://namolabs.in',
   };
 }

@@ -1,0 +1,50 @@
+# Namo Labs
+
+> Deep Tech. For Humanity.
+
+Namo Labs is an independent deep-tech research and engineering organisation headquartered in India. We build foundational infrastructure in post-quantum cryptography, blockchain, artificial intelligence, quantum technologies, and cloud systems — for governments, enterprises, and developers worldwide.
+
+## Core Research Areas
+
+- **Post-Quantum Cryptography (PQC)**: Developing quantum-resistant algorithms, high-assurance security models, and next-generation cryptographic infrastructure for the post-quantum era.
+- **Blockchain**: Layer 1 and Layer 2 research, Hyperledger enterprise frameworks, DLT interoperability, and decentralised application infrastructure.
+- **Artificial Intelligence**: Intelligent systems, machine learning, computer vision, and natural language processing for real-world impact.
+- **Quantum Technologies**: Quantum computing algorithms, quantum key distribution (QKD), quantum communication, and quantum-safe security protocols.
+- **Cloud Technologies**: Cloud-native architectures, zero-trust cloud security, and serverless/containerised systems.
+
+## Platforms
+
+- **QSCL™**: Quantum-Secure Communication Layer — post-quantum secure communications platform.
+- **TierraTrace™**: Blockchain-based traceability and provenance platform.
+- **DAFS™**: Digital Asset Forensics Suite — launching soon.
+
+## Consulting Services
+
+Namo Labs provides research-backed consulting in: AI & Analytics, Blockchain, Cybersecurity, Cloud Infrastructure, Enterprise Digital Transformation, Enterprise Networking, and Sustainability Technology.
+
+## Key Facts
+
+- Founded by Namoj PeriaKumar
+- Based in India; serving global clients
+- Contact: info@namolabs.in | +91 63811 41795
+- GitHub: https://github.com/NamoLabsIndia
+
+## Key Pages
+
+- Homepage: https://namolabs.in
+- Research: https://namolabs.in/research
+- Consulting: https://namolabs.in/consulting
+- Platform: https://namolabs.in/platform/dafs
+- About: https://namolabs.in/about
+- Team: https://namolabs.in/team
+- Contact: https://namolabs.in/contact
+- Collaboration: https://namolabs.in/collaboration
+- Careers: https://namolabs.in/careers
+
+## Research Domains
+
+- Post-Quantum Cryptography: https://namolabs.in/research/cryptography
+- Blockchain: https://namolabs.in/research/blockchain
+- Artificial Intelligence: https://namolabs.in/research/ai
+- Quantum: https://namolabs.in/research/quantum
+- Cloud: https://namolabs.in/research/cloud
