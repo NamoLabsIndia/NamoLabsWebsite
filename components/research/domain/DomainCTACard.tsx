@@ -40,9 +40,9 @@ export default function DomainCTACard({ data }: { data: DomainData }) {
                   <div className="w-10 h-10 rounded-xl bg-blue-50/80 text-blue-600 flex items-center justify-center flex-shrink-0">
                     <Icon size={20} strokeWidth={2} />
                   </div>
-                  <h4 className="text-slate-900 font-bold text-sm leading-tight">
+                  <h3 className="text-slate-900 font-bold text-sm leading-tight">
                     {prop.title}
-                  </h4>
+                  </h3>
                 </div>
                 <p className="text-slate-500 text-[13px] leading-relaxed">
                   {prop.description}

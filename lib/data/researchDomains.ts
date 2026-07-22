@@ -53,7 +53,7 @@ export const researchDomains: Record<string, DomainData> = {
     tag: 'BLOCKCHAIN',
     titlePrefix: 'Our Blockchain Research is ',
     titleHighlight: 'In Progress',
-    heroDescription: 'We are building the next generation of decentralized infrastructure. Our research spans Layer 1 and Layer 2 solutions, Hyperledger frameworks and advanced DLT architectures for real-world impact.',
+    heroDescription: 'Blockchain is a distributed ledger technology that lets multiple parties maintain a shared, tamper-evident record of transactions without a central authority. Our research spans Layer 1 protocol design, Layer 2 scaling solutions like rollups and state channels, permissioned Hyperledger frameworks for enterprise use, and cross-chain interoperability — building decentralized infrastructure that is secure, scalable, and ready for real-world deployment.',
     statusBoxIcon: Microscope,
     statusBoxTitle: 'Research in Progress',
     statusBoxDescription: 'Building robust, scalable and interoperable blockchain technologies for the future.',
@@ -85,7 +85,7 @@ export const researchDomains: Record<string, DomainData> = {
     tag: 'CRYPTOGRAPHY',
     titlePrefix: 'Our Cryptography Research is ',
     titleHighlight: 'In Progress',
-    heroDescription: 'We are actively working on Post-Quantum Cryptography (PQC) for real-world applications and next-generation cryptographic systems that ensure security in the age of quantum computing.',
+    heroDescription: 'Post-quantum cryptography (PQC) is the discipline of designing cryptographic algorithms that remain secure against attacks from both classical and quantum computers — a pressing concern since sufficiently powerful quantum computers could break widely-used schemes like RSA and elliptic-curve cryptography. We research quantum-resistant algorithms for real-world deployment, high-assurance security models for critical systems, and next-generation cryptographic infrastructure built for the post-quantum era.',
     statusBoxIcon: Lock,
     statusBoxTitle: 'Research in Progress',
     statusBoxDescription: 'Pushing the boundaries of cryptographic security. More details coming soon.',
@@ -117,7 +117,7 @@ export const researchDomains: Record<string, DomainData> = {
     tag: 'ARTIFICIAL INTELLIGENCE',
     titlePrefix: 'Our AI Research is ',
     titleHighlight: 'Coming Soon',
-    heroDescription: 'We are laying the foundations for pioneering research in Artificial Intelligence. Our team is working on innovative ideas that will shape intelligent, ethical and impactful systems for the future.',
+    heroDescription: 'Artificial intelligence spans the systems that let machines perceive, learn, reason, and act — from machine learning models that find patterns in data to computer vision and natural language processing systems that interpret images and text. Our AI research is in its early stages, laying the groundwork for intelligent, ethical, and impactful systems, with a focus on responsible development alongside technical capability.',
     statusBoxIcon: Calendar,
     statusBoxTitle: 'Research Launching Soon',
     statusBoxDescription: 'Stay tuned for updates on our AI research initiatives, publications and breakthroughs.',
@@ -138,9 +138,9 @@ export const researchDomains: Record<string, DomainData> = {
     ctaButtonText: 'Let\'s Collaborate',
     ctaButtonIcon: true,
     valueProps: [
-      { icon: Users, title: 'Open to Researchers', description: 'Work with our team on cutting-edge ideas.' },
-      { icon: Building, title: 'Industry Partnerships', description: 'Co-create solutions that drive innovation.' },
-      { icon: Globe, title: 'Global Impact', description: 'Build technologies that empower humanity.' }
+      { icon: Users, title: 'Open to Researchers', description: 'Work with our team on foundational AI research, from model architecture to responsible deployment practices.' },
+      { icon: Building, title: 'Industry Partnerships', description: 'Partner with us to apply AI to real operational challenges, not just research demos.' },
+      { icon: Globe, title: 'Global Impact', description: 'Build AI systems designed to be capable and trustworthy at once, not one at the expense of the other.' }
     ],
     ctaImage: '/img/domains/ai-cta.png'
   },
@@ -149,7 +149,7 @@ export const researchDomains: Record<string, DomainData> = {
     tag: 'QUANTUM',
     titlePrefix: 'Our Quantum Research is ',
     titleHighlight: 'Coming Soon',
-    heroDescription: 'We are laying the foundations for pioneering research in Quantum Technologies. Our team is exploring breakthrough ideas that will define the next era of secure, powerful and scalable systems.',
+    heroDescription: 'Quantum technologies use the physical principles of superposition and entanglement to compute, communicate, and sense in ways classical systems cannot — from quantum computers that could solve certain problems exponentially faster, to quantum key distribution (QKD) that detects eavesdropping through physics rather than math alone. Our quantum research is in its early stages, exploring computing architectures, quantum-safe communication protocols, and quantum sensing technologies.',
     statusBoxIcon: Calendar,
     statusBoxTitle: 'Research Launching Soon',
     statusBoxDescription: 'Stay tuned for updates on our quantum research initiatives, publications and breakthroughs.',
@@ -170,9 +170,9 @@ export const researchDomains: Record<string, DomainData> = {
     ctaButtonText: 'Let\'s Collaborate',
     ctaButtonIcon: true,
     valueProps: [
-      { icon: Users, title: 'Open to Researchers', description: 'Work with our team on cutting-edge quantum ideas.' },
-      { icon: Building, title: 'Industry Partnerships', description: 'Co-create solutions that drive the next revolution.' },
-      { icon: Globe, title: 'Global Impact', description: 'Build technologies that shape the future of humanity.' }
+      { icon: Users, title: 'Open to Researchers', description: 'Work with our team on quantum algorithms, QKD protocols, and the physics of next-generation computing.' },
+      { icon: Building, title: 'Industry Partnerships', description: 'Partner with us to prepare your infrastructure for the security implications of practical quantum computing.' },
+      { icon: Globe, title: 'Global Impact', description: 'Build the communication and computing systems that stay secure into the quantum era.' }
     ],
     ctaImage: '/img/domains/quantum-cta.png'
   },
@@ -181,7 +181,7 @@ export const researchDomains: Record<string, DomainData> = {
     tag: 'CLOUD',
     titlePrefix: 'Our Cloud Research is ',
     titleHighlight: 'Coming Soon',
-    heroDescription: 'We are laying the foundations for pioneering research in Cloud Technologies. Our team is exploring innovative ideas that will power the next generation of scalable, secure and intelligent cloud systems.',
+    heroDescription: 'Cloud technologies are the architectures and practices that let organizations run software on shared, elastic infrastructure instead of dedicated hardware — from containerized microservices to fully serverless, event-driven systems, secured through zero-trust models that verify every request regardless of network location. Our cloud research is in its early stages, focused on scalable architecture, zero-trust security, and intelligent, cloud-native systems.',
     statusBoxIcon: Calendar,
     statusBoxTitle: 'Research Launching Soon',
     statusBoxDescription: 'Stay tuned for updates on our cloud research initiatives, publications and breakthroughs.',
@@ -202,9 +202,9 @@ export const researchDomains: Record<string, DomainData> = {
     ctaButtonText: 'Let\'s Collaborate',
     ctaButtonIcon: true,
     valueProps: [
-      { icon: Users, title: 'Open to Researchers', description: 'Work with our team on cutting-edge cloud ideas.' },
-      { icon: Building, title: 'Industry Partnerships', description: 'Co-create solutions that drive real-world impact.' },
-      { icon: Globe, title: 'Global Impact', description: 'Build technologies that empower organizations and communities worldwide.' }
+      { icon: Users, title: 'Open to Researchers', description: 'Work with our team on cloud-native architecture, zero-trust security models, and intelligent automation.' },
+      { icon: Building, title: 'Industry Partnerships', description: 'Partner with us to modernize infrastructure without trading away security or reliability.' },
+      { icon: Globe, title: 'Global Impact', description: "Build cloud systems that scale with an organization's growth, not against it." }
     ],
     ctaImage: '/img/domains/cloud-hero.png' // Fallback to hero image due to rate limits
   }

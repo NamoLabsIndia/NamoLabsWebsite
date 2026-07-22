@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, ClipboardList, User, FileText, Globe } from "lucide-react";
+import { ArrowRight, ClipboardList, User, Handshake, Globe } from "lucide-react";
 import DotWave from "./DotWave";
 
 export default function ResearchHero() {
@@ -76,7 +76,7 @@ export default function ResearchHero() {
                 <ClipboardList size={24} strokeWidth={2} />
               </div>
               <div>
-                <p className="text-xl font-bold text-namo-black">10+</p>
+                <p className="text-xl font-bold text-namo-black">5</p>
                 <p className="text-sm text-gray-500 font-medium">Research Domains</p>
               </div>
             </div>
@@ -86,18 +86,18 @@ export default function ResearchHero() {
                 <User size={24} strokeWidth={2} />
               </div>
               <div>
-                <p className="text-xl font-bold text-namo-black">20+</p>
-                <p className="text-sm text-gray-500 font-medium">Active Researchers</p>
+                <p className="text-xl font-bold text-namo-black">Founder-Led</p>
+                <p className="text-sm text-gray-500 font-medium">Research Team</p>
               </div>
             </div>
 
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-xl bg-blue-50 text-accent flex items-center justify-center shrink-0">
-                <FileText size={24} strokeWidth={2} />
+                <Handshake size={24} strokeWidth={2} />
               </div>
               <div>
-                <p className="text-xl font-bold text-namo-black">10+</p>
-                <p className="text-sm text-gray-500 font-medium">Research Papers</p>
+                <p className="text-xl font-bold text-namo-black">Open</p>
+                <p className="text-sm text-gray-500 font-medium">To Collaboration</p>
               </div>
             </div>
 

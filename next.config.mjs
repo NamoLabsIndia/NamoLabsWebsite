@@ -22,6 +22,21 @@ const nextConfig = {
         destination: "/careers/apply",
         permanent: true,
       },
+      // No current page maps 1:1 to this old URL; closest real match is
+      // the research-collaboration page.
+      {
+        source: "/contact/research",
+        destination: "/collaboration",
+        permanent: true,
+      },
+      // Blog was removed with no redirect; this specific post is closely
+      // related to the cryptography research page, which now has a real
+      // definition of post-quantum cryptography to land visitors on.
+      {
+        source: "/blog/nist-pqc-standards-2024-ml-kem-ml-dsa-explained",
+        destination: "/research/cryptography",
+        permanent: true,
+      },
     ];
   },
   async headers() {

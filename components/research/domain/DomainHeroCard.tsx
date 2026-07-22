@@ -35,7 +35,7 @@ export default function DomainHeroCard({ data }: { data: DomainData }) {
               <StatusIcon size={16} strokeWidth={1.5} />
             </div>
             <div>
-              <h4 className="text-slate-900 font-bold text-[12px]">{data.statusBoxTitle}</h4>
+              <p className="text-slate-900 font-bold text-[12px]">{data.statusBoxTitle}</p>
               <p className="text-slate-500 text-[11px] leading-snug">
                 {data.statusBoxDescription}
               </p>
