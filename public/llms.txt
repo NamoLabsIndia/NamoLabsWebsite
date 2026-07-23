@@ -35,6 +35,7 @@ Namo Labs provides research-backed consulting in: AI & Analytics, Blockchain, Cy
 - Research: https://namolabs.in/research
 - Consulting: https://namolabs.in/consulting
 - Our Process: https://namolabs.in/process
+- Insights: https://namolabs.in/insights
 - Platform: https://namolabs.in/platform/dafs
 - About: https://namolabs.in/about
 - Team: https://namolabs.in/team
@@ -57,3 +58,7 @@ Namo Labs provides research-backed consulting in: AI & Analytics, Blockchain, Cy
 - Institutions (Education & Research): https://namolabs.in/solutions/institutions
 - Startups: https://namolabs.in/solutions/startups
 - MSMEs & Others: https://namolabs.in/solutions/msmes
+
+## Insights (Technical Articles)
+
+- NIST's Post-Quantum Cryptography Standards: ML-KEM and ML-DSA Explained — a technical explainer on FIPS 203 (ML-KEM) and FIPS 204 (ML-DSA), their parameter sets, and sector-by-sector migration deadlines (US NSM-10 2035, EU 2030, UK NCSC 2028/2031/2035): https://namolabs.in/insights/nist-pqc-standards-ml-kem-ml-dsa-explained

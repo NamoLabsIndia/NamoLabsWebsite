@@ -1,4 +1,6 @@
 import React from 'react';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { researchDomains } from '@/lib/data/researchDomains';
 import DomainHeroCard from '@/components/research/domain/DomainHeroCard';
@@ -81,6 +83,28 @@ export default function ResearchDomainPage({ params }: { params: { domain: strin
 
         {/* 3. CTA Card */}
         <DomainCTACard data={data} />
+
+        {/* 4. Further reading (optional — links to a related /insights article) */}
+        {data.furtherReading && (
+          <Link
+            href={data.furtherReading.href}
+            className="group flex items-center justify-between gap-6 bg-[#FAFBFF] border-2 border-gray-100 rounded-[24px] p-8 hover:border-accent/30 transition-colors"
+          >
+            <div>
+              <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-accent mb-2">
+                {data.furtherReading.label}
+              </p>
+              <p className="text-lg font-bold text-slate-900 leading-snug group-hover:text-accent transition-colors max-w-2xl">
+                {data.furtherReading.title}
+              </p>
+            </div>
+            <ArrowRight
+              size={22}
+              strokeWidth={2}
+              className="shrink-0 text-accent -translate-x-2 group-hover:translate-x-0 transition-transform"
+            />
+          </Link>
+        )}
 
       </div>
     </main>

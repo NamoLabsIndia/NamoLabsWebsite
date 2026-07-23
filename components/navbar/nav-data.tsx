@@ -114,13 +114,13 @@ export const consultingItems: NavSection[] = [
       {
         label: "AI & Data Analytics",
         description: "Unlock data value with AI-powered insights.",
-        href: "/consulting/ai-data",
+        href: "/consulting#ai-analytics",
         icon: <BarChart3 size={18} className="text-accent" />,
       },
       {
         label: "Cybersecurity",
         description: "Strengthen resilience with end-to-end security.",
-        href: "/consulting/cybersecurity",
+        href: "/consulting#cybersecurity",
         icon: <Shield size={18} className="text-accent" />,
       },
       {
@@ -178,6 +178,12 @@ export const companyItems: NavSection[] = [
         description: "Join us in building the future of technology.",
         href: "/careers",
         icon: <Briefcase size={18} className="text-accent" />,
+      },
+      {
+        label: "Insights",
+        description: "Technical writing from our research team.",
+        href: "/insights",
+        icon: <Newspaper size={18} className="text-accent" />,
       },
     ],
   },

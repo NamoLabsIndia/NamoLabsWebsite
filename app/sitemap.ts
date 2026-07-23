@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { insights } from '@/lib/data/insights';
 
 const BASE_URL = 'https://namolabs.in';
 
@@ -73,6 +74,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    {
+      url: `${BASE_URL}/insights`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
   ];
 
   // Dynamic research domain pages
@@ -91,5 +98,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }));
 
-  return [...staticRoutes, ...researchRoutes, ...solutionRoutes];
+  // Insight articles (data-driven from lib/data/insights.ts)
+  const insightRoutes: MetadataRoute.Sitemap = insights.map((article) => ({
+    url: `${BASE_URL}/insights/${article.slug}`,
+    lastModified: new Date(article.dateModified),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
+  return [...staticRoutes, ...researchRoutes, ...solutionRoutes, ...insightRoutes];
 }

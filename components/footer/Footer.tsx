@@ -24,6 +24,9 @@ const InstaIcon = () => (
   </svg>
 );
 
+// Footer links point only to pages that actually exist. Aspirational routes
+// (/docs, /blog, /resources/*, /press, /privacy, /terms, etc.) were removed —
+// they 404'd site-wide, wasting crawl budget and breaking UX on every page.
 const columns = [
   {
     heading: "PLATFORM",
@@ -36,47 +39,40 @@ const columns = [
   {
     heading: "RESEARCH",
     links: [
-      { label: "Blockchain Research", href: "/research/blockchain" },
-      { label: "Cryptography Research", href: "/research/cryptography" },
-      { label: "Quantum Technology", href: "/research/quantum" },
-      { label: "Papers & Publications", href: "/research/papers" },
-      { label: "Research Blog", href: "/blog/research" },
-      { label: "Open Science", href: "/research/open-science" },
+      { label: "All Research", href: "/research" },
+      { label: "Cryptography", href: "/research/cryptography" },
+      { label: "Blockchain", href: "/research/blockchain" },
+      { label: "Artificial Intelligence", href: "/research/ai" },
+      { label: "Quantum", href: "/research/quantum" },
+      { label: "Cloud", href: "/research/cloud" },
     ],
   },
   {
-    heading: "DEVELOPERS",
+    heading: "SOLUTIONS",
     links: [
-      { label: "Documentation", href: "/docs" },
-      { label: "API Reference", href: "/docs/api" },
-      { label: "SDKs & Tools", href: "/docs/sdks" },
-      { label: "Integrations", href: "/docs/integrations" },
-
-      { label: "Developer Support", href: "/support/developers" },
+      { label: "Governments", href: "/solutions/governments" },
+      { label: "Organisations", href: "/solutions/organisations" },
+      { label: "Institutions", href: "/solutions/institutions" },
+      { label: "Startups", href: "/solutions/startups" },
+      { label: "MSMEs & Others", href: "/solutions/msmes" },
     ],
   },
   {
     heading: "COMPANY",
     links: [
       { label: "About Us", href: "/about" },
+      { label: "Team", href: "/team" },
       { label: "Careers", href: "/careers" },
-      { label: "Blog", href: "/blog" },
-      { label: "Press Kit", href: "/press" },
-      { label: "Contact Us", href: "/contact" },
-      { label: "Trust Center", href: "/trust" },
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Terms of Service", href: "/terms" },
+      { label: "Consulting", href: "/consulting" },
+      { label: "Our Process", href: "/process" },
     ],
   },
   {
     heading: "RESOURCES",
     links: [
-      { label: "Whitepapers", href: "/resources/whitepapers" },
-      { label: "Case Studies", href: "/resources/case-studies" },
-      { label: "Guides", href: "/resources/guides" },
-      { label: "Newsroom", href: "/newsroom" },
-      { label: "Events", href: "/events" },
-      { label: "Support Center", href: "/support" },
+      { label: "Insights", href: "/insights" },
+      { label: "Collaboration", href: "/collaboration" },
+      { label: "Contact Us", href: "/contact" },
     ],
   },
 ];

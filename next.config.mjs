@@ -29,12 +29,12 @@ const nextConfig = {
         destination: "/collaboration",
         permanent: true,
       },
-      // Blog was removed with no redirect; this specific post is closely
-      // related to the cryptography research page, which now has a real
-      // definition of post-quantum cryptography to land visitors on.
+      // This post was removed with the old /blog; it has now been relaunched
+      // under /insights. Point the old URL at the new article to recover any
+      // residual link equity (GA4 showed real historical traffic here).
       {
         source: "/blog/nist-pqc-standards-2024-ml-kem-ml-dsa-explained",
-        destination: "/research/cryptography",
+        destination: "/insights/nist-pqc-standards-ml-kem-ml-dsa-explained",
         permanent: true,
       },
     ];

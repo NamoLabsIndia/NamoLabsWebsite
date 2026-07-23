@@ -19,6 +19,11 @@ export interface SolutionFeature {
   description: string;
 }
 
+export interface RegulatoryDriver {
+  label: string;
+  detail: string;
+}
+
 export interface SolutionData {
   slug: string;
   category: string;
@@ -28,6 +33,14 @@ export interface SolutionData {
   heroDescription: string;
   features: SolutionFeature[];
   ctaDescription: string;
+  // Optional regulatory-context section (currently used by governments).
+  regulatoryContext?: {
+    heading: string;
+    intro: string;
+    drivers: RegulatoryDriver[];
+    articleHref: string;
+    articleLabel: string;
+  };
 }
 
 export const solutions: Record<string, SolutionData> = {
@@ -67,6 +80,36 @@ export const solutions: Record<string, SolutionData> = {
     ],
     ctaDescription:
       "Partner with us to build public infrastructure that's secure today and stays secure as the threat landscape changes.",
+    regulatoryContext: {
+      heading: "The regulatory clock is already running",
+      intro:
+        "Post-quantum migration is no longer a research topic for governments — it is a dated compliance requirement. The major deadlines are already published, and because migration across a national estate takes years, the time to start is now, not when the deadlines arrive.",
+      drivers: [
+        {
+          label: "US — NSM-10",
+          detail:
+            "US National Security Memorandum 10 directs federal agencies to migrate vulnerable cryptographic systems to post-quantum standards by 2035.",
+        },
+        {
+          label: "US — CNSA 2.0",
+          detail:
+            "The NSA's Commercial National Security Algorithm Suite 2.0 requires ML-KEM and ML-DSA for national security systems, phased in through the late 2020s and early 2030s.",
+        },
+        {
+          label: "EU — PQC Transition Roadmap",
+          detail:
+            "The EU's coordinated roadmap (NIS Cooperation Group, 2025) targets migration of high-risk use cases by 2030 and medium-risk by 2035.",
+        },
+        {
+          label: "UK — NCSC three-phase timeline",
+          detail:
+            "The UK NCSC sets discovery and planning by 2028, highest-priority migration by 2031, and full migration by 2035.",
+        },
+      ],
+      articleHref: "/insights/nist-pqc-standards-ml-kem-ml-dsa-explained",
+      articleLabel:
+        "Read our explainer on the NIST standards behind these mandates",
+    },
   },
   organisations: {
     slug: "organisations",

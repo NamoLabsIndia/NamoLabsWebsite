@@ -45,6 +45,13 @@ export interface DomainData {
   ctaButtonIcon?: boolean;
   valueProps: ValueProp[];
   ctaImage: string;
+
+  // Optional "further reading" link to a related /insights article.
+  furtherReading?: {
+    label: string;
+    title: string;
+    href: string;
+  };
 }
 
 export const researchDomains: Record<string, DomainData> = {
@@ -110,7 +117,12 @@ export const researchDomains: Record<string, DomainData> = {
       { icon: Globe, title: 'Built for Real World', description: 'Creating solutions that deliver real-world impact.' },
       { icon: ShieldCheck, title: 'Security at the Core', description: 'Security, privacy and trust in everything we build.' }
     ],
-    ctaImage: '/img/domains/crypto-cta.png'
+    ctaImage: '/img/domains/crypto-cta.png',
+    furtherReading: {
+      label: 'Further reading',
+      title: "NIST's 2024 PQC standards: ML-KEM and ML-DSA explained",
+      href: '/insights/nist-pqc-standards-ml-kem-ml-dsa-explained',
+    }
   },
   ai: {
     slug: 'ai',
