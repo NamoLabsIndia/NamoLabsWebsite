@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 
@@ -30,10 +31,12 @@ function CapabilityCard({ cap, index }: { cap: Capability, index: number }) {
     >
       {/* Background Image */}
       {cap.image && (
-        <img 
-          src={cap.image} 
-          alt={cap.title} 
-          className="absolute inset-0 w-full h-full object-cover transform transition-transform duration-1000 group-hover:scale-110" 
+        <Image
+          src={cap.image}
+          alt={cap.title}
+          fill
+          sizes="(min-width: 1024px) 25vw, 50vw"
+          className="object-cover transform transition-transform duration-1000 group-hover:scale-110"
         />
       )}
       

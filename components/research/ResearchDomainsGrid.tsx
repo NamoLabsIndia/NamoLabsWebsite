@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, FileText, Users, Code2, BookOpen, List, FolderKanban, Handshake } from "lucide-react";
@@ -131,10 +132,12 @@ export default function ResearchDomainsGrid() {
                   >
                     {/* Image Container */}
                     <div className="w-full aspect-square mb-3 sm:mb-5 relative rounded-[12px] sm:rounded-[16px] overflow-hidden bg-gray-50 shadow-inner">
-                      <img 
-                        src={domain.image} 
-                        alt={domain.title} 
-                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      <Image
+                        src={domain.image}
+                        alt={domain.title}
+                        fill
+                        sizes="(min-width: 1024px) 220px, (min-width: 768px) 33vw, 50vw"
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                     </div>
 
@@ -185,11 +188,13 @@ export default function ResearchDomainsGrid() {
                           </div>
                           
                           <div className="w-[140px] aspect-square relative flex-shrink-0 bg-gray-50 rounded-[16px] shadow-inner overflow-hidden border border-gray-100">
-                            <img 
-                                src={domain.image} 
-                                alt={domain.title} 
-                                className="absolute inset-0 w-full h-full object-cover"
-                              />
+                            <Image
+                              src={domain.image}
+                              alt={domain.title}
+                              fill
+                              sizes="140px"
+                              className="object-cover"
+                            />
                           </div>
                         </div>
 

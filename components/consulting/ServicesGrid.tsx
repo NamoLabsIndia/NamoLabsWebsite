@@ -45,7 +45,7 @@ const SERVICES = [
     title: "Cloud Computing",
     description: "Modern cloud infrastructure optimized for scale and security.",
     href: "#cloud",
-    image: "/image%205.png"
+    image: "/image%205.jpg"
   },
   {
     icon: Building2,

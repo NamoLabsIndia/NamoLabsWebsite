@@ -60,7 +60,7 @@ const SERVICES_DATA = [
     id: "cloud",
     title: "Modern Cloud Infrastructure",
     description: "Scalable cloud strategies covering Cloud Migration, Kubernetes, DevOps, Microservices, Multi-cloud and Cloud Security.",
-    illustrationSrc: "/image%205.png",
+    illustrationSrc: "/image%205.jpg",
     reverseLayout: true,
     capabilities: [
       { title: "Cloud Migration", description: "Execute seamless, zero-downtime migrations of legacy on-premise systems to modern cloud infrastructure like AWS, GCP, or Azure utilizing proven refactoring methodologies.", image: "/segment%20sub%20logo/Cloud%20Migration.jpg" },
