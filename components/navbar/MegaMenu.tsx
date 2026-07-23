@@ -158,8 +158,8 @@ const researchCards = [
   {
     gradient: "linear-gradient(135deg, #6366f1 0%, #1e2033 100%)",
     label: "OPEN RESEARCH",
-    title: "Papers & Publications",
-    href: "/research/papers",
+    title: "Explore Our Research",
+    href: "/research",
   },
 ];
 
