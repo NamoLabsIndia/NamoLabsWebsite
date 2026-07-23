@@ -67,7 +67,7 @@ export default function InsightArticlePage({ params }: { params: { slug: string 
       url: BASE_URL,
       logo: {
         "@type": "ImageObject",
-        url: `${BASE_URL}/logo.png`,
+        url: `${BASE_URL}/namo-labs-logo.png`,
       },
     },
     mainEntityOfPage: {
