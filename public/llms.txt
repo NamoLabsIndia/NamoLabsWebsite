@@ -34,6 +34,7 @@ Namo Labs provides research-backed consulting in: AI & Analytics, Blockchain, Cy
 - Homepage: https://namolabs.in
 - Research: https://namolabs.in/research
 - Consulting: https://namolabs.in/consulting
+- Our Process: https://namolabs.in/process
 - Platform: https://namolabs.in/platform/dafs
 - About: https://namolabs.in/about
 - Team: https://namolabs.in/team
@@ -48,3 +49,11 @@ Namo Labs provides research-backed consulting in: AI & Analytics, Blockchain, Cy
 - Artificial Intelligence: https://namolabs.in/research/ai
 - Quantum: https://namolabs.in/research/quantum
 - Cloud: https://namolabs.in/research/cloud
+
+## Solutions by Segment
+
+- Governments: https://namolabs.in/solutions/governments
+- Organisations: https://namolabs.in/solutions/organisations
+- Institutions (Education & Research): https://namolabs.in/solutions/institutions
+- Startups: https://namolabs.in/solutions/startups
+- MSMEs & Others: https://namolabs.in/solutions/msmes

@@ -5,6 +5,9 @@ const BASE_URL = 'https://namolabs.in';
 // All research domain slugs
 const researchDomainSlugs = ['blockchain', 'cryptography', 'ai', 'quantum', 'cloud'];
 
+// All solution segment slugs
+const solutionSlugs = ['governments', 'organisations', 'institutions', 'startups', 'msmes'];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
@@ -64,6 +67,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    {
+      url: `${BASE_URL}/process`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
   ];
 
   // Dynamic research domain pages
@@ -74,5 +83,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }));
 
-  return [...staticRoutes, ...researchRoutes];
+  // Dynamic solution segment pages
+  const solutionRoutes: MetadataRoute.Sitemap = solutionSlugs.map((slug) => ({
+    url: `${BASE_URL}/solutions/${slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.75,
+  }));
+
+  return [...staticRoutes, ...researchRoutes, ...solutionRoutes];
 }

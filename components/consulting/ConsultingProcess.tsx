@@ -1,8 +1,9 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { Search, FlaskConical, LayoutTemplate, Hammer, ShieldCheck, HeadphonesIcon } from "lucide-react";
+import { Search, FlaskConical, LayoutTemplate, Hammer, ShieldCheck, HeadphonesIcon, ArrowRight } from "lucide-react";
 
 const PROCESS_STEPS = [
   {
@@ -109,6 +110,16 @@ export default function ConsultingProcess() {
               </motion.div>
             );
           })}
+        </div>
+
+        <div className="mt-16 flex justify-center">
+          <Link
+            href="/process"
+            className="inline-flex items-center gap-2 text-white font-semibold text-sm hover:text-accent transition-colors"
+          >
+            See our full process in detail
+            <ArrowRight size={16} strokeWidth={2} />
+          </Link>
         </div>
       </div>
     </section>
