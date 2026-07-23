@@ -11,12 +11,16 @@ export default function DotWave() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
 
-    let particles: { x: number; y: number; z: number; ox: number; oz: number }[] = [];
-    const amountX = 120;
-    const amountY = 120;
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    const particles: { x: number; y: number; z: number; ox: number; oz: number }[] = [];
+    const amountX = 100;
+    const amountY = 100;
     const separation = 25;
 
     // Initialize particles in a grid
@@ -29,61 +33,75 @@ export default function DotWave() {
     }
 
     let count = 0;
-    let animationFrameId: number;
+    let animationFrameId = 0;
+    let running = false;
 
-    const render = () => {
+    const drawFrame = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Camera / Projection settings
       const fov = 600;
-      // We push the grid far back so dots never come to the extreme foreground
       const viewDistance = 2500;
-      
-      // Calculate dot movement and draw
+
       for (let i = 0; i < particles.length; i++) {
         const particle = particles[i];
-        
-        // Complex wave function using sine and cosine for natural motion
-        // We subtract count so the wave flows from left to right
+
+        // Wave function — flows left to right as `count` grows
         particle.y =
           Math.sin((particle.ox - count) * 0.005) * 80 +
           Math.sin((particle.oz - count) * 0.005) * 80;
 
-        // 3D to 2D projection
-        // We simulate looking at it from an angle (isometric-ish)
         const z3d = particle.z + viewDistance;
-        if (z3d <= 0) continue; // Behind camera
+        if (z3d <= 0) continue;
 
         const scale = fov / z3d;
-        // Shift the center of the wave to the right (75% of screen width)
-        const x2d = (particle.x * scale) + width * 0.75;
-        // Shift Y down so the wave sits in the lower half/middle of the screen
-        const y2d = (particle.y * scale) + height / 2 + 100; 
+        const x2d = particle.x * scale + width * 0.75;
+        const y2d = particle.y * scale + height / 2 + 100;
 
-        // Only draw if on screen
         if (x2d > -10 && x2d < width + 10 && y2d > -10 && y2d < height + 10) {
           ctx.beginPath();
-          
-          // Dot size scales with distance, but capped so they never get huge
           const dotSize = Math.min(2.5, Math.max(0.3, scale * 1.5));
           ctx.arc(x2d, y2d, dotSize, 0, Math.PI * 2);
-          
-          // Color logic: map height (particle.y) and position to a gradient
-          // from cyan to deep blue
-          const hue = 210 + (particle.y * 0.4) + (particle.ox * 0.01);
-          // Opacity fades out in the distance. Increased max opacity to make them brighter.
+          const hue = 210 + particle.y * 0.4 + particle.ox * 0.01;
           const alpha = Math.min(1, scale * 2.5) * 0.8;
-          
           ctx.fillStyle = `hsla(${hue}, 100%, 60%, ${alpha})`;
           ctx.fill();
         }
       }
-
-      count += 2; // Speed of the wave (left to right, much slower)
-      animationFrameId = requestAnimationFrame(render);
     };
 
-    render();
+    const loop = () => {
+      drawFrame();
+      count += 2;
+      animationFrameId = requestAnimationFrame(loop);
+    };
+
+    const start = () => {
+      if (running) return;
+      running = true;
+      animationFrameId = requestAnimationFrame(loop);
+    };
+    const stop = () => {
+      running = false;
+      cancelAnimationFrame(animationFrameId);
+    };
+
+    let observer: IntersectionObserver | undefined;
+
+    if (prefersReduced) {
+      // Respect reduced-motion: render a single static frame, no loop.
+      drawFrame();
+    } else {
+      // Only animate while the hero is actually on screen — stops the loop
+      // (and frees the main thread) the moment the user scrolls to the grid.
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) start();
+          else stop();
+        },
+        { threshold: 0 }
+      );
+      observer.observe(canvas);
+    }
 
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
@@ -93,16 +111,13 @@ export default function DotWave() {
 
     return () => {
       window.removeEventListener("resize", handleResize);
-      cancelAnimationFrame(animationFrameId);
+      observer?.disconnect();
+      stop();
     };
   }, []);
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-      {/* 
-        We use a radial mask on the canvas itself to fade it out gracefully 
-        at the edges of the screen, just like the reference image.
-      */}
       <canvas
         ref={canvasRef}
         className="w-full h-full"
