@@ -149,7 +149,14 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className={`border-t pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs ${isConsultingPage ? 'border-white/10 text-white/40' : 'border-gray-100 text-gray-500'}`}>
           <p>© 2026 Namo Labs LLP. All rights reserved.</p>
-
+          <div className="flex items-center gap-5">
+            <Link href="/privacy" className={`transition-colors ${isConsultingPage ? 'hover:text-white' : 'hover:text-accent'}`}>
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className={`transition-colors ${isConsultingPage ? 'hover:text-white' : 'hover:text-accent'}`}>
+              Terms of Service
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
