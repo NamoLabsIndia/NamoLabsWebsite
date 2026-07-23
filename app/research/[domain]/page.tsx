@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { researchDomains } from '@/lib/data/researchDomains';
+import { toMetaDescription } from '@/lib/seo';
 import DomainHeroCard from '@/components/research/domain/DomainHeroCard';
 import DomainFeaturesCard from '@/components/research/domain/DomainFeaturesCard';
 import DomainCTACard from '@/components/research/domain/DomainCTACard';
@@ -30,7 +31,7 @@ export function generateMetadata({ params }: { params: { domain: string } }) {
 
   return {
     title: domainTitles[slug] ?? `${data.tag} Research`,
-    description: data.heroDescription.split('. ')[0] + '.',
+    description: toMetaDescription(data.heroDescription),
     alternates: {
       canonical: `${BASE_URL}/research/${slug}`,
     },

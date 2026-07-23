@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s | Namo Labs",
   },
   description:
-    "Namo Labs builds secure digital infrastructure, post-quantum communication systems, blockchain solutions, AI-powered platforms, and enterprise technologies that enable governments, businesses, and developers to build the future with confidence.",
+    "Namo Labs builds secure digital infrastructure — post-quantum cryptography, blockchain, AI, and enterprise systems for governments, businesses, and developers.",
   keywords: [
     "quantum security", "blockchain", "AI", "deep tech", "India",
     "QSCL", "cryptography", "post-quantum", "research lab", "namo labs",

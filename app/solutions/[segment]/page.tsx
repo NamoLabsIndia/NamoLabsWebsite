@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Scale } from "lucide-react";
 import { solutions } from "@/lib/data/solutions";
+import { toMetaDescription } from "@/lib/seo";
 import SolutionHero from "@/components/solutions/SolutionHero";
 import SolutionFeatures from "@/components/solutions/SolutionFeatures";
 import SolutionCTA from "@/components/solutions/SolutionCTA";
@@ -20,7 +21,7 @@ export function generateMetadata({ params }: { params: { segment: string } }) {
 
   return {
     title: `Solutions for ${data.title}`,
-    description: data.heroDescription.split(". ").slice(0, 2).join(". ") + ".",
+    description: toMetaDescription(data.heroDescription),
     alternates: {
       canonical: `${BASE_URL}/solutions/${slug}`,
     },
