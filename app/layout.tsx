@@ -179,6 +179,15 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/namo-labs-logo.png" />
       </head>
       <body className={`${beVietnamPro.className} ${leagueSpartan.variable} bg-white text-namo-black antialiased selection:bg-namo-black selection:text-white`}>
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-71J4X92HG4"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-71J4X92HG4');`}
+        </Script>
+
         {/* Force-unregister any old service workers from the old website deployment */}
         <Script
           id="kill-service-workers"
