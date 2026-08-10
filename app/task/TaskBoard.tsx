@@ -20,7 +20,7 @@ import {
   RotateCcw,
 } from "lucide-react";
 
-const STORAGE_KEY = "namolabs-task-statuses-v2";
+const STORAGE_KEY = "namolabs-task-statuses-v4";
 
 const STATUS_OPTIONS: { value: TaskStatus; label: string }[] = [
   { value: "todo", label: "To do" },
@@ -32,7 +32,7 @@ const STATUS_OPTIONS: { value: TaskStatus; label: string }[] = [
 const PERSON_COLOR: Record<Assignee, string> = {
   Ayush: "bg-sky-500",
   Rishab: "bg-violet-500",
-  Rishi: "bg-emerald-500",
+  Anirudh: "bg-emerald-500",
 };
 
 function loadStatuses(): Record<string, TaskStatus> {
@@ -118,7 +118,7 @@ export default function TaskBoard() {
               </h1>
               <p className="mt-2 text-sm sm:text-[15px] text-gray-600 max-w-2xl leading-relaxed">
                 Shared assignments for <strong>Ayush</strong>,{" "}
-                <strong>Rishab</strong>, and <strong>Rishi</strong>. Status
+                <strong>Rishab</strong>, and <strong>Anirudh</strong>. Status
                 updates save in this browser (like a lightweight sheet). Share{" "}
                 <code className="text-[12px] bg-white border px-1.5 py-0.5 rounded">
                   /task
@@ -344,8 +344,8 @@ export default function TaskBoard() {
             ]}
           />
           <OwnerBrief
-            name="Rishi"
-            color={PERSON_COLOR.Rishi}
+            name="Anirudh"
+            color={PERSON_COLOR.Anirudh}
             lines={[
               "Major: Collaboration redesign",
               "Normal: all 5 research domains",

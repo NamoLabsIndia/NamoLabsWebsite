@@ -150,7 +150,7 @@ https://namolabs.in/consulting#sustainability
 
 | URL | Notes | Status |
 |-----|--------|--------|
-| https://namolabs.in/task | Sprint task board for Ayush / Rishab / Rishi (`robots: noindex`) | Route added in repo |
+| https://namolabs.in/task | Sprint task board for Ayush / Rishab / Anirudh (`robots: noindex`) | Route added in repo |
 
 ---
 

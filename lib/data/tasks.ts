@@ -1,4 +1,4 @@
-export type Assignee = "Ayush" | "Rishab" | "Rishi";
+export type Assignee = "Ayush" | "Rishab" | "Anirudh";
 export type Effort = "minimum" | "normal" | "major" | "nav" | "fix";
 export type TaskStatus = "todo" | "in_progress" | "review" | "done";
 export type Priority = "P0" | "P1" | "P2";
@@ -16,7 +16,7 @@ export interface Task {
   acceptance: string;
 }
 
-export const ASSIGNEES: Assignee[] = ["Ayush", "Rishab", "Rishi"];
+export const ASSIGNEES: Assignee[] = ["Ayush", "Rishab", "Anirudh"];
 
 export const EFFORT_LABEL: Record<Effort, string> = {
   minimum: "Minimum UI",
@@ -161,12 +161,12 @@ export const TASKS: Task[] = [
       "Bidirectional navigation works; no dead CTAs; Open Application visible on Careers.",
   },
 
-  // ─── RISHI: collaboration + research domains (unchanged) ───
+  // ─── ANIRUDH: collaboration + research domains ───
   {
-    id: "RS-01",
+    id: "AN-01",
     title: "Major redesign — Collaboration page",
     url: "https://namolabs.in/collaboration",
-    assignee: "Rishi",
+    assignee: "Anirudh",
     effort: "major",
     priority: "P1",
     status: "todo",
@@ -176,10 +176,10 @@ export const TASKS: Task[] = [
       "Collaboration reads as a real partnership product; strong CTA; mobile OK.",
   },
   {
-    id: "RS-02",
+    id: "AN-02",
     title: "Research domain UI — Cryptography",
     url: "https://namolabs.in/research/cryptography",
-    assignee: "Rishi",
+    assignee: "Anirudh",
     effort: "normal",
     priority: "P1",
     status: "todo",
@@ -189,10 +189,10 @@ export const TASKS: Task[] = [
       "Page polished; CTAs functional; consistent with other domains.",
   },
   {
-    id: "RS-03",
+    id: "AN-03",
     title: "Research domain UI — Blockchain",
     url: "https://namolabs.in/research/blockchain",
-    assignee: "Rishi",
+    assignee: "Anirudh",
     effort: "normal",
     priority: "P1",
     status: "todo",
@@ -200,10 +200,10 @@ export const TASKS: Task[] = [
     acceptance: "Consistent UI with other research domains; CTAs work.",
   },
   {
-    id: "RS-04",
+    id: "AN-04",
     title: "Research domain UI — AI",
     url: "https://namolabs.in/research/ai",
-    assignee: "Rishi",
+    assignee: "Anirudh",
     effort: "normal",
     priority: "P1",
     status: "todo",
@@ -211,10 +211,10 @@ export const TASKS: Task[] = [
     acceptance: "Coming Soon feels designed; CTAs work.",
   },
   {
-    id: "RS-05",
+    id: "AN-05",
     title: "Research domain UI — Quantum",
     url: "https://namolabs.in/research/quantum",
-    assignee: "Rishi",
+    assignee: "Anirudh",
     effort: "normal",
     priority: "P1",
     status: "todo",
@@ -222,10 +222,10 @@ export const TASKS: Task[] = [
     acceptance: "Consistent with AI/Cloud domain treatment.",
   },
   {
-    id: "RS-06",
+    id: "AN-06",
     title: "Research domain UI — Cloud",
     url: "https://namolabs.in/research/cloud",
-    assignee: "Rishi",
+    assignee: "Anirudh",
     effort: "normal",
     priority: "P1",
     status: "todo",
@@ -280,13 +280,13 @@ export const TASKS: Task[] = [
       "No fabricated testimonials live on production homepage.",
   },
   {
-    id: "RS-07",
+    id: "AN-07",
     title: "Missed: Research updates / newsletter dead UI",
     urls: [
       "https://namolabs.in/research",
       "https://namolabs.in/",
     ],
-    assignee: "Rishi",
+    assignee: "Anirudh",
     effort: "fix",
     priority: "P2",
     status: "todo",
