@@ -320,50 +320,6 @@ export default function TaskBoard() {
           </div>
         </div>
 
-        {/* Missed callouts */}
-        <section className="mt-10 rounded-xl border border-amber-200 bg-amber-50/80 p-5 sm:p-6">
-          <h2 className="text-lg font-bold tracking-tight mb-2">
-            What was missing (PM notes)
-          </h2>
-          <ul className="space-y-2 text-sm text-gray-700 leading-relaxed list-disc pl-5">
-            <li>
-              <strong>Solutions (5 pages)</strong> live at 200 but had{" "}
-              <em>no navbar entry</em> — only footer / home carousel. Assigned
-              to Rishab (RB-04).
-            </li>
-            <li>
-              <strong>/process</strong> and <strong>/collaboration</strong>{" "}
-              exist but were footer-only. Add to Company nav (RB-05).
-            </li>
-            <li>
-              <strong>/platform/tierratrace</strong> 404 from mobile Platform
-              parent link (RB-03).
-            </li>
-            <li>
-              <strong>/careers/apply</strong> form UI exists but submit is not
-              wired (AY-02).
-            </li>
-            <li>
-              Fake homepage testimonials + research dead CTAs called out as
-              AY-05 / RS-07.
-            </li>
-            <li>
-              Insights on desktop Company menu but missing on mobile (covered in
-              RB-05).
-            </li>
-          </ul>
-          <p className="mt-4 text-[13px] text-gray-600">
-            Full gap report:{" "}
-            <code className="bg-white/80 border px-1.5 py-0.5 rounded text-[12px]">
-              namolabs-gap-analysis-report.md
-            </code>{" "}
-            · URL inventory:{" "}
-            <Link href="/" className="text-accent underline-offset-2 hover:underline">
-              namolabs.in
-            </Link>
-          </p>
-        </section>
-
         {/* Workload split summary */}
         <section className="mt-8 grid md:grid-cols-3 gap-4">
           <OwnerBrief
@@ -383,6 +339,7 @@ export default function TaskBoard() {
               "Minimum UI: About + Team",
               "P0 fix: TierraTrace 404",
               "Nav: Solutions mega menu + Process/Collaboration/Insights",
+              "Custom 404 error page (RB-07)",
               "QA: Solutions pages after nav",
             ]}
           />

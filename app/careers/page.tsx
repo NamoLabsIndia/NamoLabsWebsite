@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight, FileText, Mail } from "lucide-react";
 
 export const metadata = {
   title: "Careers",
@@ -51,20 +51,37 @@ export default function CareersPage() {
                 No open roles right now.
               </h3>
               <p className="text-gray-600 text-[15px] max-w-md mx-auto leading-relaxed mb-8">
-                We're not actively hiring at the moment, but we are always on the lookout for exceptional talent. Send us your resume, and we'll reach out when a position opens up!
+                We&apos;re not actively hiring at the moment, but we are always on the lookout for exceptional talent. Open an application or email your resume — we&apos;ll reach out when a role fits.
               </p>
-              
-              <a
-                href="mailto:info@namolabs.in"
-                className="inline-flex items-center gap-2 bg-accent text-white font-semibold px-8 py-4 rounded-full text-[14px] hover:bg-[#2f4be0] transition-colors shadow-lg shadow-accent/20"
-              >
-                Email your resume <ArrowRight size={16} />
-              </a>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full">
+                <Link
+                  href="/careers/apply"
+                  className="inline-flex items-center justify-center gap-2 bg-accent text-white font-semibold px-8 py-4 rounded-full text-[14px] hover:bg-[#2f4be0] transition-colors shadow-lg shadow-accent/20 w-full sm:w-auto"
+                >
+                  <FileText size={16} /> Open Application
+                </Link>
+                <a
+                  href="mailto:info@namolabs.in"
+                  className="inline-flex items-center justify-center gap-2 bg-namo-black text-white font-semibold px-8 py-4 rounded-full text-[14px] hover:bg-gray-800 transition-colors shadow-lg shadow-black/10 w-full sm:w-auto"
+                >
+                  Email your resume <ArrowRight size={16} />
+                </a>
+              </div>
+              <p className="mt-3 text-[12px] text-gray-500">
+                Prefer the form?{" "}
+                <Link
+                  href="/careers/apply"
+                  className="font-semibold text-accent hover:underline underline-offset-2"
+                >
+                  Apply for a role at Namo Labs
+                </Link>
+              </p>
               <Link
                 href="/team#culture"
-                className="mt-4 inline-flex items-center gap-1.5 text-[13px] font-medium text-gray-500 hover:text-accent transition-colors"
+                className="mt-5 inline-flex items-center gap-1.5 text-[13px] font-medium text-gray-500 hover:text-accent transition-colors"
               >
-                See what it's like to work here <ArrowRight size={12} />
+                See what it&apos;s like to work here <ArrowRight size={12} />
               </Link>
             </div>
           </div>

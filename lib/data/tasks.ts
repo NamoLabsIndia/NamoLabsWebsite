@@ -156,9 +156,9 @@ export const TASKS: Task[] = [
     priority: "P2",
     status: "todo",
     notes:
-      "Ensure careers page CTAs point correctly; apply page breadcrumbs back to careers; no orphaned routes.",
+      "Careers → /careers/apply “Open Application” CTA already shipped. Finish apply-page breadcrumbs back to careers; no orphaned routes; polish both ends after AY-01/AY-02 redesign.",
     acceptance:
-      "Bidirectional navigation works; no dead CTAs.",
+      "Bidirectional navigation works; no dead CTAs; Open Application visible on Careers.",
   },
 
   // ─── RISHI: collaboration + research domains (unchanged) ───
@@ -252,6 +252,19 @@ export const TASKS: Task[] = [
       "After RB-04, spot-check each solutions page loads from nav, breadcrumbs, CTA → contact. Flag content gaps to PM (no redesign required this sprint unless broken).",
     acceptance:
       "All five reachable + CTAs work; note any broken images/links.",
+  },
+  {
+    id: "RB-07",
+    title: "Own & polish custom 404 error page",
+    url: "https://namolabs.in/this-page-does-not-exist",
+    assignee: "Rishab",
+    effort: "minimum",
+    priority: "P1",
+    status: "todo",
+    notes:
+      "Custom 404 lives at app/not-found.tsx (starter already in repo). Polish UI/copy/motion to match site brand; verify unknown paths (e.g. /platform/tierratrace before fix, typos) render it; keep Home + Contact + key links working. Align with your min UI / nav quality bar.",
+    acceptance:
+      "Any unknown URL shows branded 404 (not default Next); mobile OK; links work; consistent with About/Team polish.",
   },
   {
     id: "AY-05",

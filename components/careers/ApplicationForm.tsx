@@ -97,6 +97,12 @@ export default function ApplicationForm() {
 
   return (
     <div className="w-full">
+      <Link
+        href="/careers"
+        className="mb-8 inline-flex items-center gap-1.5 text-[13px] font-medium text-gray-500 hover:text-accent transition-colors"
+      >
+        ← Back to Careers
+      </Link>
       <div className="mb-12">
         <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400">
           Open Application

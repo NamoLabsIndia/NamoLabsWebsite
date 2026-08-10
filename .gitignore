@@ -68,3 +68,6 @@ public/ .png
 public/segment sub logo/IMG_*.heic
 public/segment sub logo/Instapost desk.png
 public/segment sub logo/linkedin post namo labs.png
+
+# local PM notes (not for /task or public site)
+/pm-notes-missing.html
