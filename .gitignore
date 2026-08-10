@@ -71,3 +71,7 @@ public/segment sub logo/linkedin post namo labs.png
 
 # local PM notes (not for /task or public site)
 /pm-notes-missing.html
+
+# local audit / gap reports (keep on disk, not on GitHub)
+/namolabs-gap-analysis-report.md
+/namolabs-gap-analysis-report.html
