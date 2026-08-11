@@ -169,11 +169,7 @@ export const TASKS: Task[] = [
     assignee: "Anirudh",
     effort: "major",
     priority: "P1",
-<<<<<<< HEAD
-    status: "todo",
-=======
     status: "done",
->>>>>>> 508c26f (Redesign collaboration page and update task board)
     notes:
       "Engagement model (Propose → Scope → Research → Deliver) is good. Improve layout, hierarchy, partner types, CTA to propose project (contact with prefills if possible).",
     acceptance:

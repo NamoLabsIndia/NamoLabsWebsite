@@ -29,44 +29,28 @@ const collaborators = [
     title: "Academic Institutions",
     description:
       "Joint research projects and infrastructure for university and research-institute programs across cryptography, distributed systems, and AI.",
-<<<<<<< HEAD
-    href: "/solutions/institutions",
-=======
     href: "/contact?subject=academic",
->>>>>>> 508c26f (Redesign collaboration page and update task board)
   },
   {
     icon: FlaskConical,
     title: "Research Labs",
     description:
       "Co-development on hard technical problems where our post-quantum cryptography and protocol-engineering depth complements an existing research agenda.",
-<<<<<<< HEAD
-    href: "/research",
-=======
     href: "/contact?subject=research-lab",
->>>>>>> 508c26f (Redesign collaboration page and update task board)
   },
   {
     icon: Building2,
     title: "Enterprises",
     description:
       "Applied research partnerships that turn emerging technology — PQC, blockchain, AI — into systems an enterprise can actually deploy.",
-<<<<<<< HEAD
-    href: "/solutions/organisations",
-=======
     href: "/contact?subject=enterprise",
->>>>>>> 508c26f (Redesign collaboration page and update task board)
   },
   {
     icon: Landmark,
     title: "Governments",
     description:
       "Long-horizon research on the security of national infrastructure, where post-quantum readiness is already a dated regulatory requirement.",
-<<<<<<< HEAD
-    href: "/solutions/governments",
-=======
     href: "/contact?subject=government",
->>>>>>> 508c26f (Redesign collaboration page and update task board)
   },
 ];
 
@@ -97,11 +81,7 @@ const collaborationSchema = {
   name: "Research Collaboration",
   description: metadata.description,
   url: `${BASE_URL}/collaboration`,
-<<<<<<< HEAD
-  dateModified: "2026-07-23",
-=======
   dateModified: "2026-08-11",
->>>>>>> 508c26f (Redesign collaboration page and update task board)
   about: {
     "@type": "Organization",
     name: "Namo Labs",
@@ -111,21 +91,13 @@ const collaborationSchema = {
 
 export default function CollaborationPage() {
   return (
-<<<<<<< HEAD
-    <main className="min-h-screen pt-64 pb-0 bg-white">
-=======
     <main className="min-h-screen pt-44 sm:pt-48 pb-0 bg-white overflow-x-hidden">
->>>>>>> 508c26f (Redesign collaboration page and update task board)
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collaborationSchema) }}
       />
       <div className="max-w-7xl mx-auto px-6 mb-24">
-<<<<<<< HEAD
-        <h1 className="text-5xl sm:text-7xl font-[800] text-namo-black mb-6 tracking-tight">
-=======
         <h1 className="text-5xl sm:text-7xl font-[800] text-namo-black mb-6 tracking-tight leading-[1.05]">
->>>>>>> 508c26f (Redesign collaboration page and update task board)
           Collaborate on <br className="hidden sm:block" />
           <span className="text-accent">Deep Tech Research.</span>
         </h1>
@@ -143,21 +115,7 @@ export default function CollaborationPage() {
           </Link>{" "}
           overlap with it, we should talk.
         </p>
-<<<<<<< HEAD
-        <Link
-          href="/contact"
-          className="inline-flex items-center gap-3 bg-[#0A0A0A] text-white font-medium px-8 py-4 rounded-full hover:bg-gray-800 transition-colors shadow-lg"
-        >
-          Propose a Project <ArrowRight size={16} />
-        </Link>
-
-        {/* Who we collaborate with */}
-        <section className="mt-20">
-          <h2 className="text-2xl sm:text-3xl font-bold text-namo-black mb-8 tracking-tight">
-            Who we collaborate with
-          </h2>
-=======
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-3">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-8">
           <Link
             href="/contact?subject=collaboration"
             className="group inline-flex items-center gap-3 bg-[#0A0A0A] text-white font-semibold text-[15px] px-8 py-4 rounded-full hover:bg-gray-800 transition-all duration-200 shadow-md hover:shadow-xl hover:scale-[1.01]"
@@ -171,9 +129,6 @@ export default function CollaborationPage() {
             How Engagements Work
           </Link>
         </div>
-        <p className="text-xs text-gray-500 font-medium">
-          ⚡ 24-hour response time · Direct sync with research engineers
-        </p>
 
         {/* Who we collaborate with */}
         <section className="mt-20">
@@ -189,7 +144,6 @@ export default function CollaborationPage() {
             </p>
           </div>
 
->>>>>>> 508c26f (Redesign collaboration page and update task board)
           <div className="grid sm:grid-cols-2 gap-5">
             {collaborators.map((c) => {
               const Icon = c.icon;
@@ -197,19 +151,6 @@ export default function CollaborationPage() {
                 <Link
                   key={c.title}
                   href={c.href}
-<<<<<<< HEAD
-                  className="group flex flex-col items-start p-7 bg-gray-50/60 border border-gray-100 rounded-[24px] hover:border-accent/30 hover:bg-blue-50/30 transition-colors"
-                >
-                  <div className="w-12 h-12 rounded-2xl bg-blue-50 text-accent flex items-center justify-center mb-4">
-                    <Icon size={22} strokeWidth={1.75} />
-                  </div>
-                  <h3 className="text-lg font-bold text-namo-black mb-2 group-hover:text-accent transition-colors">
-                    {c.title}
-                  </h3>
-                  <p className="text-gray-600 text-[14.5px] leading-relaxed">
-                    {c.description}
-                  </p>
-=======
                   className="group flex flex-col justify-between p-7 bg-gray-50/60 border border-gray-100 rounded-[24px] hover:border-accent/40 hover:bg-blue-50/20 transition-all duration-300 hover:shadow-sm"
                 >
                   <div>
@@ -227,7 +168,6 @@ export default function CollaborationPage() {
                     <span>Propose {c.title} Brief</span>
                     <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
                   </div>
->>>>>>> 508c26f (Redesign collaboration page and update task board)
                 </Link>
               );
             })}
@@ -263,10 +203,6 @@ export default function CollaborationPage() {
         </section>
       </div>
 
-<<<<<<< HEAD
-      {/* Reusing the engagement model component the user wanted here */}
-      <EngagementModel />
-=======
       {/* Reusing the engagement model component */}
       <EngagementModel />
 
@@ -296,7 +232,6 @@ export default function CollaborationPage() {
           </div>
         </div>
       </section>
->>>>>>> 508c26f (Redesign collaboration page and update task board)
     </main>
   );
 }

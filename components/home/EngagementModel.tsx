@@ -48,11 +48,7 @@ const steps = [
 
 export default function EngagementModel() {
   return (
-<<<<<<< HEAD
-    <section className="py-24 bg-[#F4F6FF]">
-=======
     <section className="py-24 bg-[#F4F6FF] overflow-hidden">
->>>>>>> 508c26f (Redesign collaboration page and update task board)
       <div className="max-w-7xl mx-auto px-6">
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
