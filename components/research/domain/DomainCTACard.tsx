@@ -1,10 +1,15 @@
 import React from 'react';
+import Link from 'next/link';
 import { DomainData } from '@/lib/data/researchDomains';
 import { ArrowRight, Bell } from 'lucide-react';
 
 export default function DomainCTACard({ data }: { data: DomainData }) {
   const isWaitlist = data.ctaButtonText.toLowerCase().includes('stay tuned');
   const ButtonIcon = data.ctaButtonIcon ? (isWaitlist ? Bell : ArrowRight) : null;
+
+  const targetHref = isWaitlist
+    ? `/contact?subject=${encodeURIComponent(`${data.tag} Research Inquiry`)}`
+    : '/collaboration';
 
   return (
     <div className="bg-[#FAFBFF] border-2 border-gray-100 rounded-[24px] shadow-[0_8px_32px_rgba(0,0,0,0.03)] overflow-hidden">
@@ -24,10 +29,13 @@ export default function DomainCTACard({ data }: { data: DomainData }) {
             {data.ctaDescription}
           </p>
 
-          <button className="flex items-center gap-3 bg-slate-900 hover:bg-black text-white px-6 py-3 rounded-full text-sm font-semibold transition-transform hover:scale-105 duration-300">
+          <Link
+            href={targetHref}
+            className="inline-flex items-center gap-3 bg-slate-900 hover:bg-black text-white px-6 py-3 rounded-full text-sm font-semibold transition-transform hover:scale-105 duration-300"
+          >
             {data.ctaButtonText}
             {ButtonIcon && <ButtonIcon size={16} strokeWidth={2.5} />}
-          </button>
+          </Link>
         </div>
 
         {/* Right Column (Value Props Grid) */}

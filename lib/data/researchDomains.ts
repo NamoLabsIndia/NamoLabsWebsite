@@ -110,7 +110,7 @@ export const researchDomains: Record<string, DomainData> = {
     ctaTag: 'ADVANCING SECURE TOMORROW',
     ctaTitle: 'Building the Future of Secure Communication.',
     ctaDescription: 'We are working on cutting-edge cryptographic technologies to protect what matters most.',
-    ctaButtonText: 'Stay Tuned',
+    ctaButtonText: 'Collaborate on Cryptography',
     ctaButtonIcon: true,
     valueProps: [
       { icon: Microscope, title: 'Research-Driven', description: 'Deep research in emerging cryptographic paradigms.' },

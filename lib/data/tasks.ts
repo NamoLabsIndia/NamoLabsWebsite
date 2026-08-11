@@ -182,7 +182,7 @@ export const TASKS: Task[] = [
     assignee: "Anirudh",
     effort: "normal",
     priority: "P1",
-    status: "todo",
+    status: "done",
     notes:
       "Normal pass across shared domain template. Fix decorative Stay Tuned / Collaborate buttons so they navigate or open contact.",
     acceptance:
