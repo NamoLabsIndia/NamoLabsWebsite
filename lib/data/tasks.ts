@@ -195,7 +195,7 @@ export const TASKS: Task[] = [
     assignee: "Anirudh",
     effort: "normal",
     priority: "P1",
-    status: "todo",
+    status: "done",
     notes: "Same template polish as cryptography. Keep content accurate.",
     acceptance: "Consistent UI with other research domains; CTAs work.",
   },

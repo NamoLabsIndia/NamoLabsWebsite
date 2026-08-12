@@ -78,7 +78,7 @@ export const researchDomains: Record<string, DomainData> = {
     ctaTag: 'BUILDING THE DECENTRALIZED FUTURE',
     ctaTitle: 'Research Today. Decentralized Tomorrow.',
     ctaDescription: 'We are committed to pushing the boundaries of blockchain technology and building the infrastructure for a trustless, transparent and decentralized world.',
-    ctaButtonText: 'Stay Tuned',
+    ctaButtonText: 'Collaborate on Blockchain',
     ctaButtonIcon: true,
     valueProps: [
       { icon: Users, title: 'Research-Driven', description: 'Deep research in blockchain protocols, consensus mechanisms and security.' },
