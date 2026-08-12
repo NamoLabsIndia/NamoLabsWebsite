@@ -145,9 +145,9 @@ export const researchDomains: Record<string, DomainData> = {
     ],
 
     ctaTag: 'COLLABORATE WITH US',
-    ctaTitle: 'Let\'s Build the Future, Together.',
+    ctaTitle: "Let's Build the Future, Together.",
     ctaDescription: 'We are always open to collaborating with researchers, institutions and innovators who share our vision for a better tomorrow.',
-    ctaButtonText: 'Let\'s Collaborate',
+    ctaButtonText: 'Collaborate on AI Research',
     ctaButtonIcon: true,
     valueProps: [
       { icon: Users, title: 'Open to Researchers', description: 'Work with our team on foundational AI research, from model architecture to responsible deployment practices.' },
