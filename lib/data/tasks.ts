@@ -217,7 +217,7 @@ export const TASKS: Task[] = [
     assignee: "Anirudh",
     effort: "normal",
     priority: "P1",
-    status: "todo",
+    status: "done",
     notes: "Coming Soon state polish.",
     acceptance: "Consistent with AI/Cloud domain treatment.",
   },
