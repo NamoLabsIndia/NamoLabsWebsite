@@ -5,7 +5,15 @@ import Link from "next/link";
 import { AlertCircle, ArrowRight, Loader2 } from "lucide-react";
 import ApplyIntro from "@/components/careers/apply/ApplyIntro";
 import FormSection from "@/components/careers/apply/FormSection";
-import ResumeField from "@/components/careers/apply/ResumeField";
+import ResumeField, {
+  type RejectedFile,
+} from "@/components/careers/apply/ResumeField";
+import EmailField from "@/components/careers/apply/EmailField";
+import PhoneField from "@/components/careers/apply/PhoneField";
+import ProfileUrlField, {
+  GITHUB_SERVICE,
+  LINKEDIN_SERVICE,
+} from "@/components/careers/apply/ProfileUrlField";
 import SubmissionSuccess from "@/components/careers/apply/SubmissionSuccess";
 import {
   FieldError,
@@ -18,11 +26,10 @@ import {
   FIELD_ORDER,
   HONEYPOT_FIELD,
   NAME_MAX_LENGTH,
-  PHONE_MAX_LENGTH,
   STORY_MAX_LENGTH,
   STORY_MIN_LENGTH,
-  URL_MAX_LENGTH,
   validateApplication,
+  validateResume,
   type ApplicationErrors,
   type ApplicationField,
   type ApplicationValues,
@@ -64,6 +71,7 @@ function messageForStatus(status: number, serverMessage?: string): string {
 export default function ApplicationForm({ role }: { role?: Role }) {
   const [values, setValues] = useState<ApplicationValues>(EMPTY_APPLICATION);
   const [resume, setResume] = useState<File | null>(null);
+  const [rejectedResume, setRejectedResume] = useState<RejectedFile | null>(null);
   const [privacyConsent, setPrivacyConsent] = useState(false);
   const [errors, setErrors] = useState<ApplicationErrors>({});
   const [formError, setFormError] = useState<string | null>(null);
@@ -89,6 +97,40 @@ export default function ApplicationForm({ role }: { role?: Role }) {
     },
     []
   );
+
+  /**
+   * Files are checked the moment they're picked. An unacceptable file is never
+   * stored — holding onto it would let a 14MB PDF sit in the form looking
+   * attached until submit failed.
+   */
+  const handleResumeSelect = (next: File | null) => {
+    if (!next) {
+      setResume(null);
+      setRejectedResume(null);
+      return;
+    }
+
+    const reason = validateResume({
+      name: next.name,
+      size: next.size,
+      type: next.type,
+    });
+
+    if (reason) {
+      setResume(null);
+      setRejectedResume({ name: next.name, size: next.size, reason });
+      setErrors((previous) =>
+        previous.resume ? { ...previous, resume: undefined } : previous,
+      );
+      return;
+    }
+
+    setResume(next);
+    setRejectedResume(null);
+    setErrors((previous) =>
+      previous.resume ? { ...previous, resume: undefined } : previous,
+    );
+  };
 
   const focusField = (field: ApplicationField) => {
     const element = document.getElementById(field);
@@ -218,42 +260,28 @@ export default function ApplicationForm({ role }: { role?: Role }) {
               onChange={update("fullName")}
               error={errors.fullName}
               disabled={isSubmitting}
-              placeholder="Ada Lovelace"
+              placeholder="Ayush Burnwal"
               autoComplete="name"
               maxLength={NAME_MAX_LENGTH}
             />
-            <TextField
-              id="email"
-              label="Email address"
-              type="email"
-              inputMode="email"
+            <EmailField
               required
               value={values.email}
               onChange={update("email")}
               error={errors.email}
               disabled={isSubmitting}
-              placeholder="you@example.com"
-              autoComplete="email"
             />
           </div>
 
           {/* Phone sits in the first column of a matching grid so it lines up
               with the name field above rather than spanning the full width. */}
           <div className="grid gap-7 sm:grid-cols-2">
-            <TextField
-              id="phone"
-              label="Phone number"
-              type="tel"
-              inputMode="tel"
+            <PhoneField
               required
               value={values.phone}
               onChange={update("phone")}
               error={errors.phone}
               disabled={isSubmitting}
-              placeholder="+91 98765 43210"
-              autoComplete="tel"
-              maxLength={PHONE_MAX_LENGTH}
-              hint="Include your country code."
             />
           </div>
         </FormSection>
@@ -264,31 +292,23 @@ export default function ApplicationForm({ role }: { role?: Role }) {
           description="Where we can see what you've built. Both are optional."
         >
           <div className="grid gap-7 sm:grid-cols-2">
-            <TextField
+            <ProfileUrlField
               id="linkedin"
               label="LinkedIn"
-              type="url"
-              inputMode="url"
+              service={LINKEDIN_SERVICE}
               value={values.linkedin}
               onChange={update("linkedin")}
               error={errors.linkedin}
               disabled={isSubmitting}
-              placeholder="linkedin.com/in/you"
-              autoComplete="url"
-              maxLength={URL_MAX_LENGTH}
             />
-            <TextField
+            <ProfileUrlField
               id="githubOrPortfolio"
-              label="GitHub / portfolio"
-              type="url"
-              inputMode="url"
+              label="GitHub"
+              service={GITHUB_SERVICE}
               value={values.githubOrPortfolio}
               onChange={update("githubOrPortfolio")}
               error={errors.githubOrPortfolio}
               disabled={isSubmitting}
-              placeholder="github.com/you"
-              autoComplete="url"
-              maxLength={URL_MAX_LENGTH}
             />
           </div>
 
@@ -326,14 +346,10 @@ export default function ApplicationForm({ role }: { role?: Role }) {
         >
           <ResumeField
             file={resume}
+            rejected={rejectedResume}
             error={errors.resume}
             disabled={isSubmitting}
-            onSelect={(file) => {
-              setResume(file);
-              setErrors((previous) =>
-                previous.resume ? { ...previous, resume: undefined } : previous
-              );
-            }}
+            onSelect={handleResumeSelect}
           />
 
           <div className="border-t border-gray-100 pt-7">
