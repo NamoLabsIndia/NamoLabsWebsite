@@ -9,14 +9,17 @@ const nextSteps = [
   {
     label: "Review",
     body: "A member of the team reads every application personally.",
+    state: "Happening now",
   },
   {
     label: "Response",
     body: "We'll get back to you by email, whether or not there's a fit.",
+    state: "Next",
   },
   {
     label: "Conversation",
     body: "If there's a match, we'll set up a first call to talk through your work.",
+    state: "If there's a match",
   },
 ];
 
@@ -66,21 +69,67 @@ export default function SubmissionSuccess({ role }: { role?: string }) {
         We review every submission carefully and will be in touch by email.
       </p>
 
-      <div className="mt-12 grid max-w-[860px] gap-px border-y border-gray-200 bg-gray-200 sm:grid-cols-3">
-        {nextSteps.map((step, index) => (
-          <div key={step.label} className="bg-white px-1 py-6 sm:px-6 sm:first:pl-0">
-            <span className="text-[11px] font-bold tracking-[0.2em] text-accent">
-              {String(index + 1).padStart(2, "0")}
-            </span>
-            <h2 className="mt-2 text-[15px] font-bold text-namo-black">
-              {step.label}
-            </h2>
-            <p className="mt-1.5 text-[13px] leading-relaxed text-gray-500">
-              {step.body}
-            </p>
-          </div>
-        ))}
-      </div>
+      {/* What happens next.
+          The previous version was three columns of small grey text separated
+          by hairlines — it read as a footnote, not as the answer to the one
+          question everyone has after submitting. It now carries a heading, a
+          progress rail that shows where the application actually is, and type
+          large enough to be read rather than skimmed past. */}
+      <section aria-labelledby="next-steps" className="mt-16 max-w-[900px]">
+        <h2
+          id="next-steps"
+          className="text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500"
+        >
+          What happens next
+        </h2>
+
+        <ol className="mt-7 grid gap-x-8 gap-y-9 sm:grid-cols-3">
+          {nextSteps.map((step, index) => {
+            const current = index === 0;
+            return (
+              <li key={step.label} className="relative">
+                {/* Rail: a filled segment for the stage the application is in,
+                    hollow for the stages still ahead of it. */}
+                <div
+                  aria-hidden="true"
+                  className="flex items-center gap-2.5"
+                >
+                  <span
+                    className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-bold tabular-nums ${
+                      current
+                        ? "bg-accent text-white"
+                        : "border-2 border-gray-200 bg-white text-gray-500"
+                    }`}
+                  >
+                    {index + 1}
+                  </span>
+                  <span
+                    className={`h-[2px] flex-1 rounded-full ${
+                      current ? "bg-accent/30" : "bg-gray-200"
+                    }`}
+                  />
+                </div>
+
+                <p
+                  className={`mt-4 text-[10px] font-bold uppercase tracking-[0.18em] ${
+                    current ? "text-accent" : "text-gray-500"
+                  }`}
+                >
+                  {step.state}
+                </p>
+
+                <h3 className="mt-2 text-[19px] font-bold tracking-tight text-namo-black">
+                  {step.label}
+                </h3>
+
+                <p className="mt-2 text-[14px] leading-relaxed text-gray-600">
+                  {step.body}
+                </p>
+              </li>
+            );
+          })}
+        </ol>
+      </section>
 
       <div className="mt-12 flex flex-col gap-3 pb-8 sm:flex-row">
         <Link
