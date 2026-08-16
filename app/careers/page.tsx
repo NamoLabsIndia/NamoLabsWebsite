@@ -1,11 +1,16 @@
 import React from "react";
-import Link from "next/link";
-import Breadcrumbs from "@/components/ui/Breadcrumbs";
-import { ArrowRight, FileText, Mail } from "lucide-react";
+import Breadcrumb from "@/components/shared/Breadcrumb";
+import RolesBoard from "@/components/careers/RolesBoard";
+import WhyWorkHere from "@/components/careers/WhyWorkHere";
+import TeamQuote from "@/components/careers/TeamQuote";
+import HowToApply from "@/components/careers/HowToApply";
+import FinalCTA from "@/components/careers/FinalCTA";
+import { roles } from "@/lib/data/roles";
 
 export const metadata = {
   title: "Careers",
-  description: "Join Namo Labs — we are looking for researchers, engineers, designers, and operators who want to build deep technology that serves humanity. Explore open roles.",
+  description:
+    "Join Namo Labs — we are looking for researchers, engineers, designers, and operators who want to build deep technology that serves humanity. Explore open roles.",
   alternates: {
     canonical: "https://namolabs.in/careers",
   },
@@ -17,77 +22,59 @@ export default function CareersPage() {
     { label: "Company", href: "/about" },
     { label: "Careers" },
   ];
+  const isHiring = roles.length > 0;
 
   return (
-    <main className="bg-white min-h-screen pt-[104px]">
-      <Breadcrumbs items={breadcrumbItems} />
-      
-      <section className="py-20 md:py-32 overflow-hidden">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          
-          <p className="text-[12px] font-bold tracking-[0.15em] text-accent uppercase mb-6">
+    <main className="min-h-screen bg-white pt-[104px]">
+      {/* Same breadcrumb component as /careers/apply and /team — the two
+          careers pages previously rendered visually different breadcrumbs. */}
+      <div className="mx-auto w-full max-w-[1000px] px-6 pt-12">
+        <Breadcrumb items={breadcrumbItems} />
+      </div>
+
+      <section className="overflow-hidden pb-10 pt-10 md:pt-16">
+        <div className="mx-auto max-w-4xl px-6 text-center">
+          <p className="mb-6 text-[12px] font-bold uppercase tracking-[0.15em] text-accent">
             CAREERS AT NAMO LABS
           </p>
-          
-          <h1 className="text-4xl md:text-5xl lg:text-[64px] font-bold text-namo-black tracking-tight leading-[1.1] mb-8">
+
+          <h1 className="mb-8 text-4xl font-bold leading-[1.1] tracking-tight text-namo-black md:text-5xl lg:text-[64px]">
             Build the Future <br className="hidden sm:block" />
             <span className="text-accent">With Us.</span>
           </h1>
-          
-          <p className="text-[16px] md:text-[18px] text-gray-600 leading-[1.65] font-medium max-w-2xl mx-auto mb-16">
-            We are a team of researchers, engineers, and problem-solvers dedicated to creating technologies that strengthen society and protect digital infrastructure. If you're passionate about cryptography, blockchain, AI, quantum computing, or cloud systems, we want to hear from you.
+
+          <p className="mx-auto max-w-2xl text-[16px] font-medium leading-[1.65] text-gray-600 md:text-[18px]">
+            We are a team of researchers, engineers, and problem-solvers
+            dedicated to creating technologies that strengthen society and
+            protect digital infrastructure. If you&apos;re passionate about
+            cryptography, blockchain, AI, quantum computing, or cloud systems, we
+            want to hear from you.
           </p>
-
-          <div className="bg-[#f4f7ff] rounded-[32px] p-10 md:p-16 border border-blue-50 relative overflow-hidden">
-            {/* Background elements */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4 pointer-events-none" />
-            
-            <div className="relative z-10 flex flex-col items-center">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-accent shadow-sm mb-6">
-                <Mail size={28} strokeWidth={1.5} />
-              </div>
-              <h3 className="text-2xl font-bold text-namo-black mb-4">
-                No open roles right now.
-              </h3>
-              <p className="text-gray-600 text-[15px] max-w-md mx-auto leading-relaxed mb-8">
-                We&apos;re not actively hiring at the moment, but we are always on the lookout for exceptional talent. Open an application or email your resume — we&apos;ll reach out when a role fits.
-              </p>
-
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full">
-                <Link
-                  href="/careers/apply"
-                  className="inline-flex items-center justify-center gap-2 bg-accent text-white font-semibold px-8 py-4 rounded-full text-[14px] hover:bg-[#2f4be0] transition-colors shadow-lg shadow-accent/20 w-full sm:w-auto"
-                >
-                  <FileText size={16} /> Open Application
-                </Link>
-                <a
-                  href="mailto:info@namolabs.in"
-                  className="inline-flex items-center justify-center gap-2 bg-namo-black text-white font-semibold px-8 py-4 rounded-full text-[14px] hover:bg-gray-800 transition-colors shadow-lg shadow-black/10 w-full sm:w-auto"
-                >
-                  Email your resume <ArrowRight size={16} />
-                </a>
-              </div>
-              <p className="mt-3 text-[12px] text-gray-500">
-                Prefer the form?{" "}
-                <Link
-                  href="/careers/apply"
-                  className="font-semibold text-accent hover:underline underline-offset-2"
-                >
-                  Apply for a role at Namo Labs
-                </Link>
-              </p>
-              <Link
-                href="/team#culture"
-                className="mt-5 inline-flex items-center gap-1.5 text-[13px] font-medium text-gray-500 hover:text-accent transition-colors"
-              >
-                See what it&apos;s like to work here <ArrowRight size={12} />
-              </Link>
-            </div>
-          </div>
-
         </div>
       </section>
+
+      <WhyWorkHere />
+      <TeamQuote />
+
+      <section id="open-roles" className="px-6 pb-28 pt-4">
+        <div className="mx-auto max-w-[1000px]">
+          <div className="mb-8 flex flex-wrap items-baseline justify-between gap-3">
+            <h2 className="text-2xl font-extrabold tracking-tight text-namo-black sm:text-3xl">
+              Open Roles
+            </h2>
+            {isHiring && (
+              <p className="text-[14px] text-gray-500">
+                {roles.length} {roles.length === 1 ? "position" : "positions"} open
+              </p>
+            )}
+          </div>
+
+          <RolesBoard />
+        </div>
+      </section>
+
+      <HowToApply />
+      <FinalCTA />
     </main>
   );
 }

@@ -1,9 +1,6 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Send, Lightbulb, Globe, Users, Heart } from "lucide-react";
-import Reveal from "@/components/shared/Reveal";
+import { Mail, Send, Lightbulb, Globe, Users, Heart } from "lucide-react";
 
 
 const values = [
@@ -39,9 +36,12 @@ export default function FinalCTA() {
           ))}
         </div>
 
+        {/* No scroll-triggered entrance animation — see the note in
+            WhyWorkHere.tsx. This is the section's only CTA to apply or email;
+            it must render immediately, not after an IntersectionObserver fires. */}
         <div className="relative grid items-center gap-10 lg:grid-cols-2">
           {/* Left — text */}
-          <Reveal>
+          <div>
             <h2 className="text-3xl font-extrabold leading-tight tracking-tight text-namo-black sm:text-4xl">
               Don&apos;t see your role?
               <br />
@@ -70,25 +70,30 @@ export default function FinalCTA() {
 
             <div className="mt-7 flex flex-wrap gap-4">
               <Link
-                href="/contact"
+                href="/careers/apply"
                 className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-[13px] font-semibold text-white transition-all duration-300 hover:scale-[1.02] hover:bg-[#2f4be0] hover:shadow-lg hover:shadow-accent/20"
               >
                 Send an Open Application <Send size={13} />
               </Link>
-              <Link
-                href="/partnership"
+              <a
+                href="mailto:info@namolabs.in"
                 className="inline-flex items-center gap-2 rounded-full border border-gray-300 bg-white px-5 py-2.5 text-[13px] font-semibold text-namo-black transition-all duration-300 hover:scale-[1.02] hover:bg-gray-50 hover:shadow-sm"
               >
-                View Partnerships <ArrowRight size={13} />
-              </Link>
+                <Mail size={13} /> Email Your Resume
+              </a>
             </div>
-          </Reveal>
+          </div>
 
           {/* Right — decorative art + tagline */}
-          <Reveal direction="scale" delay={0.1} className="relative flex flex-col items-center justify-center py-4">
+          <div className="relative flex flex-col items-center justify-center py-4">
+            {/* Purely decorative: the "For Humanity Always." tagline is already
+                stated as real text directly below. Empty alt + aria-hidden stops
+                screen readers announcing it twice, and prevents alt text from
+                ghosting over that heading if the image ever fails to load. */}
             <img
               src="/company/join-art.jpg"
-              alt="Namo Labs — For Humanity Always"
+              alt=""
+              aria-hidden="true"
               className="relative mx-auto w-full max-w-[260px] opacity-80 mix-blend-multiply [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_75%)] [clip-path:inset(0_0_20%_0)] -mb-6"
             />
             <div className="flex flex-col items-center text-center">
@@ -97,7 +102,7 @@ export default function FinalCTA() {
               </p>
               <div className="relative mt-3 h-[4px] w-12 rounded-full bg-accent" />
             </div>
-          </Reveal>
+          </div>
         </div>
       </div>
     </section>
