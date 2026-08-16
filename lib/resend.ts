@@ -24,3 +24,9 @@ export const FROM_EMAIL =
   process.env.CONTACT_FROM_EMAIL || 'Namo Labs <onboarding@resend.dev>';
 
 export const TO_EMAIL = process.env.CONTACT_TO_EMAIL || 'info@namolabs.in';
+
+/**
+ * Career applications are routed to a dedicated hiring inbox when one is
+ * configured, and otherwise fall back to the shared contact inbox.
+ */
+export const CAREERS_TO_EMAIL = process.env.CAREERS_TO_EMAIL || TO_EMAIL;

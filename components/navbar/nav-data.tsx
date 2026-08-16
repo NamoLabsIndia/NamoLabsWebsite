@@ -15,6 +15,7 @@ import {
   Lock,
   Users,
   Globe,
+  Workflow,
 } from "lucide-react";
 import React from "react";
 
@@ -152,6 +153,12 @@ export const consultingItems: NavSection[] = [
         description: "Build a sustainable future with responsible solutions.",
         href: "/consulting#sustainability",
         icon: <Leaf size={18} className="text-accent" />,
+      },
+      {
+        label: "Our Process",
+        description: "The six phases every engagement runs through.",
+        href: "/process",
+        icon: <Workflow size={18} className="text-accent" />,
       },
     ],
   },

@@ -251,6 +251,15 @@ function ConsultingMenu() {
               </Link>
             ))}
           </div>
+
+          {/* /process was previously reachable only from the footer and a link
+              partway down /consulting. It belongs in the menu that owns it. */}
+          <Link
+            href="/process"
+            className="inline-flex items-center gap-1 text-[11px] text-accent font-semibold mt-5 hover:underline underline-offset-2"
+          >
+            How we work — our six-phase process <ArrowUpRight size={11} />
+          </Link>
         </div>
 
         {/* Right — featured card + CTA */}

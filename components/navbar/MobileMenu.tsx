@@ -38,6 +38,7 @@ const navGroups = [
       { label: "Enterprise Solutions", href: "/consulting#enterprise" },
       { label: "Network Solutions", href: "/consulting#network" },
       { label: "Sustainability Services", href: "/consulting#sustainability" },
+      { label: "Our Process", href: "/process" },
     ],
   },
   {

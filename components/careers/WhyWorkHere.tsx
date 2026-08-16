@@ -1,7 +1,4 @@
-"use client";
-
 import React from "react";
-import Reveal from "@/components/shared/Reveal";
 
 const principles = [
   {
@@ -30,6 +27,15 @@ const principles = [
   },
 ];
 
+/**
+ * Deliberately no scroll-triggered entrance animation here. This content is
+ * essential page copy — a visitor deciding whether to apply reads it, not
+ * decoration — so it must not depend on client-side JS or an
+ * IntersectionObserver firing to become visible. (An earlier version wrapped
+ * this in the site's `Reveal` component, which SSRs with `opacity:0` baked
+ * into the initial HTML; a curl/grep check still finds the text, but a real
+ * screenshot before hydration shows a blank section.)
+ */
 export default function WhyWorkHere() {
   return (
     <section className="bg-white px-5 py-24 sm:px-8">
@@ -37,7 +43,7 @@ export default function WhyWorkHere() {
         <div className="grid gap-14 lg:grid-cols-[1fr_2fr] lg:gap-20">
           {/* Left — sticky section anchor */}
           <div className="relative">
-            <Reveal direction="left" className="sticky top-32">
+            <div className="sticky top-32">
               <h2 className="text-4xl font-extrabold leading-[1.05] tracking-tight text-namo-black sm:text-[42px]">
                 More than<br />a job.
               </h2>
@@ -47,16 +53,16 @@ export default function WhyWorkHere() {
                 These are the principles that define how we work, what we build,
                 and why it matters.
               </p>
-            </Reveal>
+            </div>
           </div>
 
           {/* Right — principles list, 2-column on lg with editorial numbering */}
           <div className="grid gap-x-12 gap-y-10 sm:grid-cols-2">
             {principles.map((p, i) => (
-              <Reveal key={p.title} delay={i * 0.08} direction="up" className="group">
+              <div key={p.title} className="group">
                 <div className="border-t border-gray-200 pt-6 transition-colors duration-300 group-hover:border-accent">
                   <div className="flex items-start gap-4">
-                    <span className="mt-1 flex shrink-0 items-center text-[10px] font-bold uppercase tracking-widest text-gray-400 transition-colors duration-300 group-hover:text-accent">
+                    <span className="mt-1 flex shrink-0 items-center text-[10px] font-bold uppercase tracking-widest text-gray-500 transition-colors duration-300 group-hover:text-accent">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <div>
@@ -69,7 +75,7 @@ export default function WhyWorkHere() {
                     </div>
                   </div>
                 </div>
-              </Reveal>
+              </div>
             ))}
           </div>
         </div>

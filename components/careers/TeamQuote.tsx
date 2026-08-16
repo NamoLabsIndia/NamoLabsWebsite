@@ -1,10 +1,15 @@
-"use client";
-
 import React from "react";
 import { Quote, ArrowRight } from "lucide-react";
-import Reveal from "@/components/shared/Reveal";
 import PhotoSlot from "@/components/shared/PhotoSlot";
 
+/**
+ * No scroll-triggered entrance animation — see the note in WhyWorkHere.tsx.
+ * This block previously wrapped its quote and photo in the site's `Reveal`
+ * component, which renders `opacity:0` in the server HTML until client-side
+ * JS observes it in view. That left this entire section blank on first
+ * paint (visible as an empty bordered box) whenever a screenshot was taken,
+ * hydration was slow, or JS didn't run at all.
+ */
 export default function TeamQuote() {
   return (
     <section className="bg-white px-5 py-24 sm:px-8">
@@ -12,7 +17,7 @@ export default function TeamQuote() {
         {/* Single solid border, no paired shadow — fixes ghost-card + over-rounding */}
         <div className="grid items-center gap-10 rounded-2xl bg-white p-9 ring-1 ring-black/8 sm:p-14 lg:grid-cols-2 lg:gap-14">
           {/* Left — quote */}
-          <Reveal direction="left">
+          <div>
             <Quote size={42} className="text-accent" fill="currentColor" />
             <blockquote className="mt-6 text-[28px] font-bold leading-snug tracking-tight text-namo-black sm:text-[32px]">
               The best teams aren&apos;t just talented — they&apos;re driven by a shared
@@ -42,17 +47,17 @@ export default function TeamQuote() {
                 Meet the Full Team <ArrowRight size={14} />
               </a>
             </div>
-          </Reveal>
+          </div>
 
           {/* Right — photo */}
-          <Reveal direction="right" className="h-[330px] lg:h-[420px]">
+          <div className="h-[330px] lg:h-[420px]">
             <PhotoSlot
               src="/careers/culture-summit.png"
               alt="Namo Labs team at a summit"
               className="h-full w-full rounded-xl"
               imgClassName="object-cover object-center"
             />
-          </Reveal>
+          </div>
         </div>
       </div>
     </section>

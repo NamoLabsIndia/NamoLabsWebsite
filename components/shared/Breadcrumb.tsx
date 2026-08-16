@@ -23,7 +23,9 @@ export default function Breadcrumb({ items }: { items: Crumb[] }) {
                 {item.label}
               </Link>
             ) : (
-              <span className={isLast ? "text-gray-400" : "font-medium text-accent"}>
+              // gray-500 rather than gray-400: the current-page crumb is real
+              // text and needs to clear WCAG AA (4.83:1 vs 2.54:1).
+              <span className={isLast ? "text-gray-500" : "font-medium text-accent"}>
                 {item.label}
               </span>
             )}
