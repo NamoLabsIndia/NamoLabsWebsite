@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Namo Labs — Team (Preview)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'namo-black': '#0A0A0A',
+            'namo-faint': '#fafafa'
+          },
+          fontFamily: {
+            'spartan': ['"League Spartan"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+  </style>
+
+  <!-- Import Map for bare module resolution -->
+  <script type="importmap">
+    {
+      "imports": {
+        "react": "https://esm.sh/react@18.2.0",
+        "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+        "lucide-react": "https://esm.sh/lucide-react@latest?external=react"
+      }
+    }
+  </script>
+
+  <!-- Load Babel standalone globally -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module">
+    import React from 'react';
+    import { createRoot } from 'react-dom/client';
+    
+    async function loadApp() {
+      try {
+        // Fetch TeamPage.jsx
+        const response = await fetch('./TeamPage.jsx');
+        if (!response.ok) throw new Error("Could not load TeamPage.jsx");
+        const jsxCode = await response.text();
+        
+        // Transform JSX to JS using global Babel
+        const transformed = Babel.transform(jsxCode, {
+          presets: [['react', { runtime: 'classic' }]]
+        }).code;
+        
+        // Create an Object URL from the transformed code
+        const blob = new Blob([transformed], { type: 'application/javascript' });
+        const url = URL.createObjectURL(blob);
+        
+        // Dynamically import the module
+        const module = await import(url);
+        const TeamPage = module.default;
+        
+        // Render
+        const root = createRoot(document.getElementById('root'));
+        root.render(React.createElement(TeamPage));
+      } catch (err) {
+        document.getElementById('root').innerHTML = `<div style="color:red; padding: 20px; font-family: monospace;">Error loading preview: ${err.message}<br/>Check browser console for more details.</div>`;
+        console.error(err);
+      }
+    }
+
+    loadApp();
+  </script>
+</body>
+</html>
