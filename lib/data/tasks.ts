@@ -289,7 +289,7 @@ export const TASKS: Task[] = [
     assignee: "Anirudh",
     effort: "fix",
     priority: "P2",
-    status: "todo",
+    status: "done",
     notes:
       "ResearchUpdatesList has empty feed, decorative Subscribe, and /updates link with no route. Fix or remove dead controls; link to /insights instead of /updates.",
     acceptance:
