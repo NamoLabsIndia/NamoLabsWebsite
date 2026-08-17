@@ -228,7 +228,7 @@ export const TASKS: Task[] = [
     assignee: "Anirudh",
     effort: "normal",
     priority: "P1",
-    status: "todo",
+    status: "done",
     notes: "Coming Soon state polish. Close the research domain set.",
     acceptance: "All five research domain pages visually consistent.",
   },

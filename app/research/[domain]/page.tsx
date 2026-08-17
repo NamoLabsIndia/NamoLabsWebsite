@@ -8,6 +8,8 @@ import DomainHeroCard from '@/components/research/domain/DomainHeroCard';
 import DomainFeaturesCard from '@/components/research/domain/DomainFeaturesCard';
 import DomainCTACard from '@/components/research/domain/DomainCTACard';
 
+export const dynamicParams = true;
+
 export function generateStaticParams() {
   return Object.keys(researchDomains).map((domain) => ({
     domain: domain,
