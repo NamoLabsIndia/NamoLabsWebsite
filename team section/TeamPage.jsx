@@ -472,6 +472,14 @@ export default function TeamPage() {
         {/* Contact CTA Section */}
         <section className="px-5 pb-24 sm:px-8 bg-white">
           <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[28px] bg-gradient-to-br from-[#eef2ff] via-[#f5f7ff] to-[#dbe6ff] p-6 ring-1 ring-black/5 sm:p-10">
+            {/* Contact Background Image */}
+            <img
+              src="https://namolabs.in/Contact%20bg.png"
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full object-cover object-right pointer-events-none select-none"
+              style={{ opacity: 0.35, maskImage: 'linear-gradient(to right, transparent 20%, black 60%)', WebkitMaskImage: 'linear-gradient(to right, transparent 20%, black 60%)' }}
+            />
             <div className="relative z-10 grid gap-12 lg:grid-cols-2 lg:gap-8">
               <div>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-blue-600">Let's build the future</p>
