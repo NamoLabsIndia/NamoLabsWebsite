@@ -88,7 +88,7 @@ function OfferLetterContent() {
   };
 
   const OfferLetterPage1 = () => (
-    <div className="relative w-[210mm] h-[297mm] bg-white shadow-xl overflow-hidden flex flex-col box-border shrink-0">
+    <div className="relative w-[210mm] h-[297mm] bg-white shadow-xl overflow-hidden flex flex-col box-border shrink-0 print:shadow-none print:break-after-page">
       <GradientBars className="top-0 left-0 w-full h-64 opacity-50" />
       <div className="px-16 pt-16 relative z-10 flex justify-between items-start">
         <div className="flex items-start">
@@ -125,7 +125,7 @@ function OfferLetterContent() {
           </div>
           <div className="flex flex-col items-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/signature.svg" alt="CEO Signature" className="h-24 w-auto object-contain mb-1" />
+            <img src="/signature.png" alt="CEO Signature" className="h-24 w-auto object-contain mb-1" />
             <div className="text-[14px] font-bold text-black leading-tight">Namoj Periakumar</div>
             <div className="text-[12px] text-neutral-700 mt-0.5">Founder &amp; CEO</div>
           </div>
@@ -148,7 +148,7 @@ function OfferLetterContent() {
   );
 
   const OfferLetterPage2 = () => (
-    <div className="relative w-[210mm] h-[297mm] bg-white shadow-xl overflow-hidden flex flex-col box-border shrink-0">
+    <div className="relative w-[210mm] h-[297mm] bg-white shadow-xl overflow-hidden flex flex-col box-border shrink-0 print:shadow-none print:break-after-page">
       <GradientBars className="top-0 left-0 w-full h-64 opacity-50" />
       <div className="px-16 pt-16 relative z-10 flex justify-between items-start">
         <div className="flex items-start">
