@@ -51,3 +51,22 @@ body {
 .logo-loop-pausable:hover {
   animation-play-state: paused;
 }
+
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  html, body {
+    width: 210mm;
+    height: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    background: white !important;
+  }
+  header, footer {
+    display: none !important;
+  }
+}
