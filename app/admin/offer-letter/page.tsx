@@ -65,6 +65,11 @@ function OfferLetterContent() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const searchParams = useSearchParams();
   const initialName = searchParams.get('candidateName') || 'John Doe';
@@ -218,7 +223,8 @@ function OfferLetterContent() {
     }
   };
 
-  if (!isAuthenticated) {
+  // Must be after all hooks — defer auth gate until after hydration
+  if (mounted && !isAuthenticated) {
     return (
       <div className="h-screen bg-[#06080A] flex flex-col items-center justify-center font-sans selection:bg-white selection:text-black">
         <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
