@@ -87,6 +87,10 @@ export default function Footer() {
   const pathname = usePathname();
   const isConsultingPage = pathname === "/consulting";
 
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
   return (
     <footer className={isConsultingPage ? "bg-black border-t border-white/10" : "bg-white border-t border-gray-100"}>
       <div className="max-w-7xl mx-auto px-6 pt-16 pb-8">

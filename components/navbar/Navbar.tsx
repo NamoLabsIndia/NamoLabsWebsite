@@ -29,6 +29,10 @@ export default function Navbar() {
   // Transparent always on consulting unless the dropdown is actively open
   const isTransparent = isConsulting && activeMenu === null;
 
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll, { passive: true });
