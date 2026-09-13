@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -86,8 +86,12 @@ const socials = [
 export default function Footer() {
   const pathname = usePathname();
   const isConsultingPage = pathname === "/consulting";
+  const [mounted, setMounted] = useState(false);
 
-  if (pathname?.startsWith("/admin")) {
+  useEffect(() => { setMounted(true); }, []);
+
+  // Only hide after client hydration to prevent server/client mismatch
+  if (mounted && pathname?.startsWith("/admin")) {
     return null;
   }
 

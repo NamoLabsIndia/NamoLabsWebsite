@@ -22,6 +22,7 @@ export default function Navbar() {
   const [scrolled, setScrolled]     = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mounted, setMounted]       = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
@@ -30,6 +31,7 @@ export default function Navbar() {
   const isTransparent = isConsulting && activeMenu === null;
 
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -46,7 +48,8 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  if (pathname?.startsWith("/admin")) {
+  // Only hide after client hydration to prevent server/client mismatch
+  if (mounted && pathname?.startsWith("/admin")) {
     return null;
   }
 
