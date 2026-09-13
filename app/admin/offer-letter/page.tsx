@@ -62,6 +62,10 @@ function GradientBars({ className }: { className?: string }) {
 }
 
 function OfferLetterContent() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
+
   const searchParams = useSearchParams();
   const initialName = searchParams.get('candidateName') || 'John Doe';
   const initialRole = searchParams.get('roleName') || 'Full Stack Developer';
@@ -205,6 +209,44 @@ function OfferLetterContent() {
     </div>
   );
 
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === 'namolabs2026namoj') {
+      setIsAuthenticated(true);
+    } else {
+      setError(true);
+    }
+  };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="h-screen bg-[#06080A] flex flex-col items-center justify-center font-sans selection:bg-white selection:text-black">
+        <div className="absolute inset-0 pointer-events-none opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+        <form onSubmit={handleLogin} className="flex flex-col gap-6 w-80 relative z-10 p-8 border border-white/10 bg-[#0a0d14] rounded-md shadow-2xl">
+          <div className="text-white text-center">
+            <div className="text-2xl font-medium tracking-tight mb-1">Namo Labs</div>
+            <div className="text-[10px] font-mono tracking-widest text-white/40 uppercase">Admin Access</div>
+          </div>
+          <div className="relative group">
+            <input 
+              type="password" 
+              value={password}
+              onChange={(e) => { setPassword(e.target.value); setError(false); }}
+              placeholder="Enter Password"
+              className="w-full bg-transparent border-b border-white/20 px-0 py-2 text-white outline-none focus:border-transparent transition-colors placeholder:text-white/20 text-sm"
+              autoFocus
+            />
+            <div className="absolute bottom-0 left-0 h-[1px] w-0 bg-blue-500 transition-all duration-500 group-focus-within:w-full" />
+          </div>
+          {error && <div className="text-red-400 text-xs text-center font-mono uppercase tracking-wider">Access Denied</div>}
+          <button type="submit" className="w-full py-3 bg-white text-black font-bold text-xs uppercase tracking-widest hover:bg-neutral-200 transition-colors mt-2">
+            Enter
+          </button>
+        </form>
+      </div>
+    );
+  }
+
   return (
     <div className="h-screen overflow-hidden bg-[#f4f4f5] print:h-auto print:overflow-visible print:bg-white font-sans text-neutral-900 selection:bg-black selection:text-white">
 
@@ -225,7 +267,16 @@ function OfferLetterContent() {
               </Link>
             </div>
 
-            <div className="w-full h-px bg-gradient-to-r from-white/10 to-transparent" />
+            <button onClick={() => window.print()} className="relative group w-full py-3.5 bg-[#0a0d14] border border-white/10 text-white/80 hover:text-white text-[11px] font-mono tracking-[0.2em] hover:bg-white/5 hover:border-white/20 transition-all duration-300 uppercase flex items-center justify-center gap-3 overflow-hidden rounded-sm">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" className="opacity-50 group-hover:opacity-100">
+                <polyline points="6 9 6 2 18 2 18 9" />
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+                <rect x="6" y="14" width="12" height="8" />
+              </svg>
+              <span>Print to PDF</span>
+            </button>
+
+            <div className="w-full h-px bg-gradient-to-r from-white/10 to-transparent my-1" />
 
             {/* Fields */}
             <div className="flex flex-col gap-6">
@@ -268,15 +319,6 @@ function OfferLetterContent() {
             </div>
 
             <div className="flex-1" />
-
-            <button onClick={() => window.print()} className="relative group w-full py-4 bg-[#0a0d14] border border-white/10 text-white/80 hover:text-white text-[11px] font-mono tracking-[0.2em] hover:bg-white/5 hover:border-white/20 transition-all duration-300 uppercase flex items-center justify-center gap-3 overflow-hidden rounded-sm">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" className="opacity-50 group-hover:opacity-100">
-                <polyline points="6 9 6 2 18 2 18 9" />
-                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
-                <rect x="6" y="14" width="12" height="8" />
-              </svg>
-              <span>Print to PDF</span>
-            </button>
           </div>
         </div>
 
