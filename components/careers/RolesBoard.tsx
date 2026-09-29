@@ -46,8 +46,8 @@ function Badge({
   );
 }
 
-/** Compact pill used in the department filter row. */
-function DeptPill({
+/** Shared pill used in both filter rows. */
+function Pill({
   label,
   count,
   isActive,
@@ -63,16 +63,16 @@ function DeptPill({
       type="button"
       onClick={onClick}
       aria-pressed={isActive}
-      className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[13px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1 ${
+      className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[13px] font-semibold transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1 ${
         isActive
-          ? "bg-namo-black text-white"
-          : "bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-800"
+          ? "bg-namo-black text-white shadow-sm"
+          : "bg-white text-gray-600 ring-1 ring-inset ring-gray-200 hover:ring-gray-300 hover:text-gray-900"
       }`}
     >
       {label}
       <span
         className={`text-[11px] tabular-nums font-bold ${
-          isActive ? "opacity-70" : "text-gray-400"
+          isActive ? "text-white/50" : "text-gray-400"
         }`}
       >
         {count}
@@ -86,11 +86,11 @@ function RoleRow({ role, last }: { role: Role; last: boolean }) {
     <li className={last ? "" : "border-b border-gray-100"}>
       <Link
         href={`/careers/apply?role=${encodeURIComponent(role.title)}`}
-        className="group flex flex-col gap-4 px-5 py-5 transition-colors hover:bg-gray-50/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-6"
+        className="group flex flex-col gap-3 px-5 py-5 transition-colors hover:bg-gray-50/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-6"
       >
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2">
-            <h3 className="text-[16px] font-bold tracking-tight text-namo-black">
+            <h3 className="text-[15px] font-bold tracking-tight text-namo-black">
               {role.title}
             </h3>
             {role.featured && (
@@ -102,17 +102,17 @@ function RoleRow({ role, last }: { role: Role; last: boolean }) {
               </Badge>
             )}
           </div>
-          <p className="mt-1 text-[13px] leading-relaxed text-gray-500">
+          <p className="mt-1 text-[13px] leading-relaxed text-gray-500 line-clamp-2">
             {role.description}
           </p>
           {role.focus && (
-            <p className="mt-1.5 text-[11px] font-bold uppercase tracking-[0.1em] text-accent">
+            <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.1em] text-accent/80">
               {role.focus}
             </p>
           )}
         </div>
 
-        <div className="flex shrink-0 items-center gap-2">
+        <div className="flex shrink-0 items-center gap-1.5">
           <Badge
             icon={<MapPin size={11} aria-hidden="true" />}
             className={locationStyles[role.location]}
@@ -127,9 +127,9 @@ function RoleRow({ role, last }: { role: Role; last: boolean }) {
           </Badge>
           <span
             aria-hidden="true"
-            className="ml-1 hidden h-9 w-9 shrink-0 items-center justify-center rounded-full bg-namo-black text-white transition-transform duration-200 group-hover:scale-105 sm:inline-flex"
+            className="ml-1 hidden h-8 w-8 shrink-0 items-center justify-center rounded-full bg-namo-black text-white transition-transform duration-200 group-hover:scale-110 sm:inline-flex"
           >
-            <ArrowRight size={15} />
+            <ArrowRight size={14} />
           </span>
         </div>
       </Link>
@@ -141,7 +141,6 @@ export default function RolesBoard({ list = allRoles }: { list?: Role[] }) {
   const [activeDept, setActiveDept] = useState<Department | null>(null);
   const [activeType, setActiveType] = useState<RoleType | null>(null);
 
-  // Dept counts update when type filter is active (and vice-versa).
   const typeFiltered = useMemo(
     () => (activeType === null ? list : list.filter((r) => r.type === activeType)),
     [list, activeType]
@@ -166,77 +165,55 @@ export default function RolesBoard({ list = allRoles }: { list?: Role[] }) {
 
   if (list.length === 0) return <NoOpenRoles />;
 
-  // Exclude the "All …" pill from typeFilters so we drive type via the
-  // segmented control instead — cleaner than two "All" pills.
+  // "All Types" pill = activeType null; exclude it from the options list
+  // since we show it manually with the label "All".
   const typeOptions = typeFilters.filter((f) => f.type !== null);
 
   return (
-    <div>
-      {/* ── Filter bar ───────────────────────────────────────────────────── */}
-      <div className="rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3.5 sm:px-5">
-        {/* Row 1: Type segmented control */}
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="shrink-0 text-[11px] font-bold uppercase tracking-[0.12em] text-gray-400 w-[72px]">
+    <div className="space-y-3">
+      {/* ── Filter card ──────────────────────────────────────────────────── */}
+      <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white">
+        {/* Type row */}
+        <div className="flex flex-wrap items-center gap-2 px-4 py-3.5 sm:px-5">
+          <span className="mr-1 text-[11px] font-bold uppercase tracking-[0.13em] text-gray-400">
             Type
           </span>
-
-          {/* "All" option */}
-          <button
-            type="button"
-            aria-pressed={activeType === null}
+          <Pill
+            label="All"
+            count={list.length}
+            isActive={activeType === null}
             onClick={() => { setActiveType(null); setActiveDept(null); }}
-            className={`rounded-full px-3.5 py-1.5 text-[13px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1 ${
-              activeType === null
-                ? "bg-namo-black text-white"
-                : "bg-white text-gray-600 ring-1 ring-gray-200 hover:bg-gray-100"
-            }`}
-          >
-            All&nbsp;
-            <span className={`text-[11px] tabular-nums font-bold ${activeType === null ? "opacity-60" : "text-gray-400"}`}>
-              {list.length}
-            </span>
-          </button>
-
-          {typeOptions.map((filter) => (
-            <button
-              key={filter.label}
-              type="button"
-              aria-pressed={filter.type === activeType}
-              onClick={() => { setActiveType(filter.type); setActiveDept(null); }}
-              className={`rounded-full px-3.5 py-1.5 text-[13px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1 ${
-                filter.type === activeType
-                  ? "bg-namo-black text-white"
-                  : "bg-white text-gray-600 ring-1 ring-gray-200 hover:bg-gray-100"
-              }`}
-            >
-              {filter.label}&nbsp;
-              <span className={`text-[11px] tabular-nums font-bold ${filter.type === activeType ? "opacity-60" : "text-gray-400"}`}>
-                {filter.count}
-              </span>
-            </button>
+          />
+          {typeOptions.map((f) => (
+            <Pill
+              key={f.label}
+              label={f.label}
+              count={f.count}
+              isActive={f.type === activeType}
+              onClick={() => { setActiveType(f.type); setActiveDept(null); }}
+            />
           ))}
         </div>
 
         {/* Divider */}
-        <div className="my-3 h-px bg-gray-200" />
+        <div className="h-px bg-gray-100" />
 
-        {/* Row 2: Department chips */}
+        {/* Department row */}
         <div
           role="group"
           aria-label="Filter roles by department"
-          className="flex flex-wrap items-center gap-2"
+          className="flex flex-wrap items-center gap-2 px-4 py-3.5 sm:px-5"
         >
-          <span className="shrink-0 text-[11px] font-bold uppercase tracking-[0.12em] text-gray-400 w-[72px]">
+          <span className="mr-1 text-[11px] font-bold uppercase tracking-[0.13em] text-gray-400">
             Dept
           </span>
-
-          {deptFilters.map((filter) => (
-            <DeptPill
-              key={filter.label}
-              label={filter.label === "All Roles" ? "All" : filter.label}
-              count={filter.count}
-              isActive={filter.department === activeDept}
-              onClick={() => setActiveDept(filter.department)}
+          {deptFilters.map((f) => (
+            <Pill
+              key={f.label}
+              label={f.label === "All Roles" ? "All" : f.label}
+              count={f.count}
+              isActive={f.department === activeDept}
+              onClick={() => setActiveDept(f.department)}
             />
           ))}
         </div>
@@ -247,7 +224,7 @@ export default function RolesBoard({ list = allRoles }: { list?: Role[] }) {
       </p>
 
       {/* ── Role list ────────────────────────────────────────────────────── */}
-      <div className="mt-5 overflow-hidden rounded-2xl border border-gray-200 bg-white">
+      <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white">
         {filtered.length > 0 ? (
           <ul>
             {filtered.map((role, index) => (
@@ -259,25 +236,25 @@ export default function RolesBoard({ list = allRoles }: { list?: Role[] }) {
             ))}
           </ul>
         ) : (
-          <p className="px-6 py-16 text-center text-[14px] text-gray-500">
-            No roles match these filters right now.
+          <p className="px-6 py-16 text-center text-[14px] text-gray-400">
+            No roles match these filters.
           </p>
         )}
       </div>
 
       {/* ── Open application ─────────────────────────────────────────────── */}
-      <div className="mt-4 flex flex-col gap-4 rounded-2xl border border-gray-200 bg-gray-50 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+      <div className="flex flex-col gap-4 rounded-2xl border border-gray-200 bg-gray-50 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <div className="flex items-center gap-3">
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-gray-500 ring-1 ring-gray-200">
-            <Briefcase size={16} aria-hidden="true" />
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-gray-400 ring-1 ring-gray-200">
+            <Briefcase size={15} aria-hidden="true" />
           </span>
-          <p className="text-[13px] leading-relaxed text-gray-600">
+          <p className="text-[13px] text-gray-500">
             Don&apos;t see a fit? We&apos;re always looking for great people.
           </p>
         </div>
         <Link
           href="/careers/apply"
-          className="inline-flex shrink-0 items-center gap-2 text-[13px] font-bold text-namo-black transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+          className="inline-flex shrink-0 items-center gap-1.5 text-[13px] font-bold text-namo-black transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
         >
           Send an open application
           <ArrowRight size={14} aria-hidden="true" />
