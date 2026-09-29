@@ -100,7 +100,7 @@ export const LINKEDIN_SERVICE: ProfileService = {
   pathPrefix: "in/",
   handleChars: /[^a-zA-Z0-9-]/g,
   validate: isLinkedInUrl,
-  placeholder: "jane-doe",
+  placeholder: "Your username",
   icon: <LinkedInIcon />,
 };
 
@@ -109,7 +109,7 @@ export const GITHUB_SERVICE: ProfileService = {
   hosts: /^(?:https?:\/\/)?(?:www\.)?github\.com\//i,
   handleChars: /[^a-zA-Z0-9-]/g,
   validate: isGitHubUrl,
-  placeholder: "janedoe",
+  placeholder: "Your GitHub username",
   icon: <GitHubIcon />,
 };
 

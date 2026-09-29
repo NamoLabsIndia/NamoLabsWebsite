@@ -260,7 +260,7 @@ export default function ApplicationForm({ role }: { role?: Role }) {
               onChange={update("fullName")}
               error={errors.fullName}
               disabled={isSubmitting}
-              placeholder="Jane Doe"
+              placeholder="Enter your name"
               autoComplete="name"
               maxLength={NAME_MAX_LENGTH}
             />
@@ -427,7 +427,19 @@ export default function ApplicationForm({ role }: { role?: Role }) {
               </div>
             )}
 
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <p
+                className="text-[13px] text-gray-500"
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                {isSubmitting
+                  ? "Sending your application…"
+                  : errorCount > 0
+                    ? `${errorCount} ${errorCount === 1 ? "field needs" : "fields need"} attention.`
+                    : "We review every application personally."}
+              </p>
+
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -449,18 +461,6 @@ export default function ApplicationForm({ role }: { role?: Role }) {
                   </>
                 )}
               </button>
-
-              <p
-                className="text-[13px] text-gray-500"
-                aria-live="polite"
-                aria-atomic="true"
-              >
-                {isSubmitting
-                  ? "Sending your application…"
-                  : errorCount > 0
-                    ? `${errorCount} ${errorCount === 1 ? "field needs" : "fields need"} attention.`
-                    : "We review every application personally."}
-              </p>
             </div>
           </div>
         </FormSection>

@@ -106,7 +106,7 @@ export default function EmailField({
         aria-required={required || undefined}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? errorId : undefined}
-        placeholder="jane.doe@example.com"
+        placeholder="Enter your email address"
         maxLength={EMAIL_MAX_LENGTH}
         onChange={(event) => {
           onChange(event.target.value);
