@@ -29,50 +29,46 @@ import { URL_MAX_LENGTH, isGitHubUrl, isLinkedInUrl } from "@/lib/careers";
  * would reject.
  */
 
-/** Inline LinkedIn "in" badge — no external dependency required. */
+/** Inline LinkedIn icon — official "in" mark as paths, fills the box properly. */
 function LinkedInIcon() {
   return (
     <svg
       width="20"
       height="20"
-      viewBox="0 0 20 20"
-      fill="none"
+      viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
-      <rect width="20" height="20" rx="4" fill="#0A66C2" />
-      <text
-        x="50%"
-        y="50%"
-        dominantBaseline="central"
-        textAnchor="middle"
+      <rect width="24" height="24" rx="4" fill="#0A66C2" />
+      {/* Top-left dot */}
+      <circle cx="4.983" cy="5.009" r="2.188" fill="white" />
+      {/* Vertical bar */}
+      <rect x="3" y="8.977" width="3.966" height="12.056" fill="white" />
+      {/* Right column — L-shape */}
+      <path
+        d="M9.237 8.977h3.798v1.648h.053c.529-1.001 1.82-2.057 3.745-2.057 4.008 0 4.748 2.638 4.748 6.066v6.399h-3.962v-5.674c0-1.353-.023-3.093-1.884-3.093-1.887 0-2.175 1.473-2.175 2.995v5.772H9.237V8.977z"
         fill="white"
-        fontSize="10"
-        fontWeight="bold"
-        fontFamily="system-ui, sans-serif"
-        letterSpacing="-0.5"
-      >
-        in
-      </text>
+      />
     </svg>
   );
 }
 
-/** Inline GitHub Octocat mark — no external dependency required. */
+/** Inline GitHub mark — square-rounded box matching LinkedIn's style. */
 function GitHubIcon() {
   return (
     <svg
       width="20"
       height="20"
-      viewBox="0 0 98 96"
+      viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
+      <rect width="24" height="24" rx="4" fill="#24292f" />
       <path
         fillRule="evenodd"
         clipRule="evenodd"
-        d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z"
-        fill="#24292f"
+        d="M12 3C7.03 3 3 7.03 3 12.01c0 3.98 2.58 7.36 6.16 8.56.45.08.61-.19.61-.43 0-.21-.01-.77-.01-1.51-2.5.54-3.03-1.2-3.03-1.2-.41-1.04-.99-1.32-.99-1.32-.81-.55.06-.54.06-.54.9.06 1.37.92 1.37.92.8 1.37 2.09.97 2.6.74.08-.58.31-.97.57-1.2-1.99-.23-4.08-.99-4.08-4.43 0-.98.35-1.78.92-2.41-.09-.23-.4-1.14.09-2.37 0 0 .75-.24 2.46.92a8.57 8.57 0 0 1 2.24-.3c.76 0 1.53.1 2.24.3 1.71-1.16 2.46-.92 2.46-.92.49 1.23.18 2.14.09 2.37.57.63.92 1.43.92 2.41 0 3.45-2.1 4.2-4.1 4.42.32.28.61.83.61 1.67 0 1.21-.01 2.18-.01 2.48 0 .24.16.52.62.43A9.01 9.01 0 0 0 21 12.01C21 7.03 16.97 3 12 3z"
+        fill="white"
       />
     </svg>
   );

@@ -2,7 +2,7 @@
 
 import React, { useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Briefcase, Clock, Flame, MapPin } from "lucide-react";
+import { ArrowRight, Briefcase, Clock, MapPin } from "lucide-react";
 import {
   getDepartmentFilters,
   getTypeFilters,
@@ -93,14 +93,6 @@ function RoleRow({ role, last }: { role: Role; last: boolean }) {
             <h3 className="text-[15px] font-bold tracking-tight text-namo-black">
               {role.title}
             </h3>
-            {role.featured && (
-              <Badge
-                icon={<Flame size={11} aria-hidden="true" />}
-                className="bg-orange-50 text-orange-600"
-              >
-                Hot
-              </Badge>
-            )}
           </div>
           <p className="mt-1 text-[13px] leading-relaxed text-gray-500 line-clamp-2">
             {role.description}
