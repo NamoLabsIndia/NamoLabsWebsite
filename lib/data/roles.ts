@@ -506,6 +506,60 @@ export const roles: Role[] = [
       "Establish documentation standards",
     ],
   },
+  {
+    title: "DevOps Engineer",
+    department: "Engineering",
+    location: "Remote",
+    availableTypes: ["Full-Time", "Internship"],
+    description:
+      "Design, build, and maintain the deployment infrastructure and CI/CD pipelines that power our cryptographic services. Ensure reliability, scalability, and security across all environments.",
+    focus: "Infrastructure + Deployment Pipeline",
+    skills: [
+      "Kubernetes (K8s) & Docker",
+      "CI/CD pipelines (GitHub Actions, GitLab CI)",
+      "Infrastructure as Code (Terraform, Pulumi)",
+      "Linux systems administration",
+      "Bash / Python scripting",
+      "Monitoring & Observability (Prometheus, Grafana, ELK)",
+      "Security best practices (DevSecOps)",
+    ],
+    responsibilities: [
+      "Architect and maintain scalable containerized infrastructure",
+      "Automate deployment and testing pipelines",
+      "Manage cloud resources efficiently",
+      "Implement robust monitoring and alerting systems",
+      "Ensure infrastructure security and compliance",
+      "Support engineering teams with tooling and infrastructure needs",
+      "Respond to and resolve infrastructure incidents",
+    ],
+  },
+  {
+    title: "Cloud Platform Engineer",
+    department: "Engineering",
+    location: "Remote",
+    availableTypes: ["Full-Time", "Internship"],
+    description:
+      "Build and optimize the cloud platforms hosting our next-generation quantum-safe cryptographic solutions. Work deeply with cloud-native technologies to deliver high-performance APIs.",
+    focus: "Cloud Architecture + Backend Services",
+    skills: [
+      "Cloud Development (AWS, GCP, or Azure)",
+      "Serverless architectures (Lambda, Cloud Run)",
+      "Go / Node.js / Python backend development",
+      "API Gateway and microservices architecture",
+      "Cloud networking (VPC, IAM, DNS)",
+      "Database management (PostgreSQL, Redis)",
+      "Performance optimization for cloud services",
+    ],
+    responsibilities: [
+      "Design and implement cloud-native architectures",
+      "Build scalable and highly available backend services",
+      "Manage cloud IAM policies and network security",
+      "Optimize cloud costs and resource utilization",
+      "Develop APIs for integrating cryptographic services",
+      "Collaborate with security teams on threat modeling",
+      "Maintain documentation for cloud infrastructure",
+    ],
+  },
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
