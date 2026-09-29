@@ -229,7 +229,19 @@ export default function PhoneField({
           maxLength={country.max + 6}
           onChange={(event) => {
             // Allow digits and the separators people naturally type.
-            const next = event.target.value.replace(/[^\d\s()-]/g, "");
+            const raw = event.target.value.replace(/[^\d\s()-]/g, "");
+            
+            // Strictly cap at the maximum allowed digits for the country
+            let digitCount = 0;
+            let next = "";
+            for (const char of raw) {
+              if (/\d/.test(char)) {
+                if (digitCount >= country.max) continue;
+                digitCount++;
+              }
+              next += char;
+            }
+
             setNational(next);
             emit(country, next);
           }}

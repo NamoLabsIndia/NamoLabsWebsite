@@ -401,7 +401,7 @@ export default function ApplicationForm({ role }: { role?: Role }) {
               htmlFor="privacyConsent"
               className="flex cursor-pointer items-start gap-3.5"
             >
-              <span className="relative mt-0.5 flex h-[18px] w-[18px] shrink-0">
+              <div className="relative mt-0.5 flex h-[18px] w-[18px] shrink-0">
                 <input
                   id="privacyConsent"
                   name="privacyConsent"
@@ -422,7 +422,11 @@ export default function ApplicationForm({ role }: { role?: Role }) {
                         : previous
                     );
                   }}
-                  className={`peer h-[18px] w-[18px] appearance-none rounded-[4px] border bg-white transition-colors checked:border-namo-black checked:bg-namo-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 disabled:cursor-not-allowed ${
+                  className="peer sr-only"
+                />
+                <div
+                  aria-hidden="true"
+                  className={`h-[18px] w-[18px] rounded-[4px] border bg-white transition-colors peer-checked:border-namo-black peer-checked:bg-namo-black peer-focus-visible:ring-2 peer-focus-visible:ring-accent peer-focus-visible:ring-offset-2 peer-disabled:cursor-not-allowed ${
                     errors.privacyConsent ? "border-rose-400" : "border-gray-300"
                   }`}
                 />
@@ -437,7 +441,7 @@ export default function ApplicationForm({ role }: { role?: Role }) {
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
-              </span>
+              </div>
 
               <span className="text-[14px] leading-relaxed text-gray-600">
                 I agree to the{" "}
