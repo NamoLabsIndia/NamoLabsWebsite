@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Wrench } from "lucide-react";
 import type { Role } from "@/lib/data/roles";
 
 /**
@@ -10,11 +10,14 @@ import type { Role } from "@/lib/data/roles";
  *
  * When the visitor arrived from a specific opening on /careers, the meta rail
  * is populated from that role's own record so both pages state the same facts.
+ * If the role has skills/responsibilities they are surfaced below the meta rail
+ * so applicants can reference the full JD without leaving the apply flow.
  */
 export default function ApplyIntro({ role }: { role?: Role }) {
   const meta = role
     ? [
         { label: "Department", value: role.department },
+        ...(role.focus ? [{ label: "Focus", value: role.focus }] : []),
         { label: "Location", value: role.location },
         { label: "Type", value: role.type },
       ]
@@ -65,6 +68,51 @@ export default function ApplyIntro({ role }: { role?: Role }) {
           ))}
         </dl>
       </div>
+
+      {/* Skills + Responsibilities — only shown when the role carries them */}
+      {role && (role.skills || role.responsibilities) && (
+        <div className="mt-12 grid gap-8 rounded-2xl border border-gray-100 bg-gray-50 p-6 sm:grid-cols-2 sm:p-8">
+          {role.skills && role.skills.length > 0 && (
+            <div>
+              <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-gray-500">
+                <Wrench size={13} aria-hidden="true" />
+                Preferred Skills
+              </p>
+              <ul className="mt-4 space-y-2">
+                {role.skills.map((skill) => (
+                  <li
+                    key={skill}
+                    className="flex items-start gap-2 text-[14px] text-gray-700"
+                  >
+                    <span className="mt-[3px] h-[6px] w-[6px] shrink-0 rounded-full bg-accent" />
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {role.responsibilities && role.responsibilities.length > 0 && (
+            <div>
+              <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-gray-500">
+                <CheckCircle2 size={13} aria-hidden="true" />
+                Responsibilities
+              </p>
+              <ul className="mt-4 space-y-2">
+                {role.responsibilities.map((resp) => (
+                  <li
+                    key={resp}
+                    className="flex items-start gap-2 text-[14px] text-gray-700"
+                  >
+                    <span className="mt-[3px] h-[6px] w-[6px] shrink-0 rounded-full bg-namo-black" />
+                    {resp}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

@@ -5,9 +5,11 @@ import Link from "next/link";
 import { ArrowRight, Briefcase, Clock, Flame, MapPin } from "lucide-react";
 import {
   getDepartmentFilters,
+  getTypeFilters,
   roles as allRoles,
   type Department,
   type Role,
+  type RoleType,
   type WorkLocation,
 } from "@/lib/data/roles";
 import NoOpenRoles from "./NoOpenRoles";
@@ -17,6 +19,14 @@ const locationStyles: Record<WorkLocation, string> = {
   Remote: "bg-emerald-50 text-emerald-700",
   Hybrid: "bg-accent-light text-accent",
   "On-site": "bg-amber-50 text-amber-700",
+};
+
+/** Type badge colours. */
+const typeStyles: Record<string, string> = {
+  "Full-Time": "bg-blue-50 text-blue-700",
+  Internship: "bg-purple-50 text-purple-700",
+  Contract: "bg-gray-100 text-gray-600",
+  "Part-Time": "bg-orange-50 text-orange-700",
 };
 
 function Badge({
@@ -35,6 +45,40 @@ function Badge({
       {icon}
       {children}
     </span>
+  );
+}
+
+function FilterPill({
+  label,
+  count,
+  isActive,
+  onClick,
+}: {
+  label: string;
+  count: number;
+  isActive: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={isActive}
+      className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[14px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ${
+        isActive
+          ? "bg-namo-black text-white"
+          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+      }`}
+    >
+      {label}
+      <span
+        className={`inline-flex min-w-[20px] items-center justify-center rounded-md px-1.5 py-0.5 text-[11px] font-bold tabular-nums ${
+          isActive ? "bg-white/20 text-white" : "bg-white text-gray-600"
+        }`}
+      >
+        {count}
+      </span>
+    </button>
   );
 }
 
@@ -64,6 +108,11 @@ function RoleRow({ role, last }: { role: Role; last: boolean }) {
           <p className="mt-1.5 text-[14px] leading-relaxed text-gray-500">
             {role.description}
           </p>
+          {role.focus && (
+            <p className="mt-2 text-[12px] font-semibold text-accent">
+              {role.focus}
+            </p>
+          )}
         </div>
 
         <div className="flex shrink-0 items-center gap-2.5">
@@ -75,7 +124,7 @@ function RoleRow({ role, last }: { role: Role; last: boolean }) {
           </Badge>
           <Badge
             icon={<Clock size={12} aria-hidden="true" />}
-            className="bg-gray-100 text-gray-600"
+            className={typeStyles[role.type] ?? "bg-gray-100 text-gray-600"}
           >
             {role.type}
           </Badge>
@@ -92,12 +141,40 @@ function RoleRow({ role, last }: { role: Role; last: boolean }) {
 }
 
 export default function RolesBoard({ list = allRoles }: { list?: Role[] }) {
-  const [active, setActive] = useState<Department | null>(null);
+  const [activeDept, setActiveDept] = useState<Department | null>(null);
+  const [activeType, setActiveType] = useState<RoleType | null>(null);
 
-  const filters = useMemo(() => getDepartmentFilters(list), [list]);
+  // Department filter counts are based on the type-filtered list so the
+  // numbers stay accurate when both filters are active.
+  const typeFiltered = useMemo(
+    () => (activeType === null ? list : list.filter((r) => r.type === activeType)),
+    [list, activeType]
+  );
+
+  const deptFilters = useMemo(
+    () => getDepartmentFilters(typeFiltered),
+    [typeFiltered]
+  );
+
+  // Type filter counts are based on the department-filtered list.
+  const deptFiltered = useMemo(
+    () => (activeDept === null ? list : list.filter((r) => r.department === activeDept)),
+    [list, activeDept]
+  );
+
+  const typeFilters = useMemo(
+    () => getTypeFilters(deptFiltered),
+    [deptFiltered]
+  );
+
   const filtered = useMemo(
-    () => (active === null ? list : list.filter((r) => r.department === active)),
-    [list, active]
+    () =>
+      list.filter(
+        (r) =>
+          (activeDept === null || r.department === activeDept) &&
+          (activeType === null || r.type === activeType)
+      ),
+    [list, activeDept, activeType]
   );
 
   // Genuinely not hiring — the honest fallback, not a filtered-to-zero state.
@@ -107,37 +184,42 @@ export default function RolesBoard({ list = allRoles }: { list?: Role[] }) {
 
   return (
     <div>
-      {/* Department filters */}
+      {/* Type filter — Full-Time / Internship */}
+      <div
+        role="group"
+        aria-label="Filter roles by type"
+        className="flex flex-wrap gap-2.5"
+      >
+        {typeFilters.map((filter) => (
+          <FilterPill
+            key={filter.label}
+            label={filter.label}
+            count={filter.count}
+            isActive={filter.type === activeType}
+            onClick={() => {
+              setActiveType(filter.type);
+              // Reset dept filter when type changes so the count stays sane.
+              setActiveDept(null);
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Department filter */}
       <div
         role="group"
         aria-label="Filter roles by department"
-        className="flex flex-wrap gap-2.5"
+        className="mt-3 flex flex-wrap gap-2.5"
       >
-        {filters.map((filter) => {
-          const isActive = filter.department === active;
-          return (
-            <button
-              key={filter.label}
-              type="button"
-              onClick={() => setActive(filter.department)}
-              aria-pressed={isActive}
-              className={`inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[14px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ${
-                isActive
-                  ? "bg-namo-black text-white"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
-            >
-              {filter.label}
-              <span
-                className={`inline-flex min-w-[20px] items-center justify-center rounded-md px-1.5 py-0.5 text-[11px] font-bold tabular-nums ${
-                  isActive ? "bg-white/20 text-white" : "bg-white text-gray-600"
-                }`}
-              >
-                {filter.count}
-              </span>
-            </button>
-          );
-        })}
+        {deptFilters.map((filter) => (
+          <FilterPill
+            key={filter.label}
+            label={filter.label}
+            count={filter.count}
+            isActive={filter.department === activeDept}
+            onClick={() => setActiveDept(filter.department)}
+          />
+        ))}
       </div>
 
       <p aria-live="polite" className="sr-only">
@@ -158,7 +240,7 @@ export default function RolesBoard({ list = allRoles }: { list?: Role[] }) {
           </ul>
         ) : (
           <p className="px-6 py-16 text-center text-[14px] text-gray-500">
-            No roles in this department right now.
+            No roles match these filters right now.
           </p>
         )}
       </div>
