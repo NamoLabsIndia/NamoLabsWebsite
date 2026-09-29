@@ -375,7 +375,7 @@ export default function ApplicationForm({ role }: { role?: Role }) {
                         : previous
                     );
                   }}
-                  className="peer sr-only"
+                  className="peer absolute inset-0 z-20 m-0 h-full w-full cursor-pointer opacity-0"
                 />
                 <div
                   className={`pointer-events-none absolute inset-0 rounded-[4px] border bg-white transition-colors peer-checked:border-namo-black peer-checked:bg-namo-black peer-focus-visible:ring-2 peer-focus-visible:ring-accent peer-focus-visible:ring-offset-2 ${
