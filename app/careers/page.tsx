@@ -2,7 +2,6 @@ import React from "react";
 import Breadcrumb from "@/components/shared/Breadcrumb";
 import RolesBoard from "@/components/careers/RolesBoard";
 import WhyWorkHere from "@/components/careers/WhyWorkHere";
-import TeamQuote from "@/components/careers/TeamQuote";
 import HowToApply from "@/components/careers/HowToApply";
 import FinalCTA from "@/components/careers/FinalCTA";
 import { roles } from "@/lib/data/roles";
@@ -54,7 +53,6 @@ export default function CareersPage() {
       </section>
 
       <WhyWorkHere />
-      <TeamQuote />
 
       <section id="open-roles" className="px-6 pb-28 pt-4">
         <div className="mx-auto max-w-[1000px]">

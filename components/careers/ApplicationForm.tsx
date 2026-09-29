@@ -260,7 +260,7 @@ export default function ApplicationForm({ role }: { role?: Role }) {
               onChange={update("fullName")}
               error={errors.fullName}
               disabled={isSubmitting}
-              placeholder="Ayush Burnwal"
+              placeholder="Jane Doe"
               autoComplete="name"
               maxLength={NAME_MAX_LENGTH}
             />

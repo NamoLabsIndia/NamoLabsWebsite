@@ -16,6 +16,7 @@ const topNavItems = [
   { label: "Research",   key: "research",   hasDropdown: true, href: "/research" },
   { label: "Consulting", key: "consulting", hasDropdown: true, href: "/consulting" },
   { label: "Company",    key: "company",    hasDropdown: true, href: "/about" },
+  { label: "Careers",    key: "careers",    hasDropdown: false, href: "/careers" },
 ];
 
 export default function Navbar() {

@@ -47,7 +47,6 @@ const navGroups = [
     children: [
       { label: "About", href: "/about" },
       { label: "Team", href: "/team" },
-      { label: "Careers", href: "/careers" },
     ],
   },
   { label: "Careers", href: "/careers" },

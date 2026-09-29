@@ -181,12 +181,6 @@ export const companyItems: NavSection[] = [
         icon: <Users size={18} className="text-accent" />,
       },
       {
-        label: "Careers",
-        description: "Join us in building the future of technology.",
-        href: "/careers",
-        icon: <Briefcase size={18} className="text-accent" />,
-      },
-      {
         label: "Insights",
         description: "Technical writing from our research team.",
         href: "/insights",

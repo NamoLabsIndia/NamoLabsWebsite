@@ -32,7 +32,7 @@ export interface Country {
  * its most common user hunt. The rest follow alphabetically.
  */
 export const COUNTRIES: Country[] = [
-  { code: "IN", name: "India", dialCode: "+91", example: "98765 43210", min: 10, max: 10 },
+  { code: "IN", name: "India", dialCode: "+91", example: "98123 45678", min: 10, max: 10 },
   { code: "AE", name: "United Arab Emirates", dialCode: "+971", example: "50 123 4567", min: 8, max: 9 },
   { code: "AR", name: "Argentina", dialCode: "+54", example: "11 1234 5678", min: 10, max: 11 },
   { code: "AT", name: "Austria", dialCode: "+43", example: "664 123456", min: 9, max: 13 },
