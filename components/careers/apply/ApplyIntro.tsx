@@ -59,7 +59,7 @@ export default function ApplyIntro({ role }: { role?: Role }) {
                and the systems being built on top of them.`}
         </p>
 
-        <dl className="flex flex-wrap gap-x-8 gap-y-4 border-l-2 border-accent pl-5 lg:shrink-0 lg:border-l-0 lg:border-r-2 lg:pl-0 lg:pr-6 lg:text-right">
+        <dl className="flex flex-wrap gap-x-8 gap-y-4 border-l-2 border-accent pl-5 lg:shrink-0 lg:border-l-0 lg:border-r-2 lg:pl-0 lg:pr-6">
           {meta.map((item) => (
             <div key={item.label}>
               <dt className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">

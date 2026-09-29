@@ -95,20 +95,6 @@ function RoleRow({ role, last }: { role: Role; last: boolean }) {
           >
             {role.location}
           </Badge>
-          {/* Show available types as small pills */}
-          {role.availableTypes.map((t) => (
-            <Badge
-              key={t}
-              icon={<Clock size={11} aria-hidden="true" />}
-              className={
-                t === "Full-Time"
-                  ? "bg-blue-50 text-blue-700"
-                  : "bg-purple-50 text-purple-700"
-              }
-            >
-              {t}
-            </Badge>
-          ))}
           <span
             aria-hidden="true"
             className="ml-1 hidden h-8 w-8 shrink-0 items-center justify-center rounded-full bg-namo-black text-white transition-transform duration-200 group-hover:scale-110 sm:inline-flex"
