@@ -50,7 +50,7 @@ export default function Navbar() {
   }, []);
 
   // Only hide after client hydration to prevent server/client mismatch
-  if (mounted && pathname?.startsWith("/admin")) {
+  if (mounted && pathname?.startsWith("/adminsideonlynamolabs")) {
     return null;
   }
 
