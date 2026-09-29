@@ -353,8 +353,11 @@ export default function ApplicationForm({ role }: { role?: Role }) {
           />
 
           <div className="border-t border-gray-100 pt-7">
-            <div className="flex items-start gap-3.5">
-              <div className="relative mt-0.5 flex h-[18px] w-[18px] shrink-0 items-center justify-center">
+            <label
+              htmlFor="privacyConsent"
+              className="flex cursor-pointer items-start gap-3.5"
+            >
+              <span className="relative mt-0.5 flex h-[18px] w-[18px] shrink-0">
                 <input
                   id="privacyConsent"
                   name="privacyConsent"
@@ -375,43 +378,41 @@ export default function ApplicationForm({ role }: { role?: Role }) {
                         : previous
                     );
                   }}
-                  className="peer absolute inset-0 z-20 m-0 h-full w-full cursor-pointer opacity-0"
-                />
-                <div
-                  className={`pointer-events-none absolute inset-0 rounded-[4px] border bg-white transition-colors peer-checked:border-namo-black peer-checked:bg-namo-black peer-focus-visible:ring-2 peer-focus-visible:ring-accent peer-focus-visible:ring-offset-2 ${
+                  className={`peer h-[18px] w-[18px] appearance-none rounded-[4px] border bg-white transition-colors checked:border-namo-black checked:bg-namo-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 disabled:cursor-not-allowed ${
                     errors.privacyConsent ? "border-rose-400" : "border-gray-300"
                   }`}
                 />
+                {/* pointer-events-none so the SVG never intercepts clicks */}
                 <svg
-                  className="pointer-events-none relative z-10 h-[10px] w-[10px] text-white opacity-0 transition-opacity peer-checked:opacity-100"
+                  className="pointer-events-none absolute inset-0 m-auto h-[10px] w-[10px] text-white opacity-0 transition-opacity peer-checked:opacity-100"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  strokeWidth="4"
+                  strokeWidth={3.5}
+                  aria-hidden="true"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
-              </div>
-              <label
-                htmlFor="privacyConsent"
-                className="cursor-pointer text-[14px] leading-relaxed text-gray-600"
-              >
+              </span>
+
+              <span className="text-[14px] leading-relaxed text-gray-600">
                 I agree to the{" "}
                 <Link
                   href="/privacy"
                   className="font-medium text-namo-black underline underline-offset-4 hover:text-accent"
+                  onClick={(e) => e.stopPropagation()}
                 >
                   Privacy Policy
                 </Link>{" "}
                 and consent to Namo Labs processing my application data for
                 recruitment purposes.
                 <span className="text-accent" aria-hidden="true">
-                  {" "}
-                  *
+                  {" "}*
                 </span>
                 <span className="sr-only"> (required)</span>
-              </label>
-            </div>
+              </span>
+            </label>
+
             <div className="pl-[30px]">
               <FieldError
                 id="privacyConsent-error"
