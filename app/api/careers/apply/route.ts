@@ -12,6 +12,7 @@ import {
   validateApplication,
   type ApplicationValues,
 } from '@/lib/careers';
+import { findRoleByTitle } from '@/lib/data/roles';
 
 // Buffer/Uint8Array handling for the resume attachment requires the Node runtime.
 export const runtime = 'nodejs';
@@ -153,16 +154,21 @@ export async function POST(request: Request) {
     fullName: asString(form.get('fullName')),
     email: asString(form.get('email')),
     phone: asString(form.get('phone')),
+    applyingAs: asString(form.get('applyingAs')) as ApplicationValues['applyingAs'],
     linkedin: asString(form.get('linkedin')),
     githubOrPortfolio: asString(form.get('githubOrPortfolio')),
     whyNamoLabs: asString(form.get('whyNamoLabs')),
     recentProject: asString(form.get('recentProject')),
   };
   const privacyConsent = asString(form.get('privacyConsent')) === 'true';
-  const role = asString(form.get('role')).slice(0, ROLE_MAX_LENGTH);
+  const roleName = asString(form.get('role')).slice(0, ROLE_MAX_LENGTH);
+  const role = findRoleByTitle(roleName);
 
   // 4. Re-run the shared validation server-side.
-  const errors = validateApplication(values, { privacyConsent });
+  const errors = validateApplication(values, { 
+    privacyConsent,
+    requireApplyingAs: role ? role.availableTypes.length > 1 : false,
+  });
   if (Object.keys(errors).length > 0) {
     return NextResponse.json(
       { error: 'Some details need fixing before we can accept this application.', fields: errors },
@@ -208,7 +214,7 @@ export async function POST(request: Request) {
   let resumeUrl = '';
 
   try {
-    resumeKey = await uploadResumeToR2(resumeBytes, filename, role);
+    resumeKey = await uploadResumeToR2(resumeBytes, filename, roleName);
     resumeUrl = getResumeUrl(resumeKey);
     console.log('Resume uploaded to R2:', resumeKey);
   } catch (err) {
@@ -227,10 +233,11 @@ export async function POST(request: Request) {
       github: values.githubOrPortfolio || null,
       why_namo_labs: values.whyNamoLabs,
       recent_project: values.recentProject,
-      role: role || 'Open application',
+      role: roleName || 'Open application',
       resume_key: resumeKey || null,
       resume_url: resumeUrl || null,
       privacy_consent: true,
+      // If we added applyingAs to the DB, it goes here, but it might not be in the schema yet.
     });
 
     if (dbError) {
@@ -244,13 +251,17 @@ export async function POST(request: Request) {
   }
 
   // ── 8. Send email notification via Resend ──────────────────────────────────
-  const subject = role
-    ? `[Careers] ${role} — ${values.fullName}`
+  const displayRole = roleName
+    ? `${roleName}${values.applyingAs ? ` (${values.applyingAs})` : ''}`
+    : 'Open application';
+
+  const subject = roleName
+    ? `[Careers] ${displayRole} — ${values.fullName}`
     : `[Careers] Open application — ${values.fullName}`;
 
   const html = `
     <h2 style="margin:0 0 12px;">New Career Application</h2>
-    ${row('Applied for', role || 'Open application')}
+    ${row('Applied for', displayRole)}
     ${row('Name', values.fullName)}
     ${row('Email', values.email)}
     ${row('Phone', values.phone)}

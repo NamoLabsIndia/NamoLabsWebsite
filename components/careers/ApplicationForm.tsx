@@ -156,6 +156,7 @@ export default function ApplicationForm({ role }: { role?: Role }) {
         ? { name: resume.name, size: resume.size, type: resume.type }
         : null,
       privacyConsent,
+      requireApplyingAs: role ? role.availableTypes.length > 1 : false,
     });
     setErrors(nextErrors);
 
@@ -172,13 +173,13 @@ export default function ApplicationForm({ role }: { role?: Role }) {
       payload.append("fullName", values.fullName.trim());
       payload.append("email", values.email.trim());
       payload.append("phone", values.phone.trim());
+      if (values.applyingAs) payload.append("applyingAs", values.applyingAs);
       payload.append("linkedin", values.linkedin.trim());
       payload.append("githubOrPortfolio", values.githubOrPortfolio.trim());
       payload.append("whyNamoLabs", values.whyNamoLabs.trim());
       payload.append("recentProject", values.recentProject.trim());
       payload.append("privacyConsent", String(privacyConsent));
       payload.append(HONEYPOT_FIELD, honeypot);
-      // Only the resolved role's own title is sent — never raw query input.
       if (role) payload.append("role", role.title);
       if (resume) payload.append("resume", resume, resume.name);
 
@@ -231,7 +232,7 @@ export default function ApplicationForm({ role }: { role?: Role }) {
       <ApplyIntro role={role} />
 
       <form onSubmit={handleSubmit} noValidate>
-        {/* Anti-spam honeypot: hidden from people, tempting to bots. */}
+        {/* Anti-spam honeypot */}
         <div className="hidden" aria-hidden="true">
           <label htmlFor={HONEYPOT_FIELD}>Company website</label>
           <input
@@ -244,6 +245,54 @@ export default function ApplicationForm({ role }: { role?: Role }) {
             onChange={(event) => setHoneypot(event.target.value)}
           />
         </div>
+
+        {/* ── Applying as ────────────────────────────────────────────── */}
+        {role && role.availableTypes.length > 1 && (
+          <div className="mb-10">
+            <p className="mb-3 text-[12px] font-bold uppercase tracking-[0.14em] text-gray-400">
+              I am applying for a
+            </p>
+            <div
+              role="group"
+              aria-label="Applying as"
+              className="grid grid-cols-2 gap-3"
+            >
+              {role.availableTypes.map((type) => {
+                const isSelected = values.applyingAs === type;
+                return (
+                  <button
+                    key={type}
+                    type="button"
+                    aria-pressed={isSelected}
+                    disabled={isSubmitting}
+                    onClick={() => {
+                      update("applyingAs")(type);
+                    }}
+                    className={`group flex flex-col items-start gap-1.5 rounded-xl border-2 px-5 py-4 text-left transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ${
+                      isSelected
+                        ? "border-namo-black bg-namo-black text-white shadow-sm"
+                        : "border-gray-200 bg-white text-gray-700 hover:border-gray-300"
+                    }`}
+                  >
+                    <span className={`text-[15px] font-bold ${
+                      isSelected ? "text-white" : "text-namo-black"
+                    }`}>
+                      {type}
+                    </span>
+                    <span className={`text-[12px] ${
+                      isSelected ? "text-white/60" : "text-gray-400"
+                    }`}>
+                      {type === "Full-Time" ? "Permanent position" : "Paid internship programme"}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+            {errors.applyingAs && (
+              <p className="mt-2 text-[13px] text-rose-600">{errors.applyingAs}</p>
+            )}
+          </div>
+        )}
 
         <FormSection
           first

@@ -28,7 +28,7 @@ export function generateMetadata({
   return {
     title: role ? `Apply — ${role.title}` : "Apply",
     description: role
-      ? `Apply for the ${role.title} role at Namo Labs — ${role.location}, ${role.type}.`
+      ? `Apply for the ${role.title} role at Namo Labs — ${role.location}, ${role.availableTypes.join(' or ')}.`
       : BASE_DESCRIPTION,
     alternates: {
       // Role variants are query-string filters on one page, so the canonical

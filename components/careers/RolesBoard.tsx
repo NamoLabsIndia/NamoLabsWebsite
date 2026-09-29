@@ -5,11 +5,9 @@ import Link from "next/link";
 import { ArrowRight, Briefcase, Clock, MapPin } from "lucide-react";
 import {
   getDepartmentFilters,
-  getTypeFilters,
   roles as allRoles,
   type Department,
   type Role,
-  type RoleType,
   type WorkLocation,
 } from "@/lib/data/roles";
 import NoOpenRoles from "./NoOpenRoles";
@@ -18,13 +16,6 @@ const locationStyles: Record<WorkLocation, string> = {
   Remote: "bg-emerald-50 text-emerald-700",
   Hybrid: "bg-accent-light text-accent",
   "On-site": "bg-amber-50 text-amber-700",
-};
-
-const typeStyles: Record<string, string> = {
-  "Full-Time": "bg-blue-50 text-blue-700",
-  Internship: "bg-purple-50 text-purple-700",
-  Contract: "bg-gray-100 text-gray-600",
-  "Part-Time": "bg-orange-50 text-orange-700",
 };
 
 function Badge({
@@ -46,7 +37,6 @@ function Badge({
   );
 }
 
-/** Shared pill used in both filter rows. */
 function Pill({
   label,
   count,
@@ -70,11 +60,7 @@ function Pill({
       }`}
     >
       {label}
-      <span
-        className={`text-[11px] tabular-nums font-bold ${
-          isActive ? "text-white/50" : "text-gray-400"
-        }`}
-      >
+      <span className={`text-[11px] tabular-nums font-bold ${isActive ? "text-white/50" : "text-gray-400"}`}>
         {count}
       </span>
     </button>
@@ -89,11 +75,9 @@ function RoleRow({ role, last }: { role: Role; last: boolean }) {
         className="group flex flex-col gap-3 px-5 py-5 transition-colors hover:bg-gray-50/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-6"
       >
         <div className="min-w-0">
-          <div className="flex flex-wrap items-center gap-2">
-            <h3 className="text-[15px] font-bold tracking-tight text-namo-black">
-              {role.title}
-            </h3>
-          </div>
+          <h3 className="text-[15px] font-bold tracking-tight text-namo-black">
+            {role.title}
+          </h3>
           <p className="mt-1 text-[13px] leading-relaxed text-gray-500 line-clamp-2">
             {role.description}
           </p>
@@ -104,19 +88,27 @@ function RoleRow({ role, last }: { role: Role; last: boolean }) {
           )}
         </div>
 
-        <div className="flex shrink-0 items-center gap-1.5">
+        <div className="flex shrink-0 flex-wrap items-center gap-1.5">
           <Badge
             icon={<MapPin size={11} aria-hidden="true" />}
             className={locationStyles[role.location]}
           >
             {role.location}
           </Badge>
-          <Badge
-            icon={<Clock size={11} aria-hidden="true" />}
-            className={typeStyles[role.type] ?? "bg-gray-100 text-gray-600"}
-          >
-            {role.type}
-          </Badge>
+          {/* Show available types as small pills */}
+          {role.availableTypes.map((t) => (
+            <Badge
+              key={t}
+              icon={<Clock size={11} aria-hidden="true" />}
+              className={
+                t === "Full-Time"
+                  ? "bg-blue-50 text-blue-700"
+                  : "bg-purple-50 text-purple-700"
+              }
+            >
+              {t}
+            </Badge>
+          ))}
           <span
             aria-hidden="true"
             className="ml-1 hidden h-8 w-8 shrink-0 items-center justify-center rounded-full bg-namo-black text-white transition-transform duration-200 group-hover:scale-110 sm:inline-flex"
@@ -131,66 +123,20 @@ function RoleRow({ role, last }: { role: Role; last: boolean }) {
 
 export default function RolesBoard({ list = allRoles }: { list?: Role[] }) {
   const [activeDept, setActiveDept] = useState<Department | null>(null);
-  const [activeType, setActiveType] = useState<RoleType | null>(null);
 
-  const typeFiltered = useMemo(
-    () => (activeType === null ? list : list.filter((r) => r.type === activeType)),
-    [list, activeType]
-  );
-  const deptFilters = useMemo(() => getDepartmentFilters(typeFiltered), [typeFiltered]);
+  const deptFilters = useMemo(() => getDepartmentFilters(list), [list]);
 
-  const deptFiltered = useMemo(
+  const filtered = useMemo(
     () => (activeDept === null ? list : list.filter((r) => r.department === activeDept)),
     [list, activeDept]
   );
-  const typeFilters = useMemo(() => getTypeFilters(deptFiltered), [deptFiltered]);
-
-  const filtered = useMemo(
-    () =>
-      list.filter(
-        (r) =>
-          (activeDept === null || r.department === activeDept) &&
-          (activeType === null || r.type === activeType)
-      ),
-    [list, activeDept, activeType]
-  );
 
   if (list.length === 0) return <NoOpenRoles />;
-
-  // "All Types" pill = activeType null; exclude it from the options list
-  // since we show it manually with the label "All".
-  const typeOptions = typeFilters.filter((f) => f.type !== null);
 
   return (
     <div className="space-y-3">
       {/* ── Filter card ──────────────────────────────────────────────────── */}
       <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white">
-        {/* Type row */}
-        <div className="flex flex-wrap items-center gap-2 px-4 py-3.5 sm:px-5">
-          <span className="mr-1 text-[11px] font-bold uppercase tracking-[0.13em] text-gray-400">
-            Type
-          </span>
-          <Pill
-            label="All"
-            count={list.length}
-            isActive={activeType === null}
-            onClick={() => { setActiveType(null); setActiveDept(null); }}
-          />
-          {typeOptions.map((f) => (
-            <Pill
-              key={f.label}
-              label={f.label}
-              count={f.count}
-              isActive={f.type === activeType}
-              onClick={() => { setActiveType(f.type); setActiveDept(null); }}
-            />
-          ))}
-        </div>
-
-        {/* Divider */}
-        <div className="h-px bg-gray-100" />
-
-        {/* Department row */}
         <div
           role="group"
           aria-label="Filter roles by department"

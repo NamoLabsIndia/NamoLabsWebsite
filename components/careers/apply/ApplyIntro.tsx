@@ -13,7 +13,10 @@ export default function ApplyIntro({ role }: { role?: Role }) {
         { label: "Department", value: role.department },
         ...(role.focus ? [{ label: "Focus", value: role.focus }] : []),
         { label: "Location", value: role.location },
-        { label: "Type", value: role.type },
+        {
+          label: "Open for",
+          value: role.availableTypes.join(" · "),
+        },
       ]
     : [{ label: "Location", value: "Global · Remote" }];
 
