@@ -279,11 +279,6 @@ export default function ApplicationForm({ role }: { role?: Role }) {
                     }`}>
                       {type}
                     </span>
-                    <span className={`text-[12px] ${
-                      isSelected ? "text-white/60" : "text-gray-400"
-                    }`}>
-                      {type === "Full-Time" ? "Permanent position" : "Paid internship programme"}
-                    </span>
                   </button>
                 );
               })}
