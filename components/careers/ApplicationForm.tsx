@@ -354,30 +354,44 @@ export default function ApplicationForm({ role }: { role?: Role }) {
 
           <div className="border-t border-gray-100 pt-7">
             <div className="flex items-start gap-3.5">
-              <input
-                id="privacyConsent"
-                name="privacyConsent"
-                type="checkbox"
-                checked={privacyConsent}
-                disabled={isSubmitting}
-                required
-                aria-required
-                aria-invalid={errors.privacyConsent ? true : undefined}
-                aria-describedby={
-                  errors.privacyConsent ? "privacyConsent-error" : undefined
-                }
-                onChange={(event) => {
-                  setPrivacyConsent(event.target.checked);
-                  setErrors((previous) =>
-                    previous.privacyConsent
-                      ? { ...previous, privacyConsent: undefined }
-                      : previous
-                  );
-                }}
-                className={`mt-0.5 h-[18px] w-[18px] shrink-0 cursor-pointer rounded border text-namo-black accent-namo-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ${
-                  errors.privacyConsent ? "border-rose-400" : "border-gray-300"
-                }`}
-              />
+              <div className="relative mt-0.5 flex h-[18px] w-[18px] shrink-0 items-center justify-center">
+                <input
+                  id="privacyConsent"
+                  name="privacyConsent"
+                  type="checkbox"
+                  checked={privacyConsent}
+                  disabled={isSubmitting}
+                  required
+                  aria-required
+                  aria-invalid={errors.privacyConsent ? true : undefined}
+                  aria-describedby={
+                    errors.privacyConsent ? "privacyConsent-error" : undefined
+                  }
+                  onChange={(event) => {
+                    setPrivacyConsent(event.target.checked);
+                    setErrors((previous) =>
+                      previous.privacyConsent
+                        ? { ...previous, privacyConsent: undefined }
+                        : previous
+                    );
+                  }}
+                  className="peer sr-only"
+                />
+                <div
+                  className={`pointer-events-none absolute inset-0 rounded-[4px] border bg-white transition-colors peer-checked:border-namo-black peer-checked:bg-namo-black peer-focus-visible:ring-2 peer-focus-visible:ring-accent peer-focus-visible:ring-offset-2 ${
+                    errors.privacyConsent ? "border-rose-400" : "border-gray-300"
+                  }`}
+                />
+                <svg
+                  className="pointer-events-none relative z-10 h-[10px] w-[10px] text-white opacity-0 transition-opacity peer-checked:opacity-100"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
               <label
                 htmlFor="privacyConsent"
                 className="cursor-pointer text-[14px] leading-relaxed text-gray-600"
