@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getResend, FROM_EMAIL, CAREERS_TO_EMAIL } from '@/lib/resend';
+import { uploadResumeToR2, getResumeUrl } from '@/lib/r2';
+import { supabase } from '@/lib/supabase';
 import {
   HONEYPOT_FIELD,
   MAX_RESUME_BYTES,
@@ -29,7 +31,7 @@ const PDF_SIGNATURE = '%PDF-';
 /**
  * Best-effort in-memory throttle. Serverless instances are ephemeral and not
  * shared, so this slows down casual abuse from a single client but is not a
- * substitute for edge rate limiting. See the note in the README/report.
+ * substitute for edge rate limiting.
  */
 const RATE_LIMIT_MAX = 3;
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
@@ -82,7 +84,6 @@ function isRateLimited(key: string): boolean {
   recent.push(now);
   submissions.set(key, recent);
 
-  // Opportunistic cleanup so the map cannot grow without bound.
   if (submissions.size > 500) {
     for (const [existingKey, times] of submissions) {
       if (times.every((at) => now - at >= RATE_LIMIT_WINDOW_MS)) {
@@ -94,18 +95,11 @@ function isRateLimited(key: string): boolean {
   return false;
 }
 
-/**
- * Reduces an uploaded filename to a safe, predictable attachment name.
- * Strips any directory components, control characters and unusual glyphs so
- * the value can never escape the attachment context or confuse a mail client.
- */
 function sanitiseFilename(name: string): string {
-  const base = name.split(/[\\/]/).pop() || 'resume.pdf';
+  const base = name.split(/[\\\/]/).pop() || 'resume.pdf';
   const cleaned = Array.from(base)
     .map((char) => {
       const code = char.codePointAt(0) ?? 0;
-      // Drop C0/DEL control characters outright, then reduce anything outside
-      // the allowlist to an underscore.
       if (code < 0x20 || code === 0x7f) return '';
       return /[A-Za-z0-9._ -]/.test(char) ? char : '_';
     })
@@ -150,8 +144,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Invalid form submission.' }, { status: 400 });
   }
 
-  // 3. Honeypot: silently accept bot submissions so they do not retry, but
-  //    never send an email.
+  // 3. Honeypot: silently accept bot submissions so they do not retry.
   if (asString(form.get(HONEYPOT_FIELD))) {
     return NextResponse.json({ success: true }, { status: 200 });
   }
@@ -168,7 +161,7 @@ export async function POST(request: Request) {
   const privacyConsent = asString(form.get('privacyConsent')) === 'true';
   const role = asString(form.get('role')).slice(0, ROLE_MAX_LENGTH);
 
-  // 4. Re-run the shared validation server-side. The browser is never trusted.
+  // 4. Re-run the shared validation server-side.
   const errors = validateApplication(values, { privacyConsent });
   if (Object.keys(errors).length > 0) {
     return NextResponse.json(
@@ -177,7 +170,7 @@ export async function POST(request: Request) {
     );
   }
 
-  // 5. Validate the upload itself.
+  // 5. Validate the uploaded resume.
   const upload = form.get('resume');
   if (!(upload instanceof File) || upload.size === 0) {
     return NextResponse.json(
@@ -210,6 +203,47 @@ export async function POST(request: Request) {
 
   const filename = sanitiseFilename(upload.name);
 
+  // ── 6. Upload resume to Cloudflare R2 ──────────────────────────────────────
+  let resumeKey = '';
+  let resumeUrl = '';
+
+  try {
+    resumeKey = await uploadResumeToR2(resumeBytes, filename, role);
+    resumeUrl = getResumeUrl(resumeKey);
+    console.log('Resume uploaded to R2:', resumeKey);
+  } catch (err) {
+    // R2 failure is non-fatal for the applicant — we still email the resume
+    // as an attachment and log the storage failure.
+    console.error('R2 upload failed:', err instanceof Error ? err.message : err);
+  }
+
+  // ── 7. Save application to Supabase ────────────────────────────────────────
+  try {
+    const { error: dbError } = await supabase.from('applications').insert({
+      full_name: values.fullName,
+      email: values.email,
+      phone: values.phone,
+      linkedin: values.linkedin || null,
+      github: values.githubOrPortfolio || null,
+      why_namo_labs: values.whyNamoLabs,
+      recent_project: values.recentProject,
+      role: role || 'Open application',
+      resume_key: resumeKey || null,
+      resume_url: resumeUrl || null,
+      privacy_consent: true,
+    });
+
+    if (dbError) {
+      console.error('Supabase insert failed:', dbError.message);
+      // Non-fatal — email is still sent below.
+    } else {
+      console.log('Application saved to Supabase.');
+    }
+  } catch (err) {
+    console.error('Supabase error:', err instanceof Error ? err.message : err);
+  }
+
+  // ── 8. Send email notification via Resend ──────────────────────────────────
   const subject = role
     ? `[Careers] ${role} — ${values.fullName}`
     : `[Careers] Open application — ${values.fullName}`;
@@ -224,11 +258,12 @@ export async function POST(request: Request) {
     ${values.githubOrPortfolio ? linkRow('GitHub / Portfolio', values.githubOrPortfolio) : ''}
     ${row('Privacy consent', 'Granted')}
     ${row('Received', new Date().toISOString())}
+    ${resumeKey ? `<p style="margin:4px 0;"><strong>R2 Path:</strong> ${escapeHtml(resumeKey)}</p>` : ''}
     ${block('Why Namo Labs', values.whyNamoLabs)}
     ${block("A recent project they're proud of", values.recentProject)}
     <p style="margin:20px 0 0;color:#666;">Resume attached: ${escapeHtml(filename)} (${formatBytes(
-      upload.size
-    )})</p>
+    upload.size
+  )})</p>
   `;
 
   try {
@@ -241,9 +276,7 @@ export async function POST(request: Request) {
       attachments: [{ filename, content: resumeBytes, contentType: 'application/pdf' }],
     });
 
-    // Resend reports delivery failures in `error` rather than throwing.
     if (error) {
-      // Logged without applicant details or resume contents.
       console.error('Resend rejected careers application:', error.name);
       return genericFailure(502);
     }
