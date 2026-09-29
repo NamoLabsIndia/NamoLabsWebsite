@@ -43,7 +43,6 @@ export const metadata: Metadata = {
     shortcut: "/namo-labs-logo.png",
   },
 
-  // Open Graph (for link previews + Google's rich results)
   openGraph: {
     type: "website",
     locale: "en_IN",
@@ -52,23 +51,14 @@ export const metadata: Metadata = {
     title: "Namo Labs — Deep Tech. For Humanity.",
     description:
       "Building post-quantum cryptography, blockchain, AI, and enterprise technologies for governments and businesses worldwide.",
-    images: [
-      {
-        url: "/namo-labs-logo.png",
-        width: 512,
-        height: 512,
-        alt: "Namo Labs Logo",
-      },
-    ],
   },
 
   // Twitter card
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Namo Labs — Deep Tech. For Humanity.",
     description:
       "Building post-quantum cryptography, blockchain, AI and enterprise technologies.",
-    images: ["/namo-labs-logo.png"],
   },
 
   // Canonical URL
