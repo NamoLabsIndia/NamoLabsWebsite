@@ -22,10 +22,10 @@ export async function GET(request: Request) {
     // Fallback to Cloudflare R2 if Supabase returns empty (e.g. due to RLS / Publishable Key issue)
     if (finalData.length === 0) {
       try {
-        const accountId = process.env.CF_R2_ACCOUNT_ID;
-        const accessKeyId = process.env.CF_R2_ACCESS_KEY_ID;
-        const secretAccessKey = process.env.CF_R2_SECRET_KEY;
-        const bucket = process.env.CF_R2_BUCKET;
+        const accountId = process.env.CF_R2_ACCOUNT_ID || '361246d2529c9324af1bacc33d2adfb8';
+        const accessKeyId = process.env.CF_R2_ACCESS_KEY_ID || '3b81ce73a993ff31acfe19a2c470aefe';
+        const secretAccessKey = process.env.CF_R2_SECRET_KEY || 'ae7c22c18134ffadc2ff6e1334d1c03ecb744b4524841bfb8992503021f8aebd';
+        const bucket = process.env.CF_R2_BUCKET || 'namolabscareers';
 
         if (accountId && accessKeyId && secretAccessKey && bucket) {
           const s3 = new S3Client({
