@@ -78,7 +78,6 @@ export interface ApplicationValues {
   fullName: string;
   email: string;
   phone: string;
-  applyingAs: "Full-Time" | "Internship" | "";
   linkedin: string;
   githubOrPortfolio: string;
   whyNamoLabs: string;
@@ -96,7 +95,6 @@ export const EMPTY_APPLICATION: ApplicationValues = {
   fullName: "",
   email: "",
   phone: "",
-  applyingAs: "",
   linkedin: "",
   githubOrPortfolio: "",
   whyNamoLabs: "",
@@ -425,11 +423,7 @@ export function validateApplication(
     errors.privacyConsent = "We need your consent to review your application.";
   }
 
-  // Only require applyingAs when a role was explicitly selected.
-  // Open applications (no role context) skip this check.
-  if (options.requireApplyingAs && !values.applyingAs) {
-    errors.applyingAs = "Let us know whether you're applying for Full-Time or Internship.";
-  }
+
 
   return errors;
 }
@@ -439,7 +433,6 @@ export const FIELD_ORDER: ApplicationField[] = [
   "fullName",
   "email",
   "phone",
-  "applyingAs",
   "linkedin",
   "githubOrPortfolio",
   "whyNamoLabs",

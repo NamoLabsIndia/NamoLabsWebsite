@@ -40,7 +40,7 @@ export const roles: Role[] = [
     title: "Post-Quantum Cryptography Researcher",
     department: "Research",
     location: "Remote",
-    availableTypes: ["Full-Time", "Internship"],
+    availableTypes: ["Internship"],
     description:
       "Research cutting-edge PQC algorithms, study NIST standards, and develop cryptographic prototypes for the quantum-safe era.",
     focus: "Cryptography + Research",
@@ -73,7 +73,7 @@ export const roles: Role[] = [
     title: "Cryptographic Systems & Security Engineer",
     department: "Security",
     location: "Remote",
-    availableTypes: ["Full-Time", "Internship"],
+    availableTypes: ["Internship"],
     description:
       "Turn cryptography into secure production-grade systems — integrate PQC into QSCL, fuzz implementations, and model threats.",
     focus: "Cryptographic Systems + Security Engineering",
@@ -106,7 +106,7 @@ export const roles: Role[] = [
     title: "QSCL Cloud & Backend Engineer",
     department: "Engineering",
     location: "Remote",
-    availableTypes: ["Full-Time", "Internship"],
+    availableTypes: ["Internship"],
     description:
       "Build the QSCL platform — cloud APIs, authentication, key management, and the backend infrastructure powering our cryptographic engine.",
     focus: "Cloud Backend + Platform Engineering",
@@ -139,7 +139,7 @@ export const roles: Role[] = [
     title: "SDK & Developer Platform Engineer",
     department: "Engineering",
     location: "Remote",
-    availableTypes: ["Full-Time", "Internship"],
+    availableTypes: ["Internship"],
     description:
       "Make QSCL usable by developers — build TypeScript, Python, and Go SDKs, the CLI, and the tooling that lets anyone integrate QSCL without touching the underlying cryptography.",
     focus: "SDK Development + Developer Experience",
@@ -171,7 +171,7 @@ export const roles: Role[] = [
     title: "Full Stack Engineer",
     department: "Engineering",
     location: "Remote",
-    availableTypes: ["Full-Time", "Internship"],
+    availableTypes: ["Internship"],
     description:
       "Design, build, and ship full-stack features across the QSCL platform — from React frontends to Go/Node backends and cloud infrastructure.",
     focus: "Full-Stack Web + Platform Development",
@@ -200,7 +200,7 @@ export const roles: Role[] = [
     title: "Frontend Engineer (Next.js)",
     department: "Engineering",
     location: "Remote",
-    availableTypes: ["Full-Time", "Internship"],
+    availableTypes: ["Internship"],
     description:
       "Craft premium web experiences using Next.js and Tailwind CSS.",
     focus: "Frontend + Web Engineering",
@@ -224,7 +224,7 @@ export const roles: Role[] = [
     title: "Cryptography Engineer",
     department: "Research",
     location: "Remote",
-    availableTypes: ["Full-Time", "Internship"],
+    availableTypes: ["Internship"],
     description:
       "Design and implement post-quantum cryptographic protocols at the core of Namo Labs products.",
     focus: "Cryptographic Protocol Engineering",
@@ -247,7 +247,7 @@ export const roles: Role[] = [
     title: "AI / ML Research Scientist",
     department: "Research",
     location: "Remote",
-    availableTypes: ["Full-Time", "Internship"],
+    availableTypes: ["Internship"],
     description:
       "Lead research initiatives in applied AI and machine learning, publishing findings and integrating breakthroughs into Namo Labs products.",
     focus: "Applied AI + Machine Learning Research",
@@ -270,7 +270,7 @@ export const roles: Role[] = [
     title: "Blockchain Developer",
     department: "Engineering",
     location: "Remote",
-    availableTypes: ["Full-Time", "Internship"],
+    availableTypes: ["Internship"],
     description:
       "Build decentralized systems and smart contract infrastructure powering Namo Labs' blockchain layer.",
     focus: "Blockchain + Decentralized Systems",
@@ -293,7 +293,7 @@ export const roles: Role[] = [
     title: "Product Designer",
     department: "Design",
     location: "Hybrid",
-    availableTypes: ["Full-Time", "Internship"],
+    availableTypes: ["Internship"],
     description:
       "Shape the visual identity and UX of Namo Labs products from concept to shipped.",
     focus: "Product Design + UX",
@@ -317,7 +317,7 @@ export const roles: Role[] = [
     title: "Project Manager",
     department: "Operations",
     location: "Hybrid",
-    availableTypes: ["Full-Time", "Internship"],
+    availableTypes: ["Internship"],
     description:
       "Drive cross-functional delivery across engineering, research, and design — keeping ambitious projects on track without slowing the team down.",
     focus: "Project Delivery + Cross-functional Leadership",
@@ -346,7 +346,7 @@ export const roles: Role[] = [
     title: "SEO & Growth Specialist",
     department: "Marketing",
     location: "Remote",
-    availableTypes: ["Full-Time", "Internship"],
+    availableTypes: ["Internship"],
     description:
       "Own Namo Labs' organic search presence — technical SEO, content strategy, and data-driven growth across the entire funnel.",
     focus: "SEO + Organic Growth",
@@ -377,7 +377,7 @@ export const roles: Role[] = [
     title: "Sales Development Representative",
     department: "Sales",
     location: "Remote",
-    availableTypes: ["Full-Time", "Internship"],
+    availableTypes: ["Internship"],
     description:
       "Own the top of the sales funnel — prospect, qualify, and book meetings with engineering and security decision-makers at companies that need quantum-safe cryptography.",
     focus: "Outbound Prospecting + Pipeline Generation",
@@ -405,7 +405,7 @@ export const roles: Role[] = [
     title: "Account Executive",
     department: "Sales",
     location: "Remote",
-    availableTypes: ["Full-Time", "Internship"],
+    availableTypes: ["Internship"],
     description:
       "Run full-cycle sales for QSCL — from discovery to close — working with CTOs, security leads, and engineering teams at companies modernising their cryptographic infrastructure.",
     focus: "Full-Cycle B2B Sales + Revenue Growth",
@@ -435,7 +435,7 @@ export const roles: Role[] = [
     title: "Partnerships & Business Development Manager",
     department: "Sales",
     location: "Remote",
-    availableTypes: ["Full-Time", "Internship"],
+    availableTypes: ["Internship"],
     description:
       "Identify, structure, and grow strategic partnerships — with cloud providers, system integrators, cybersecurity vendors, and standards bodies — that expand QSCL's reach and credibility.",
     focus: "Strategic Partnerships + Business Development",
@@ -465,7 +465,7 @@ export const roles: Role[] = [
     title: "Operations Manager",
     department: "Operations",
     location: "On-site",
-    availableTypes: ["Full-Time"],
+    availableTypes: ["Internship"],
     description:
       "Oversee day-to-day operations and drive efficiency across Namo Labs.",
     focus: "Operations + Organisational Excellence",
@@ -488,7 +488,7 @@ export const roles: Role[] = [
     title: "Technical Writer",
     department: "Operations",
     location: "Remote",
-    availableTypes: ["Full-Time", "Internship"],
+    availableTypes: ["Internship"],
     description:
       "Document APIs, research papers, and internal processes with clarity and precision.",
     focus: "Technical Documentation + Developer Communication",
@@ -510,7 +510,7 @@ export const roles: Role[] = [
     title: "DevOps Engineer",
     department: "Engineering",
     location: "Remote",
-    availableTypes: ["Full-Time", "Internship"],
+    availableTypes: ["Internship"],
     description:
       "Design, build, and maintain the deployment infrastructure and CI/CD pipelines that power our cryptographic services. Ensure reliability, scalability, and security across all environments.",
     focus: "Infrastructure + Deployment Pipeline",
@@ -537,7 +537,7 @@ export const roles: Role[] = [
     title: "Cloud Platform Engineer",
     department: "Engineering",
     location: "Remote",
-    availableTypes: ["Full-Time", "Internship"],
+    availableTypes: ["Internship"],
     description:
       "Build and optimize the cloud platforms hosting our next-generation quantum-safe cryptographic solutions. Work deeply with cloud-native technologies to deliver high-performance APIs.",
     focus: "Cloud Architecture + Backend Services",

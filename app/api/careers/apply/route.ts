@@ -154,7 +154,6 @@ export async function POST(request: Request) {
     fullName: asString(form.get('fullName')),
     email: asString(form.get('email')),
     phone: asString(form.get('phone')),
-    applyingAs: asString(form.get('applyingAs')) as ApplicationValues['applyingAs'],
     linkedin: asString(form.get('linkedin')),
     githubOrPortfolio: asString(form.get('githubOrPortfolio')),
     whyNamoLabs: asString(form.get('whyNamoLabs')),
@@ -167,7 +166,6 @@ export async function POST(request: Request) {
   // 4. Re-run the shared validation server-side.
   const errors = validateApplication(values, { 
     privacyConsent,
-    requireApplyingAs: role ? role.availableTypes.length > 1 : false,
   });
   if (Object.keys(errors).length > 0) {
     return NextResponse.json(
@@ -252,7 +250,7 @@ export async function POST(request: Request) {
 
   // ── 8. Send email notification via Resend ──────────────────────────────────
   const displayRole = roleName
-    ? `${roleName}${values.applyingAs ? ` (${values.applyingAs})` : ''}`
+    ? `${roleName}`
     : 'Open application';
 
   const subject = roleName
