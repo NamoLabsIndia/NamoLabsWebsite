@@ -56,7 +56,7 @@ export default function CareersPage() {
 
       <section id="open-roles" className="px-6 pb-28 pt-4">
         <div className="mx-auto max-w-[1000px]">
-          <div className="mb-8 flex flex-wrap items-baseline justify-between gap-3">
+          <div className="mb-6 flex flex-wrap items-baseline justify-between gap-3">
             <h2 className="text-2xl font-extrabold tracking-tight text-namo-black sm:text-3xl">
               Open Roles
             </h2>
@@ -66,6 +66,9 @@ export default function CareersPage() {
               </p>
             )}
           </div>
+          <p className="mb-10 text-[15px] leading-relaxed text-gray-600 max-w-3xl">
+            The internship is performance-oriented, with remuneration structured based on contribution and performance. As you demonstrate technical ownership, consistency, and strong execution, there may also be opportunities to take on greater responsibilities within the team.
+          </p>
 
           <RolesBoard />
         </div>
