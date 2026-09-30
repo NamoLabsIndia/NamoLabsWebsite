@@ -3,13 +3,25 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
+interface Application {
+  id: string;
+  full_name: string;
+  email: string;
+  phone: string;
+  role: string;
+  created_at: string;
+  resume_url: string | null;
+  linkedin: string | null;
+  github: string | null;
+}
+
 export default function ApplicationsPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
   const [mounted, setMounted] = useState(false);
   
-  const [applications, setApplications] = useState<any[]>([]);
+  const [applications, setApplications] = useState<Application[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
