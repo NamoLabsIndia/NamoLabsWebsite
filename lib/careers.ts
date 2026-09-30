@@ -445,7 +445,6 @@ export const FIELD_LABELS: Record<ApplicationField, string> = {
   fullName: "Full name",
   email: "Email address",
   phone: "Phone number",
-  applyingAs: "Applying as",
   linkedin: "LinkedIn",
   githubOrPortfolio: "GitHub",
   whyNamoLabs: "Why Namo Labs",
