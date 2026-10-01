@@ -11,7 +11,7 @@ import { EMAIL_MAX_LENGTH, suggestEmailDomains } from "@/lib/careers";
  * renders inconsistently across browsers, can't be styled, and on several
  * mobile browsers doesn't appear at all.
  *
- * The suggestions are a shortcut, never a constraint — university and company
+ * The suggestions are a shortcut, never a constraint - university and company
  * addresses are exactly the ones we most want, so anything typed is accepted
  * and the list simply disappears when it has nothing to add.
  */
