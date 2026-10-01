@@ -49,6 +49,10 @@ export default function CareersPage() {
             cryptography, blockchain, AI, quantum computing, or cloud systems, we
             want to hear from you.
           </p>
+
+          <p className="mx-auto mt-6 max-w-2xl text-[15px] font-medium leading-[1.6] text-gray-500 md:text-[16px]">
+            The internship is performance-oriented, with remuneration structured based on contribution and performance. As you demonstrate technical ownership, consistency, and strong execution, there may also be opportunities to take on greater responsibilities within the team.
+          </p>
         </div>
       </section>
 

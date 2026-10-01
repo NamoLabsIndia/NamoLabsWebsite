@@ -26,58 +26,32 @@ export interface Role {
 
 export const roles: Role[] = [
   {
-    title: "Senior Cryptography Engineer",
+    title: "PQC Research Intern",
     department: "Research",
     location: "Remote",
-    type: "Full-Time",
-    description:
-      "Design and implement post-quantum cryptographic protocols.",
+    type: "Internship",
+    description: "Explore post-quantum cryptography and next-gen security.",
   },
   {
-    title: "AI / ML Research Scientist",
-    department: "Research",
-    location: "Remote",
-    type: "Full-Time",
-    description:
-      "Lead research initiatives in applied AI and machine learning.",
-  },
-  {
-    title: "Blockchain Developer",
+    title: "Cloud Engineering Intern",
     department: "Engineering",
     location: "Remote",
-    type: "Full-Time",
-    description:
-      "Build decentralized systems and smart contract infrastructure.",
+    type: "Internship",
+    description: "Build and scale cloud infrastructure for real-world products.",
   },
   {
-    title: "Frontend Engineer (Next.js)",
+    title: "SDK Developer Engineer",
     department: "Engineering",
     location: "Remote",
-    type: "Full-Time",
-    description:
-      "Craft premium web experiences using Next.js and Tailwind CSS.",
+    type: "Internship",
+    description: "Develop and maintain SDKs for seamless integrations.",
   },
   {
-    title: "Product Designer",
-    department: "Design",
-    location: "Hybrid",
-    type: "Full-Time",
-    description:
-      "Shape the visual identity and UX of Namo Labs products.",
-  },
-  {
-    title: "Operations Manager",
-    department: "Operations",
-    location: "On-site",
-    type: "Full-Time",
-    description: "Oversee day-to-day operations and drive efficiency.",
-  },
-  {
-    title: "Technical Writer",
-    department: "Operations",
+    title: "Full Stack Intern",
+    department: "Engineering",
     location: "Remote",
-    type: "Contract",
-    description: "Document APIs, research papers, and internal processes.",
+    type: "Internship",
+    description: "Work on end-to-end product development and modern web tech.",
   },
 ];
 
