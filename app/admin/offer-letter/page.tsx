@@ -69,6 +69,9 @@ function OfferLetterContent() {
 
   useEffect(() => {
     setMounted(true);
+    if (typeof window !== 'undefined' && sessionStorage.getItem('admin_auth') === 'true') {
+      setIsAuthenticated(true);
+    }
   }, []);
 
   const searchParams = useSearchParams();
@@ -218,6 +221,9 @@ function OfferLetterContent() {
     e.preventDefault();
     if (password === 'namolabs2026namoj') {
       setIsAuthenticated(true);
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem('admin_auth', 'true');
+      }
     } else {
       setError(true);
     }
@@ -265,12 +271,27 @@ function OfferLetterContent() {
 
           <div className="relative z-10 flex flex-col h-full gap-8">
             {/* Header */}
-            <div className="pt-2 flex items-center justify-between mb-2">
-              <Link href="/admin" className="text-xl font-medium tracking-tight text-white/90 hover:text-white transition-colors">Namo Labs</Link>
-              <Link href="/admin" className="flex items-center gap-1.5 text-white/40 hover:text-white transition-colors">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
-                <span className="text-[10px] font-mono tracking-widest uppercase mt-0.5">Back</span>
-              </Link>
+            <div className="flex flex-col gap-3">
+              <div className="pt-2 flex items-center justify-between">
+                <Link href="/admin" className="text-xl font-medium tracking-tight text-white/90 hover:text-white transition-colors">Namo Labs</Link>
+                <Link href="/admin" className="flex items-center gap-1.5 text-white/40 hover:text-white transition-colors">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6" /></svg>
+                  <span className="text-[10px] font-mono tracking-widest uppercase mt-0.5">Admin Hub</span>
+                </Link>
+              </div>
+
+              {/* Navigation Tabs */}
+              <div className="grid grid-cols-2 p-1 bg-white/[0.04] border border-white/10 rounded-sm text-[11px] font-mono">
+                <div className="py-1.5 text-center bg-white/10 text-white font-bold rounded-sm uppercase tracking-wider">
+                  Offer Letter
+                </div>
+                <Link
+                  href="/admin/completion-certificate"
+                  className="py-1.5 text-center text-white/50 hover:text-white transition-colors uppercase tracking-wider"
+                >
+                  Completion
+                </Link>
+              </div>
             </div>
 
             <button onClick={() => window.print()} className="relative group w-full py-3.5 bg-[#0a0d14] border border-white/10 text-white/80 hover:text-white text-[11px] font-mono tracking-[0.2em] hover:bg-white/5 hover:border-white/20 transition-all duration-300 uppercase flex items-center justify-center gap-3 overflow-hidden rounded-sm">

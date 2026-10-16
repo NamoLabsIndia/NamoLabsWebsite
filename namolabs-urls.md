@@ -150,6 +150,9 @@ https://namolabs.in/consulting#sustainability
 
 | URL | Notes | Status |
 |-----|--------|--------|
+| https://namolabs.in/admin | Admin document generation suite portal | Password protected (`namolabs2026namoj`) |
+| https://namolabs.in/admin/offer-letter | Offer letter generator with PDF export | Password protected |
+| https://namolabs.in/admin/completion-certificate | Internship completion certificate & letter generator with PDF export | Password protected |
 | https://namolabs.in/task | Sprint task board for Ayush / Rishab / Anirudh (`robots: noindex`) | Route added in repo |
 
 ---
