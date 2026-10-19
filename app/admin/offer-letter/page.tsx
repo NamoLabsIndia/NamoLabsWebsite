@@ -132,7 +132,7 @@ function OfferLetterContent() {
           <div className="flex flex-col items-center text-center min-w-[160px]">
             <div className="h-24 flex items-end justify-center mb-1">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/aanish-signature.png" alt="HR Signature" className="h-20 w-auto object-contain" />
+              <img src="/aanish-signature-centered.png" alt="HR Signature" className="h-20 w-auto object-contain" />
             </div>
             <div className="text-[14px] font-bold text-black leading-tight">Aanish Nithin</div>
             <div className="text-[12px] text-neutral-700 mt-0.5">Human Resources</div>
@@ -140,7 +140,7 @@ function OfferLetterContent() {
           <div className="flex flex-col items-center text-center min-w-[160px]">
             <div className="h-24 flex items-end justify-center mb-1">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/namoj-signature.png" alt="CEO Signature" className="h-24 w-auto object-contain" />
+              <img src="/namoj-signature-v2.png" alt="CEO Signature" className="h-24 w-auto object-contain" />
             </div>
             <div className="text-[14px] font-bold text-black leading-tight">Namoj Periakumar</div>
             <div className="text-[12px] text-neutral-700 mt-0.5">Founder &amp; CEO</div>
